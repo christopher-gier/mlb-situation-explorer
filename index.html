@@ -192,6 +192,7 @@
           <button type="button" data-tab="heat">Heat map</button>
           <button type="button" data-tab="scatter">Scatter</button>
           <button type="button" data-tab="drift">League Drift</button>
+          <button type="button" data-tab="floor">Desk Floor</button>
           <button type="button" data-tab="list">Filtered list</button>
         </div>
         <div class="stats-pill">
@@ -379,6 +380,32 @@
         <div class="slate-grid" id="today-tab-grid"></div>
       </section>
 
+
+      <section class="panel view-panel hidden" data-view="floor" id="floor-panel">
+        <div class="panel-title">
+          <h2>Desk Floor</h2>
+          <span class="hint">Paper OS · sports desks · wireframe</span>
+        </div>
+        <div class="floor-thesis" id="floor-thesis">
+          <strong>Thesis</strong>
+          <span>real DK prices · paper fills · screens ≠ tickets</span>
+          <span class="floor-load" id="floor-load-status">feeds…</span>
+        </div>
+        <div class="floor-owner" id="floor-owner-summary" aria-live="polite"></div>
+        <div class="floor-layout">
+          <div class="floor-grid" id="floor-grid" role="list"></div>
+          <aside class="floor-notes" id="floor-notes" aria-label="Station notes"></aside>
+        </div>
+        <div class="floor-log-wrap">
+          <div class="floor-log-head">
+            <h3>Event log</h3>
+            <span class="hint">stamp → watch → clear → autopsy · seeded from feeds only</span>
+          </div>
+          <div class="floor-event-log" id="floor-event-log"></div>
+        </div>
+        <div class="floor-footer">PAPER OS · real DK · screens ≠ tickets · 0u until Miles clear</div>
+      </section>
+
       <footer>
         <div id="meta-line"></div>
         <p style="margin:8px 0 0">
@@ -387,6 +414,7 @@
       </footer>
     </main>
   </div>
+  <script src="desk_floor.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

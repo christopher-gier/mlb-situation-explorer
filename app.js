@@ -2568,6 +2568,10 @@
     else {
       try { renderBetBoard(); } catch (_) {}
     }
+    if (tab === "floor" && window.DeskFloor) {
+      try { window.DeskFloor.activate(); } catch (_) {}
+    }
+    if (app) app.classList.toggle("floor-mode", tab === "floor");
     saveState();
   }
 
