@@ -1,0 +1,244 @@
+{
+  "date": "2026-09-12",
+  "source": "New Bot price-first paper desk",
+  "rules": "paper only; no lock cards; edge>=3.0; MatchWiz confirmed starters; totals OFF; one ticket",
+  "marks": [
+    {
+      "game": "COL@DET",
+      "away": "COL",
+      "home": "DET",
+      "status": "pass",
+      "market": "ML",
+      "side": null,
+      "model_p": 0.4008,
+      "edge_pts": null,
+      "kill": [],
+      "note": "edge < 3.0 or fade-200 block",
+      "paper_only": true
+    },
+    {
+      "game": "NYM@NYY",
+      "away": "NYM",
+      "home": "NYY",
+      "status": "pass",
+      "market": "ML",
+      "side": null,
+      "model_p": 0.4125,
+      "edge_pts": null,
+      "kill": [],
+      "note": "edge < 3.0 or fade-200 block",
+      "paper_only": true
+    },
+    {
+      "game": "PIT@CHC",
+      "away": "PIT",
+      "home": "CHC",
+      "status": "watch",
+      "market": "ML",
+      "side": "CHC",
+      "model_p": 0.6316,
+      "implied": 0.5455,
+      "edge_pts": 8.62,
+      "kill": [
+        "Paul Skenes or Clay Holmes scratched/limited",
+        "model edge compresses under ~3pt after open"
+      ],
+      "note": "Paul Skenes 3.83 vs Clay Holmes 2.83 | DR BestML 2nd 110/-120",
+      "pick_ml": -120,
+      "stake_paper": "0.5u paper",
+      "paper_only": true
+    },
+    {
+      "game": "BAL@TOR",
+      "away": "BAL",
+      "home": "TOR",
+      "status": "pass",
+      "market": "ML",
+      "side": null,
+      "model_p": 0.4968,
+      "edge_pts": null,
+      "kill": [],
+      "note": "edge < 3.0 or fade-200 block",
+      "paper_only": true
+    },
+    {
+      "game": "SDP@SFG",
+      "away": "SDP",
+      "home": "SFG",
+      "status": "watch",
+      "market": "ML",
+      "side": "SFG",
+      "model_p": 0.6476,
+      "implied": 0.3774,
+      "edge_pts": 27.02,
+      "kill": [
+        "Michael King or Cesar Perdomo scratched/limited",
+        "model edge compresses under ~3pt after open"
+      ],
+      "note": "Michael King 3.0 vs Cesar Perdomo 0.9 | DR BestML 2nd -175/165",
+      "pick_ml": 165,
+      "stake_paper": "0.5u paper",
+      "paper_only": true
+    },
+    {
+      "game": "LAA@WSN",
+      "away": "LAA",
+      "home": "WSN",
+      "status": "pass",
+      "market": "ML",
+      "side": null,
+      "model_p": 0.4895,
+      "edge_pts": null,
+      "kill": [],
+      "note": "edge < 3.0 or fade-200 block",
+      "paper_only": true
+    },
+    {
+      "game": "KCR@BOS",
+      "away": "KCR",
+      "home": "BOS",
+      "status": "pass",
+      "market": "ML",
+      "side": null,
+      "model_p": 0.4068,
+      "edge_pts": null,
+      "kill": [],
+      "note": "edge < 3.0 or fade-200 block",
+      "paper_only": true
+    },
+    {
+      "game": "CLE@MIN",
+      "away": "CLE",
+      "home": "MIN",
+      "status": "watch",
+      "market": "ML",
+      "side": "CLE",
+      "model_p": 0.6122,
+      "implied": 0.5122,
+      "edge_pts": 10.0,
+      "kill": [
+        "Daniel Espino or Connor Prielipp scratched/limited",
+        "model edge compresses under ~3pt after open"
+      ],
+      "note": "Daniel Espino 2.7 vs Connor Prielipp 5.25 | DR BestML 2nd -105/-105",
+      "pick_ml": -105,
+      "stake_paper": "0.5u paper",
+      "paper_only": true
+    },
+    {
+      "game": "LAD@MIA",
+      "away": "LAD",
+      "home": "MIA",
+      "status": "pass",
+      "market": "ML",
+      "side": null,
+      "model_p": 0.6384,
+      "edge_pts": null,
+      "kill": [],
+      "note": "edge < 3.0 or fade-200 block",
+      "paper_only": true
+    },
+    {
+      "game": "HOU@TBR",
+      "away": "HOU",
+      "home": "TBR",
+      "status": "watch",
+      "market": "ML",
+      "side": "HOU",
+      "model_p": 0.5213,
+      "implied": 0.4386,
+      "edge_pts": 8.28,
+      "kill": [
+        "Peter Lambert or Ian Seymour scratched/limited",
+        "model edge compresses under ~3pt after open"
+      ],
+      "note": "Peter Lambert 3.67 vs Ian Seymour 4.33 | DR BestML 2nd 128/-130",
+      "pick_ml": 128,
+      "stake_paper": "0.5u paper",
+      "paper_only": true
+    },
+    {
+      "game": "CIN@MIL",
+      "away": "CIN",
+      "home": "MIL",
+      "status": "insufficient",
+      "market": "ML",
+      "side": null,
+      "kill": [
+        "MatchWiz SP TBD/missing: Brady Singer/None"
+      ],
+      "note": "MatchWiz SP TBD/missing: Brady Singer/None",
+      "paper_only": true
+    },
+    {
+      "game": "PHI@ATL",
+      "away": "PHI",
+      "home": "ATL",
+      "status": "insufficient",
+      "market": "ML",
+      "side": null,
+      "kill": [
+        "MatchWiz SP TBD/missing: None/Tyler Mahle"
+      ],
+      "note": "MatchWiz SP TBD/missing: None/Tyler Mahle",
+      "paper_only": true
+    },
+    {
+      "game": "CWS@STL",
+      "away": "CWS",
+      "home": "STL",
+      "status": "watch",
+      "market": "ML",
+      "side": "CWS",
+      "model_p": 0.6321,
+      "implied": 0.5,
+      "edge_pts": 13.21,
+      "kill": [
+        "Sean Newcomb or Kyle Leahy scratched/limited",
+        "model edge compresses under ~3pt after open"
+      ],
+      "note": "Sean Newcomb 2.71 vs Kyle Leahy 3.41 | DR BestML 2nd 100/-106",
+      "pick_ml": 100,
+      "stake_paper": "0.5u paper",
+      "paper_only": true
+    },
+    {
+      "game": "TEX@ARI",
+      "away": "TEX",
+      "home": "ARI",
+      "status": "watch",
+      "market": "ML",
+      "side": "ARI",
+      "model_p": 0.6157,
+      "implied": 0.5516,
+      "edge_pts": 6.42,
+      "kill": [
+        "Kumar Rocker or Brandon Pfaadt scratched/limited",
+        "model edge compresses under ~3pt after open"
+      ],
+      "note": "Kumar Rocker 4.61 vs Brandon Pfaadt 3.53 | DR BestML 2nd 115/-123",
+      "pick_ml": -123,
+      "stake_paper": "0.5u paper",
+      "paper_only": true
+    },
+    {
+      "game": "SEA@ATH",
+      "away": "SEA",
+      "home": "ATH",
+      "status": "watch",
+      "market": "ML",
+      "side": "ATH",
+      "model_p": 0.448,
+      "implied": 0.3968,
+      "edge_pts": 5.12,
+      "kill": [
+        "Bryan Woo or Gage Jump scratched/limited",
+        "model edge compresses under ~3pt after open"
+      ],
+      "note": "Bryan Woo 4.03 vs Gage Jump 5.12 | DR BestML 2nd -160/152",
+      "pick_ml": 152,
+      "stake_paper": "0.5u paper",
+      "paper_only": true
+    }
+  ]
+}

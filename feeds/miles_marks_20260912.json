@@ -1,0 +1,205 @@
+{
+  "schema": "mlb_miles_marks_feed",
+  "schema_version": 1,
+  "slate_date": "2026-09-12",
+  "generated_at_utc": "2026-09-12T16:48:55Z",
+  "source": "Miles Calder \u2014 Sat slate grade (Fri autopsy calibrate)",
+  "rules": "Layer green only if status=clear. kill/stand_down force gray. Model edge alone != clear. Conflict = no-side. Totals OFF.",
+  "marks": [
+    {
+      "game": "COL@DET",
+      "away": "COL",
+      "home": "DET",
+      "miles": {
+        "status": "watch",
+        "true": "Chart UL DET climate screen; New Bot PASS. No side.",
+        "likely": "UL != buy. Watch only.",
+        "kill": "Promoting UL to a ticket.",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "NYM@NYY",
+      "away": "NYM",
+      "home": "NYY",
+      "miles": {
+        "status": "stand_down",
+        "true": "No Miles mark \u2014 New Bot pass / no disagreement graded.",
+        "likely": "Stand down.",
+        "kill": "N/A \u2014 no side.",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "PIT@CHC",
+      "away": "PIT",
+      "home": "CHC",
+      "miles": {
+        "status": "stand_down",
+        "true": "New Bot WATCH CHC edge=8.62 after MatchWiz. Miles does not clear on model edge alone.",
+        "likely": "Needs disagreement that survives kill string \u2014 not present as clear.",
+        "kill": "Paul Skenes or Clay Holmes scratched/limited; model edge compresses under ~3pt after open",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "BAL@TOR",
+      "away": "BAL",
+      "home": "TOR",
+      "miles": {
+        "status": "stand_down",
+        "true": "No Miles mark \u2014 New Bot pass / no disagreement graded.",
+        "likely": "Stand down.",
+        "kill": "N/A \u2014 no side.",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "SDP@SFG",
+      "away": "SDP",
+      "home": "SFG",
+      "miles": {
+        "status": "stand_down",
+        "true": "New Bot SFG +165 edge fat on Perdomo 0.90 tiny-sample \u2014 fragile. Miles stand_down.",
+        "likely": "Not a clear.",
+        "kill": "Tiny-sample SP ERA; edge compresses when sample updates.",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "LAA@WSN",
+      "away": "LAA",
+      "home": "WSN",
+      "miles": {
+        "status": "watch",
+        "true": "Chart UL WSN climate screen; New Bot PASS. No side.",
+        "likely": "UL != buy. Watch only.",
+        "kill": "Promoting UL to a ticket.",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "KCR@BOS",
+      "away": "KCR",
+      "home": "BOS",
+      "miles": {
+        "status": "stand_down",
+        "true": "No Miles mark \u2014 New Bot pass / no disagreement graded.",
+        "likely": "Stand down.",
+        "kill": "N/A \u2014 no side.",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "CLE@MIN",
+      "away": "CLE",
+      "home": "MIN",
+      "miles": {
+        "status": "watch",
+        "true": "New Bot WATCH CLE edge=10.0 but Chart LR on CLE (fragile over .500).",
+        "likely": "LR + model edge != clear. Paper only if desks converge without conflict.",
+        "kill": "LR chalk already priced; edge compresses; SP scratched.",
+        "market": "ML",
+        "side": null
+      }
+    },
+    {
+      "game": "LAD@MIA",
+      "away": "LAD",
+      "home": "MIA",
+      "miles": {
+        "status": "watch",
+        "true": "Chart UL MIA climate screen; New Bot PASS. No side.",
+        "likely": "UL != buy. Watch only.",
+        "kill": "Promoting UL to a ticket.",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "HOU@TBR",
+      "away": "HOU",
+      "home": "TBR",
+      "miles": {
+        "status": "watch",
+        "true": "New Bot WATCH HOU edge=8.28 but Chart LR on HOU (fragile over .500).",
+        "likely": "LR + model edge != clear. Paper only if desks converge without conflict.",
+        "kill": "LR chalk already priced; edge compresses; SP scratched.",
+        "market": "ML",
+        "side": null
+      }
+    },
+    {
+      "game": "CIN@MIL",
+      "away": "CIN",
+      "home": "MIL",
+      "miles": {
+        "status": "stand_down",
+        "true": "New Bot INSUFFICIENT \u2014 SP TBD. Miles stand_down.",
+        "likely": "No side until priced + locked.",
+        "kill": "Insufficient inputs.",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "PHI@ATL",
+      "away": "PHI",
+      "home": "ATL",
+      "miles": {
+        "status": "stand_down",
+        "true": "New Bot INSUFFICIENT \u2014 SP TBD. Miles stand_down.",
+        "likely": "No side until priced + locked.",
+        "kill": "Insufficient inputs.",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "CWS@STL",
+      "away": "CWS",
+      "home": "STL",
+      "miles": {
+        "status": "stand_down",
+        "true": "New Bot WATCH CWS edge=13.21 after MatchWiz. Miles does not clear on model edge alone.",
+        "likely": "Needs disagreement that survives kill string \u2014 not present as clear.",
+        "kill": "Sean Newcomb or Kyle Leahy scratched/limited; model edge compresses under ~3pt after open",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "TEX@ARI",
+      "away": "TEX",
+      "home": "ARI",
+      "miles": {
+        "status": "stand_down",
+        "true": "New Bot WATCH ARI edge=6.42 after MatchWiz. Miles does not clear on model edge alone.",
+        "likely": "Needs disagreement that survives kill string \u2014 not present as clear.",
+        "kill": "Kumar Rocker or Brandon Pfaadt scratched/limited; model edge compresses under ~3pt after open",
+        "market": "none",
+        "side": null
+      }
+    },
+    {
+      "game": "SEA@ATH",
+      "away": "SEA",
+      "home": "ATH",
+      "miles": {
+        "status": "stand_down",
+        "true": "New Bot WATCH ATH edge=5.12 after MatchWiz. Miles does not clear on model edge alone.",
+        "likely": "Needs disagreement that survives kill string \u2014 not present as clear.",
+        "kill": "Bryan Woo or Gage Jump scratched/limited; model edge compresses under ~3pt after open",
+        "market": "none",
+        "side": null
+      }
+    }
+  ]
+}
