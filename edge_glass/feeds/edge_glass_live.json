@@ -1,9 +1,9 @@
 {
   "_example": false,
   "_live_si": true,
-  "_warning": "Experimental PRICE DIAGNOSTICS — live SI verify shells only. No DraftKings prices wired yet; p_model null; not validated edge; no tickets.",
-  "generated_at": "2026-09-14T21:41:34Z",
-  "model_version": "si-verify-shell-v0",
+  "_warning": "Experimental PRICE DIAGNOSTICS \u2014 Daniel fundamentals v1.1 (MLB heuristic). Market not in p; AN_mirror quotes context-only; no tickets; not validated edge.",
+  "generated_at": "2026-09-14T21:45:38Z",
+  "model_version": "mlb-heuristic-v1.1",
   "slate_dates": [
     "2026-09-14",
     "2026-09-17",
@@ -15,7 +15,7 @@
     "MLB",
     "NFL"
   ],
-  "feed_status": "OK",
+  "feed_status": "experimental_fundamentals",
   "si_sources": [
     {
       "path": "/workspace/mlb-price-first/edge_glass/feeds/si_verify_20260914.json",
@@ -59,35 +59,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.47642582901170305,
+        "home_p": 0.523574170988297,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -0.5498,
+            "w": 0.12,
+            "logit_contribution": -0.06597599999999999,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "HOME",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": -6.934,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -109.9,
+        "fair_odds_away": 109.9,
+        "fair_odds_home": -109.9,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Interesting"
       },
       "explanation": {
         "positive": [],
@@ -95,8 +199,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -179,35 +284,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5199038139657901,
+        "home_p": 0.48009618603420984,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -2.0,
+            "w": 0.12,
+            "logit_contribution": -0.24,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "AWAY",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": 13.822,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -108.3,
+        "fair_odds_away": -108.3,
+        "fair_odds_home": 108.3,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Investigate Aggressively"
       },
       "explanation": {
         "positive": [],
@@ -215,8 +424,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -299,35 +509,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5005043373101633,
+        "home_p": 0.4994956626898367,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -1.353,
+            "w": 0.12,
+            "logit_contribution": -0.16236,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "AWAY",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": -6.541,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -100.2,
+        "fair_odds_away": -100.2,
+        "fair_odds_home": 100.2,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Interesting"
       },
       "explanation": {
         "positive": [],
@@ -335,8 +649,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -419,35 +734,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.4596959733231032,
+        "home_p": 0.5403040266768968,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": 0.010200000000000042,
+            "w": 0.12,
+            "logit_contribution": 0.001224000000000005,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "HOME",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": -2.319,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -117.5,
+        "fair_odds_away": 117.5,
+        "fair_odds_home": -117.5,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Watch"
       },
       "explanation": {
         "positive": [],
@@ -455,8 +874,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -539,35 +959,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.45126753295557276,
+        "home_p": 0.5487324670444272,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": 0.2934000000000001,
+            "w": 0.12,
+            "logit_contribution": 0.03520800000000001,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "HOME",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": 0.079,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -121.6,
+        "fair_odds_away": 121.6,
+        "fair_odds_home": -121.6,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Noise"
       },
       "explanation": {
         "positive": [],
@@ -575,8 +1099,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -659,35 +1184,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5199038139657901,
+        "home_p": 0.48009618603420984,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -2.0,
+            "w": 0.12,
+            "logit_contribution": -0.24,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "AWAY",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": 2.366,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -108.3,
+        "fair_odds_away": -108.3,
+        "fair_odds_home": 108.3,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Watch"
       },
       "explanation": {
         "positive": [],
@@ -695,8 +1324,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -779,35 +1409,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.43233599524038824,
+        "home_p": 0.5676640047596118,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": 0.9331999999999999,
+            "w": 0.12,
+            "logit_contribution": 0.11198399999999999,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "HOME",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": -0.506,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -131.3,
+        "fair_odds_away": 131.3,
+        "fair_odds_home": -131.3,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Noise"
       },
       "explanation": {
         "positive": [],
@@ -815,8 +1549,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -899,35 +1634,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5199038139657901,
+        "home_p": 0.48009618603420984,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -2.0,
+            "w": 0.12,
+            "logit_contribution": -0.24,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "AWAY",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": 12.238,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -108.3,
+        "fair_odds_away": -108.3,
+        "fair_odds_home": 108.3,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Investigate Aggressively"
       },
       "explanation": {
         "positive": [],
@@ -935,8 +1774,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -988,7 +1828,7 @@
             "event_id": "mlb-20260914-sd-col",
             "evidence_grade": "A",
             "field_name": "altitude_coors",
-            "raw_value": "Coors Field elevation ~5280 ft — run environment material",
+            "raw_value": "Coors Field elevation ~5280 ft \u2014 run environment material",
             "normalized_value": "high_altitude",
             "freshness_status": "fresh"
           },
@@ -1031,35 +1871,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.46736480073527575,
+        "home_p": 0.5326351992647242,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -0.24680000000000002,
+            "w": 0.12,
+            "logit_contribution": -0.029616,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "HOME",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": 3.922,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -114.0,
+        "fair_odds_away": 114.0,
+        "fair_odds_home": -114.0,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Watch"
       },
       "explanation": {
         "positive": [],
@@ -1067,8 +2011,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -1151,35 +2096,139 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.4615921498517207,
+        "home_p": 0.5384078501482793,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -0.0534,
+            "w": 0.12,
+            "logit_contribution": -0.0064080000000000005,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-14T21:41:13Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
+        "most_likely_winner": "HOME",
         "best_side": null,
-        "divergence_pp": null,
+        "divergence_pp": -0.949,
         "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -116.6,
+        "fair_odds_away": 116.6,
+        "fair_odds_home": -116.6,
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false,
+        "divergence_band": "Noise"
       },
       "explanation": {
         "positive": [],
@@ -1187,8 +2236,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -1275,15 +2325,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -1299,7 +2350,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -1307,8 +2360,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -1419,15 +2473,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -1443,7 +2498,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -1451,8 +2508,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -1575,17 +2633,17 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [
           "injury"
         ],
         "status": "STOPPED",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental"
         ],
         "filters": []
       },
@@ -1601,7 +2659,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "UNVERIFIED"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -1611,8 +2671,9 @@
         ],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -1725,15 +2786,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -1749,7 +2811,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -1757,8 +2821,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -1861,9 +2926,21 @@
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
             "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:55Z",
+            "effective_at": "2026-09-14T21:41:55Z",
+            "event_id": "nfl-20260920-phi-ten",
+            "evidence_grade": "B",
+            "field_name": "heat_climate",
+            "raw_value": "NWS OHX Sunday ~96F Mostly Sunny; slight storm chance PoP 22%",
+            "normalized_value": "hot",
+            "freshness_status": "fresh"
           }
         ],
-        "si_action": "CLEAR_FOR_PRICE"
+        "si_action": "WATCH"
       },
       "bankroll_id": null,
       "open_exposure_total": null,
@@ -1893,15 +2970,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -1917,7 +2995,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -1925,8 +3005,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -2037,15 +3118,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -2061,7 +3143,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -2069,8 +3153,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -2229,15 +3314,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -2253,7 +3339,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -2261,8 +3349,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -2377,6 +3466,18 @@
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
             "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:55Z",
+            "effective_at": "2026-09-14T21:41:55Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "B",
+            "field_name": "heat_climate",
+            "raw_value": "NWS TBW Sunday ~90F; Chance Showers And Thunderstorms PoP 73%",
+            "normalized_value": "hot_storm_risk",
+            "freshness_status": "fresh"
           }
         ],
         "si_action": "WATCH"
@@ -2409,15 +3510,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -2433,7 +3535,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -2441,8 +3545,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -2613,15 +3718,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_clear"
         ],
         "filters": []
       },
@@ -2637,7 +3743,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -2645,8 +3753,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -2757,15 +3866,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -2781,7 +3891,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -2789,8 +3901,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -2866,7 +3979,7 @@
             "event_id": "nfl-20260920-jax-den",
             "evidence_grade": "A",
             "field_name": "altitude_mile_high",
-            "raw_value": "Empower Field at Mile High — altitude climate factor",
+            "raw_value": "Empower Field at Mile High \u2014 altitude climate factor",
             "normalized_value": "high_altitude",
             "freshness_status": "fresh"
           },
@@ -2913,15 +4026,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -2937,7 +4051,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -2945,8 +4061,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -3105,15 +4222,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -3129,7 +4247,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -3137,8 +4257,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -3261,17 +4382,17 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [
           "injury"
         ],
         "status": "STOPPED",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental"
         ],
         "filters": []
       },
@@ -3287,7 +4408,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "UNVERIFIED"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -3297,8 +4420,9 @@
         ],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -3423,15 +4547,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -3447,7 +4572,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -3455,8 +4582,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
@@ -3567,15 +4695,16 @@
         "home_p": null,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": null,
+        "decision_cutoff": "2026-09-14T21:41:13Z",
         "tags": [
-          "si_verify_shell",
-          "no_prices"
+          "nfl_adapter_pending",
+          "experimental",
+          "si_watch"
         ],
         "filters": []
       },
@@ -3591,7 +4720,9 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "quote_source": "AN_mirror",
+        "is_dk_direct": false
       },
       "explanation": {
         "positive": [],
@@ -3599,8 +4730,9 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "AN_MIRROR_QUOTES_CONTEXT_ONLY",
+          "NO_TICKETS"
         ],
         "market_hypotheses": []
       },
