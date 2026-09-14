@@ -1,6 +1,6 @@
 # Edge Glass — Phase 1 (self-contained)
 
-**Standalone MLB moneyline diagnostic UI.** Sample / example data only. Not a validated edge. Not wired to Bet board, Desk Floor, League Drift, or TR heatmaps.
+**Standalone Research Desk UI** (navy sidebar + light canvas). Live SI / AN_mirror feed preferred; sample fallback. Not a validated edge. Not wired to Bet board, Desk Floor, League Drift, or TR heatmaps.
 
 This folder is meant to survive if Situation Explorer Bet/Drift/maps are deleted later — ship Glass as the replacement surface.
 
@@ -54,7 +54,7 @@ python3 -m http.server 8765
 - `odds.*` — american / de-vig / fair / divergence / edge / EV (from spine `odds.py`)
 - `applyHardGate(row)` — client gate
 
-Feed URL resolves relative to `edge_glass.js`: prefers `feeds/edge_glass_live.json` (live SI + AN_mirror DK current), falls back to `feeds/edge_glass_sample.json`. Pass #1 master columns: Matchup · Most likely · Fundamental % · Fair ML · DK current (AN_mirror badge) · Value side · Divergence. Sport/date filters. Flash strip for |div|≥5pp or STOP stories. Banner: PRICE DIAGNOSTICS · experimental · AN_mirror ≠ live DK until verified.
+Feed URL resolves relative to `edge_glass.js`: prefers `feeds/edge_glass_live.json` (live SI + AN_mirror DK current), falls back to `feeds/edge_glass_sample.json`. Research Desk: metric cards · On the radar (≥5pp / STOP + mini spectrum) · The research board (Matchup · Most likely winner · Win estimate · Relative value side · DK archive + AN_mirror · Divergence · Status pills). Sidebar filters Today/MLB/NFL. Doctrine: PHASE 01 RESEARCH. Build the number. Then look at the price. No tickets / Kelly.
 
 ## Non-goals
 

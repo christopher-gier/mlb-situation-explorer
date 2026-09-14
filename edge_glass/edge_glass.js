@@ -1,4 +1,4 @@
-/* Edge Glass — Phase 1 Pass #1 board (self-contained). No Bet / Drift / DeskFloor / TR imports. */
+/* Edge Glass — Research Desk UI (self-contained). No Bet / Drift / DeskFloor / TR imports. */
 (function (global) {
   "use strict";
 
@@ -10,6 +10,29 @@
     "PASS_THE_BOARD",
     "UNVERIFIED",
   ]);
+
+  const ICO = {
+    today:
+      '<svg class="eg-nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
+    mlb:
+      '<svg class="eg-nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></svg>',
+    nfl:
+      '<svg class="eg-nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="12" rx="9" ry="6"/><path d="M12 6v12M5 9l14 6M5 15l14-6"/></svg>',
+    nba:
+      '<svg class="eg-nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18M3 12h18"/></svg>',
+    star:
+      '<svg class="eg-nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.8 5.7L21 9.8l-4.5 4.4L17.6 21 12 18.1 6.4 21l1.1-6.8L3 9.8l6.2-1.1L12 3z"/></svg>',
+    book:
+      '<svg class="eg-nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>',
+    chart:
+      '<svg class="eg-nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M10 19V9M16 19v-6M22 19V7"/></svg>',
+    shield:
+      '<svg class="eg-nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V7l8-4z"/></svg>',
+    search:
+      '<svg class="eg-nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3-3"/></svg>',
+    info:
+      '<svg class="eg-banner-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>',
+  };
 
   function detectBaseUrl() {
     try {
@@ -35,8 +58,9 @@
     baseUrl: detectBaseUrl(),
     feedUrl: null,
     feedSource: null,
-    sportFilter: "ALL",
+    sportFilter: "NFL",
     dateFilter: "ALL",
+    teamQuery: "",
   };
 
   function sampleFeedUrl() {
@@ -59,7 +83,7 @@
       const sp = row.event && row.event.sport;
       if (sp) set.add(sp);
     });
-    (slate && slate.sports || []).forEach((sp) => set.add(sp));
+    ((slate && slate.sports) || []).forEach((sp) => set.add(sp));
     return Array.from(set);
   }
 
@@ -69,7 +93,7 @@
       const d = row.event && row.event.date;
       if (d) set.add(d);
     });
-    (slate && slate.slate_dates || []).forEach((d) => set.add(d));
+    ((slate && slate.slate_dates) || []).forEach((d) => set.add(d));
     return Array.from(set).sort();
   }
 
@@ -81,37 +105,132 @@
     if (state.dateFilter !== "ALL") {
       events = events.filter((row) => (row.event && row.event.date) === state.dateFilter);
     }
+    const q = (state.teamQuery || "").trim().toLowerCase();
+    if (q) {
+      events = events.filter((row) => {
+        const ev = row.event || {};
+        return (
+          String(ev.away || "").toLowerCase().indexOf(q) !== -1 ||
+          String(ev.home || "").toLowerCase().indexOf(q) !== -1 ||
+          String(ev.event_id || "").toLowerCase().indexOf(q) !== -1
+        );
+      });
+    }
     return events;
+  }
+
+  function deskTitle() {
+    if (state.sportFilter === "MLB") return "MLB research desk";
+    if (state.sportFilter === "NFL") return "NFL research desk";
+    if (state.sportFilter === "NBA") return "NBA research desk";
+    return "Research desk";
+  }
+
+  function crumbSport() {
+    if (state.sportFilter === "ALL") return "Today";
+    return state.sportFilter;
+  }
+
+  function archiveLabel() {
+    const s = state.slate;
+    const dates = availableDates(s).filter((d) => {
+      if (state.sportFilter === "ALL") return true;
+      return ((s && s.events) || []).some(
+        (r) => r.event && r.event.date === d && r.event.sport === state.sportFilter
+      );
+    });
+    const sport =
+      state.sportFilter === "ALL" ? "MULTI" : state.sportFilter;
+    if (!dates.length) return { label: `SUPPLIED ${sport} ARCHIVE`, date: "—", hint: "Report date · not game date" };
+    const shown = dates.length <= 2 ? dates.join(" · ") : `${dates[0]} … ${dates[dates.length - 1]}`;
+    return {
+      label: `SUPPLIED ${sport} ARCHIVE`,
+      date: shown,
+      hint: "Report date · not game date",
+    };
   }
 
   function panelMarkup() {
     return (
-      '<div class="eg-root" id="eg-root">' +
-        '<div class="panel-title eg-panel-title">' +
-          '<h2>Edge Glass <span class="eg-exp-title">PRICE DIAGNOSTICS</span></h2>' +
-          '<span class="hint eg-hint-top">Pass #1 board · experimental · not wired to Bet</span>' +
-        '</div>' +
-        '<div class="eg-banner" id="eg-banner" role="status"></div>' +
-        '<div class="eg-toolbar" id="eg-toolbar">' +
-          '<label class="eg-sport-filter">Sport ' +
-            '<select id="eg-sport-select" aria-label="Filter by sport">' +
-              '<option value="ALL">All</option>' +
-              '<option value="MLB">MLB</option>' +
-              '<option value="NFL">NFL</option>' +
-              '<option value="NBA">NBA</option>' +
-            '</select>' +
-          '</label>' +
-          '<label class="eg-sport-filter">Date ' +
-            '<select id="eg-date-select" aria-label="Filter by date">' +
-              '<option value="ALL">All</option>' +
-            '</select>' +
-          '</label>' +
-          '<span class="eg-feed-meta" id="eg-feed-meta"></span>' +
-        '</div>' +
-        '<div class="eg-flash-strip" id="eg-flash-strip"></div>' +
-        '<div id="eg-master-table"></div>' +
-        '<div class="eg-spectrum-panel" id="eg-spectrum"></div>' +
-      '</div>'
+      '<div class="eg-root eg-desk" id="eg-root">' +
+        '<aside class="eg-sidebar" aria-label="Edge Glass navigation">' +
+          '<div class="eg-brand">' +
+            '<div class="eg-brand-mark">EDGE GLASS</div>' +
+            '<div class="eg-brand-sub">The Research Desk</div>' +
+          "</div>" +
+          '<nav class="eg-nav">' +
+            '<div class="eg-nav-group">' +
+              '<div class="eg-nav-label">Workspace</div>' +
+              `<button type="button" class="eg-nav-item" data-eg-sport="ALL">${ICO.today}<span class="label">Today</span></button>` +
+              `<button type="button" class="eg-nav-item" data-eg-sport="MLB">${ICO.mlb}<span class="label">MLB</span></button>` +
+              `<button type="button" class="eg-nav-item" data-eg-sport="NFL">${ICO.nfl}<span class="label">NFL</span><span class="eg-nav-badge" id="eg-nfl-badge" hidden>Archive</span></button>` +
+              `<button type="button" class="eg-nav-item is-disabled" data-eg-sport="NBA" disabled title="Coming later">${ICO.nba}<span class="label">NBA</span></button>` +
+            "</div>" +
+            '<div class="eg-nav-group">' +
+              `<button type="button" class="eg-nav-item is-disabled" disabled>${ICO.star}<span class="label">Watchlist</span><span class="eg-nav-badge count">0</span></button>` +
+              `<button type="button" class="eg-nav-item is-disabled" disabled>${ICO.book}<span class="label">Journal</span></button>` +
+              `<button type="button" class="eg-nav-item is-disabled" disabled>${ICO.chart}<span class="label">Performance</span></button>` +
+              `<button type="button" class="eg-nav-item is-disabled" disabled>${ICO.shield}<span class="label">Data Quality</span></button>` +
+              `<button type="button" class="eg-nav-item is-disabled" disabled>${ICO.search}<span class="label">Research</span></button>` +
+            "</div>" +
+          "</nav>" +
+          '<div class="eg-sidebar-foot">' +
+            '<div class="eg-sidebar-doctrine">' +
+              "<strong>PHASE 01 RESEARCH.</strong>" +
+              "Build the number. Then look at the price." +
+            "</div>" +
+            '<div class="eg-sidebar-profile">' +
+              '<div class="eg-avatar" aria-hidden="true">CG</div>' +
+              "<div>" +
+                '<div class="eg-profile-name">Christopher\u2019s desk</div>' +
+                '<div class="eg-profile-sub">Phase 01 · research only</div>' +
+              "</div>" +
+            "</div>" +
+          "</div>" +
+        "</aside>" +
+        '<main class="eg-main">' +
+          '<div class="eg-topbar">' +
+            '<div class="eg-crumbs">Workspace / <b id="eg-crumb-sport">Sport</b></div>' +
+            '<div class="eg-top-actions">' +
+              '<span class="eg-feed-status" id="eg-feed-status"><span class="eg-dot" id="eg-feed-dot"></span> <span id="eg-feed-label">Feeds…</span></span>' +
+              '<button type="button" class="eg-btn" id="eg-import-btn" title="Research import is manual for now">+ Import research</button>' +
+            "</div>" +
+          "</div>" +
+          '<div class="eg-title-row">' +
+            "<div>" +
+              '<div class="eg-kicker">Probability / price / perspective</div>' +
+              '<h1 class="eg-title" id="eg-desk-title">Research desk</h1>' +
+              '<p class="eg-subtitle">Independent estimates and market comparisons in one place. Experimental · not a validated edge.</p>' +
+            "</div>" +
+            '<div class="eg-archive-box" id="eg-archive-box"></div>' +
+          "</div>" +
+          '<div class="eg-banner" id="eg-banner" role="status"></div>' +
+          '<div class="eg-metrics" id="eg-metrics"></div>' +
+          '<section class="eg-section" id="eg-radar-section">' +
+            '<div class="eg-section-head">' +
+              '<h2 class="eg-section-title">On the radar</h2>' +
+              '<span class="eg-count-pill" id="eg-radar-count">0</span>' +
+              '<div class="eg-filters">' +
+                '<button type="button" class="eg-chip" data-eg-chip="ALL">All sports</button>' +
+                '<button type="button" class="eg-chip" data-eg-chip="MLB">MLB</button>' +
+                '<button type="button" class="eg-chip" data-eg-chip="NFL">NFL</button>' +
+                '<button type="button" class="eg-chip" data-eg-chip="NBA" disabled>NBA</button>' +
+                '<input class="eg-search" id="eg-team-search" type="search" placeholder="Find a team" aria-label="Find a team" />' +
+                '<select class="eg-date-select" id="eg-date-select" aria-label="Filter by date"><option value="ALL">All dates</option></select>' +
+              "</div>" +
+            "</div>" +
+            '<div class="eg-radar" id="eg-radar"></div>' +
+          "</section>" +
+          '<section class="eg-section">' +
+            '<div class="eg-section-head">' +
+              '<h2 class="eg-section-title">The research board</h2>' +
+              '<span class="eg-count-pill" id="eg-board-count">0</span>' +
+            "</div>" +
+            '<div id="eg-master-table"></div>' +
+          "</section>" +
+          '<div class="eg-spectrum-panel" id="eg-spectrum"></div>' +
+        "</main>" +
+      "</div>"
     );
   }
 
@@ -124,7 +243,7 @@
       state.baseUrl = opts.baseUrl.endsWith("/") ? opts.baseUrl : opts.baseUrl + "/";
     }
     if (opts.feedUrl) state.feedUrl = opts.feedUrl;
-    if (!host.querySelector("#eg-banner")) {
+    if (!host.querySelector("#eg-root")) {
       host.innerHTML = panelMarkup();
     }
     host.classList.add("eg-host");
@@ -155,7 +274,7 @@
 
   function fairAmericanFromP(p) {
     if (!(p > 0 && p < 1)) throw new Error("Probability must be strictly between 0 and 1");
-    return p >= 0.5 ? -100 * p / (1 - p) : 100 * (1 - p) / p;
+    return p >= 0.5 ? (-100 * p) / (1 - p) : (100 * (1 - p)) / p;
   }
 
   function divergencePp(pModel, pMarketNoVig) {
@@ -196,6 +315,11 @@
     return `${(Number(p) * 100).toFixed(digits)}%`;
   }
 
+  function pad2(n) {
+    const s = String(Math.max(0, Math.round(Number(n) || 0)));
+    return s.length >= 2 ? s : s.padStart(2, "0");
+  }
+
   function applyHardGate(row) {
     const raw = (row.value && row.value.decision) || "UNVERIFIED";
     const decision = DECISIONS.has(raw) ? raw : "UNVERIFIED";
@@ -218,8 +342,7 @@
     const loadBearingCD = grades.some((g) => g === "C" || g === "D");
 
     const div = row.value && row.value.divergence_pp;
-    const extremeDiv =
-      div != null && Math.abs(Number(div)) > 12 && !row.investigation_note;
+    const extremeDiv = div != null && Math.abs(Number(div)) > 12 && !row.investigation_note;
 
     const reasons = [];
     if (hasStops) reasons.push("STOP/unverified inputs");
@@ -256,6 +379,31 @@
     }
   }
 
+  /** Status badge taxonomy for Research Desk pills. */
+  function statusInfo(v) {
+    if (v.status === "STOPPED" || v.flashReason === "STOP") {
+      return { key: "stop", label: "STOP", cls: "eg-status-stop" };
+    }
+    if (v.divNum != null && Math.abs(v.divNum) >= 7.5) {
+      return { key: "strong", label: "Strong disagreement", cls: "eg-status-strong" };
+    }
+    if (v.divNum != null && Math.abs(v.divNum) >= 5) {
+      return { key: "interesting", label: "Interesting", cls: "eg-status-interesting" };
+    }
+    if (v.status === "INSUFFICIENT") {
+      return { key: "watch", label: "Watch", cls: "eg-status-watch" };
+    }
+    if (v.divNum != null && Math.abs(v.divNum) >= 3) {
+      return { key: "watch", label: "Watch", cls: "eg-status-watch" };
+    }
+    return { key: "pass", label: "Aligned", cls: "eg-status-pass" };
+  }
+
+  function statusPill(v) {
+    const s = statusInfo(v);
+    return `<span class="eg-status ${s.cls}">${esc(s.label)}</span>`;
+  }
+
   /** Pass #1 row view-model — never invent odds. */
   function boardRow(row) {
     const ev = row.event || {};
@@ -275,6 +423,9 @@
     let valueSideLabel = null;
     let divLabel = null;
     let divNum = null;
+    let researchP = null;
+    let marketNoVigP = null;
+    let valueOdds = null;
 
     if (status === "STOPPED") {
       mostLikelyLabel = "STOPPED";
@@ -295,26 +446,31 @@
       const mlTeam = homeFav ? ev.home : ev.away;
       const mlP = homeFav ? fund.home_p : fund.away_p;
       mostLikelyLabel = val.most_likely_team || mlTeam;
-      fundPctLabel = val.fundamental_pct != null
-        ? `${Number(val.fundamental_pct).toFixed(0)}%`
-        : fmtPct(mlP, 0);
-      const fair = val.fair_odds != null
-        ? val.fair_odds
-        : (homeFav ? val.fair_odds_home : val.fair_odds_away);
+      fundPctLabel =
+        val.fundamental_pct != null
+          ? `${Number(val.fundamental_pct).toFixed(0)}%`
+          : fmtPct(mlP, 0);
+      const fair =
+        val.fair_odds != null
+          ? val.fair_odds
+          : homeFav
+            ? val.fair_odds_home
+            : val.fair_odds_away;
       fairMlLabel = fmtOdds(fair);
 
-      // Value side from payload or recompute
       let vTeam = val.value_side_team;
       let div = val.divergence_pp;
-      if (vTeam == null && hasDk) {
+      let pAway = mkt.away_no_vig_p;
+      let pHome = mkt.home_no_vig_p;
+      if (hasDk && (pAway == null || pHome == null)) {
         try {
-          let pAway = mkt.away_no_vig_p;
-          let pHome = mkt.home_no_vig_p;
-          if (pAway == null || pHome == null) {
-            const d = twoSidedDevig(awayOdds, homeOdds);
-            pAway = d[0];
-            pHome = d[1];
-          }
+          const d = twoSidedDevig(awayOdds, homeOdds);
+          pAway = d[0];
+          pHome = d[1];
+        } catch (_) {}
+      }
+      if (vTeam == null && hasDk && pAway != null && pHome != null) {
+        try {
           const eA = executableEdgePp(Number(fund.away_p), awayOdds);
           const eH = executableEdgePp(Number(fund.home_p), homeOdds);
           if (eA >= eH && eA >= 0.5) {
@@ -334,8 +490,21 @@
       valueSideLabel = vTeam || "None";
       divNum = div != null ? Number(div) : null;
       divLabel = divNum != null ? fmtPp(divNum) : null;
-      if (vTeam && divNum != null && Math.abs(divNum) >= 0.05) {
-        // Pass #1 often shows value-side team beside div when small
+
+      if (vTeam === ev.away) {
+        researchP = Number(fund.away_p);
+        marketNoVigP = pAway != null ? Number(pAway) : null;
+        valueOdds = awayOdds;
+      } else if (vTeam === ev.home) {
+        researchP = Number(fund.home_p);
+        marketNoVigP = pHome != null ? Number(pHome) : null;
+        valueOdds = homeOdds;
+      } else if (homeFav) {
+        researchP = Number(fund.home_p);
+        marketNoVigP = pHome != null ? Number(pHome) : null;
+      } else {
+        researchP = Number(fund.away_p);
+        marketNoVigP = pAway != null ? Number(pAway) : null;
       }
     } else {
       mostLikelyLabel = "HOLD";
@@ -346,9 +515,7 @@
 
     const story = val.story || null;
     const flash =
-      !!val.flash ||
-      status === "STOPPED" ||
-      (divNum != null && Math.abs(divNum) >= 5);
+      !!val.flash || status === "STOPPED" || (divNum != null && Math.abs(divNum) >= 5);
 
     return {
       id: ev.event_id || "",
@@ -370,8 +537,17 @@
       valueSideLabel,
       divLabel,
       divNum,
+      researchP,
+      marketNoVigP,
+      valueOdds,
       flash,
-      flashReason: val.flash_reason || (status === "STOPPED" ? "STOP" : (divNum != null && Math.abs(divNum) >= 5 ? "DIVERGENCE" : null)),
+      flashReason:
+        val.flash_reason ||
+        (status === "STOPPED"
+          ? "STOP"
+          : divNum != null && Math.abs(divNum) >= 5
+            ? "DIVERGENCE"
+            : null),
       story,
       stops,
       row,
@@ -397,19 +573,32 @@
   function ensureDom() {
     const host = findHost();
     if (!host) return false;
-    mount(host, { standalone: !!host.closest(".eg-standalone") || host.id === "eg-standalone-root" });
+    mount(host, {
+      standalone: !!host.closest(".eg-standalone") || host.id === "eg-standalone-root",
+    });
     return true;
   }
 
-  function bindFilters() {
-    const sportSel = document.getElementById("eg-sport-select");
-    if (sportSel && !sportSel._egBound) {
-      sportSel._egBound = true;
-      sportSel.addEventListener("change", () => {
-        state.sportFilter = sportSel.value || "ALL";
+  function bindChrome() {
+    document.querySelectorAll("[data-eg-sport]").forEach((btn) => {
+      if (btn._egBound) return;
+      btn._egBound = true;
+      btn.addEventListener("click", () => {
+        if (btn.disabled) return;
+        const sp = btn.getAttribute("data-eg-sport") || "ALL";
+        state.sportFilter = sp;
         render();
       });
-    }
+    });
+    document.querySelectorAll("[data-eg-chip]").forEach((btn) => {
+      if (btn._egBound) return;
+      btn._egBound = true;
+      btn.addEventListener("click", () => {
+        if (btn.disabled) return;
+        state.sportFilter = btn.getAttribute("data-eg-chip") || "ALL";
+        render();
+      });
+    });
     const dateSel = document.getElementById("eg-date-select");
     if (dateSel && !dateSel._egBound) {
       dateSel._egBound = true;
@@ -418,6 +607,112 @@
         render();
       });
     }
+    const search = document.getElementById("eg-team-search");
+    if (search && !search._egBound) {
+      search._egBound = true;
+      search.addEventListener("input", () => {
+        state.teamQuery = search.value || "";
+        render();
+      });
+    }
+    const importBtn = document.getElementById("eg-import-btn");
+    if (importBtn && !importBtn._egBound) {
+      importBtn._egBound = true;
+      importBtn.addEventListener("click", () => {
+        const el = document.getElementById("eg-spectrum");
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }
+
+  function renderChrome() {
+    const crumb = document.getElementById("eg-crumb-sport");
+    if (crumb) crumb.textContent = crumbSport();
+    const title = document.getElementById("eg-desk-title");
+    if (title) title.textContent = deskTitle();
+    const arch = archiveLabel();
+    const box = document.getElementById("eg-archive-box");
+    if (box) {
+      box.innerHTML = `
+        <div class="eg-archive-label">${esc(arch.label)}</div>
+        <div class="eg-archive-date">${esc(arch.date)}</div>
+        <div class="eg-archive-hint">${esc(arch.hint)}</div>
+      `;
+    }
+
+    const sports = availableSports(state.slate);
+    document.querySelectorAll("[data-eg-sport]").forEach((btn) => {
+      const sp = btn.getAttribute("data-eg-sport");
+      btn.classList.toggle("active", sp === state.sportFilter);
+      if (sp === "NBA") return;
+      if (sp === "ALL") {
+        btn.disabled = false;
+        btn.classList.remove("is-disabled");
+        return;
+      }
+      const has = sports.indexOf(sp) !== -1;
+      btn.disabled = sports.length > 0 && !has;
+      btn.classList.toggle("is-disabled", btn.disabled);
+    });
+    document.querySelectorAll("[data-eg-chip]").forEach((btn) => {
+      const sp = btn.getAttribute("data-eg-chip");
+      btn.classList.toggle("active", sp === state.sportFilter);
+      if (sp === "NBA") return;
+      if (sp === "ALL") {
+        btn.disabled = false;
+        return;
+      }
+      btn.disabled = sports.length > 0 && sports.indexOf(sp) === -1;
+    });
+
+    const nflBadge = document.getElementById("eg-nfl-badge");
+    if (nflBadge) {
+      const show =
+        state.sportFilter === "NFL" ||
+        ((state.slate && state.slate.events) || []).some(
+          (r) => r.event && r.event.sport === "NFL"
+        );
+      nflBadge.hidden = !show;
+    }
+
+    const dateSel = document.getElementById("eg-date-select");
+    if (dateSel) {
+      const dates = availableDates(state.slate);
+      const cur = state.dateFilter;
+      dateSel.innerHTML =
+        '<option value="ALL">All dates</option>' +
+        dates.map((d) => `<option value="${esc(d)}">${esc(d)}</option>`).join("");
+      dateSel.value = dates.indexOf(cur) !== -1 || cur === "ALL" ? cur : "ALL";
+      if (dateSel.value !== cur) state.dateFilter = dateSel.value;
+    }
+
+    const search = document.getElementById("eg-team-search");
+    if (search && search.value !== state.teamQuery) search.value = state.teamQuery;
+
+    const s = state.slate;
+    const filled = ((s && s.events) || []).filter(
+      (r) => r.market && r.market.away_odds != null
+    ).length;
+    const verified = ((s && s.events) || []).filter(
+      (r) => r.market && (r.market.is_dk_direct || (r.value && r.value.is_dk_direct))
+    ).length;
+    const label = document.getElementById("eg-feed-label");
+    const dot = document.getElementById("eg-feed-dot");
+    if (label) {
+      if (state.loading) label.textContent = "Loading feeds…";
+      else if (state.error) label.textContent = "Feed error";
+      else if (state.feedSource === "live") {
+        label.textContent =
+          verified > 0 ? `Feeds live · ${verified} verified` : "Feeds connected · AN_mirror";
+      } else if (state.feedSource === "sample") label.textContent = "Sample feed";
+      else label.textContent = "Feeds not connected";
+    }
+    if (dot) {
+      const ok = state.feedSource === "live" || state.feedSource === "sample";
+      dot.classList.toggle("ok", ok && !state.error);
+    }
+
+    bindChrome();
   }
 
   function renderBanner() {
@@ -426,113 +721,153 @@
     const s = state.slate;
     const warn =
       (s && s._warning) ||
-      "PRICE DIAGNOSTICS · experimental · AN_mirror ≠ live DK until verified";
-    const isLiveSi = !!(s && s._live_si) || state.feedSource === "live";
-    const noPrices = boardHasMissingMarkets(s);
-    const pills = [];
-    pills.push('<span class="eg-pill eg-pill-warn">PRICE DIAGNOSTICS</span>');
-    pills.push('<span class="eg-pill">experimental</span>');
-    pills.push('<span class="eg-pill eg-pill-mirror">AN_mirror ≠ live DK until verified</span>');
-    if (isLiveSi) pills.push('<span class="eg-pill eg-pill-live">live SI</span>');
-    if (noPrices) pills.push('<span class="eg-pill eg-pill-warn">no prices yet</span>');
-    pills.push('<span class="eg-pill">no tickets</span>');
-    if (s && s.model_version) pills.push(`<span class="eg-pill">${esc(s.model_version)}</span>`);
-    if (s && Array.isArray(s.slate_dates) && s.slate_dates.length) {
-      pills.push(`<span class="eg-pill">slates ${esc(s.slate_dates.join(", "))}</span>`);
-    }
-
-    el.classList.toggle("eg-banner-live", isLiveSi && noPrices);
+      "Experimental model — wagering action disabled. Archived / unverified research until DK-direct quotes are verified.";
     el.innerHTML = `
-      <strong>PRICE DIAGNOSTICS · experimental · AN_mirror ≠ live DK until verified</strong>
+      ${ICO.info}
+      <strong>Experimental model — wagering action disabled.</strong>
       <span>${esc(warn)}</span>
-      ${pills.join("")}
+      <a href="#eg-spectrum" id="eg-data-status-link">View data status →</a>
     `;
-
-    const meta = document.getElementById("eg-feed-meta");
-    if (meta) {
-      const n = ((s && s.events) || []).length;
-      const filled = ((s && s.events) || []).filter(
-        (r) => r.market && r.market.away_odds != null
-      ).length;
-      const src = state.feedSource || "—";
-      meta.textContent = `${n} events · ${filled} w/ DK current · feed: ${src}`;
-    }
-
-    bindFilters();
-    const sportSel = document.getElementById("eg-sport-select");
-    if (sportSel) {
-      const sports = availableSports(s);
-      Array.from(sportSel.options).forEach((opt) => {
-        if (opt.value === "ALL") {
-          opt.disabled = false;
-          return;
-        }
-        opt.disabled = sports.length > 0 && sports.indexOf(opt.value) === -1;
-      });
-      sportSel.value = state.sportFilter;
-    }
-    const dateSel = document.getElementById("eg-date-select");
-    if (dateSel) {
-      const dates = availableDates(s);
-      const cur = state.dateFilter;
-      dateSel.innerHTML =
-        '<option value="ALL">All</option>' +
-        dates.map((d) => `<option value="${esc(d)}">${esc(d)}</option>`).join("");
-      dateSel.value = dates.indexOf(cur) !== -1 || cur === "ALL" ? cur : "ALL";
-      if (dateSel.value !== cur) state.dateFilter = dateSel.value;
-    }
   }
 
-  function renderFlashStrip() {
-    const host = document.getElementById("eg-flash-strip");
+  function renderMetrics() {
+    const host = document.getElementById("eg-metrics");
     if (!host) return;
-    const views = filteredEvents().map(boardRow).filter((v) => v.flash);
+    const views = filteredEvents().map(boardRow);
+    const n = views.length;
+    const worth = views.filter(
+      (v) => v.divNum != null && Math.abs(v.divNum) >= 5
+    ).length;
+    const verified = views.filter((v) => v.isDkDirect).length;
+    host.innerHTML = `
+      <div class="eg-metric">
+        <div class="eg-metric-label">Research games</div>
+        <div class="eg-metric-value">${esc(pad2(n))}</div>
+        <div class="eg-metric-foot">Games on this desk filter</div>
+      </div>
+      <div class="eg-metric">
+        <div class="eg-metric-label">Worth investigating</div>
+        <div class="eg-metric-value green">${esc(pad2(worth))} <span class="eg-pill-mini">≥5 pp</span></div>
+        <div class="eg-metric-foot">Disagreement, not a recommendation</div>
+      </div>
+      <div class="eg-metric">
+        <div class="eg-metric-label">Verified live quotes</div>
+        <div class="eg-metric-value">${esc(pad2(verified))} / ${esc(pad2(n))}</div>
+        <div class="eg-metric-foot">${
+          verified ? "DK-direct verified" : "AN_mirror · not DK-direct yet"
+        }</div>
+      </div>
+      <div class="eg-metric">
+        <div class="eg-metric-label">Execution status</div>
+        <div class="eg-metric-value sm">Research only</div>
+        <div class="eg-metric-foot">No tickets · no Kelly · Phase 01</div>
+      </div>
+    `;
+  }
+
+  function miniSpectrum(v) {
+    if (v.researchP == null || v.marketNoVigP == null) {
+      return `<div class="eg-mini-spectrum"><div class="eg-mini-track"></div><div class="eg-mini-scale"><span>0%</span><span>50%</span><span>100%</span></div></div>
+        <div class="eg-mini-legend"><span class="eg-muted">Spectrum pending (no model/market pair)</span></div>`;
+    }
+    const r = Math.max(0, Math.min(100, Number(v.researchP) * 100));
+    const m = Math.max(0, Math.min(100, Number(v.marketNoVigP) * 100));
+    return `
+      <div class="eg-mini-spectrum" aria-hidden="true">
+        <div class="eg-mini-track"></div>
+        <div class="eg-mini-diamond" style="left:${m}%" title="Market no-vig ${esc(
+          fmtPct(v.marketNoVigP)
+        )}"></div>
+        <div class="eg-mini-dot" style="left:${r}%" title="Research ${esc(fmtPct(v.researchP))}"></div>
+        <div class="eg-mini-scale"><span>0%</span><span>50%</span><span>100%</span></div>
+      </div>
+      <div class="eg-mini-legend">
+        <span><i class="dot"></i>Research ${esc(fmtPct(v.researchP, 1))}</span>
+        <span><i class="dia"></i>Market ${esc(fmtPct(v.marketNoVigP, 1))}</span>
+      </div>`;
+  }
+
+  function renderRadar() {
+    const host = document.getElementById("eg-radar");
+    const countEl = document.getElementById("eg-radar-count");
+    if (!host) return;
+    const views = filteredEvents()
+      .map(boardRow)
+      .filter(
+        (v) =>
+          v.status === "STOPPED" ||
+          v.flashReason === "STOP" ||
+          (v.divNum != null && Math.abs(v.divNum) >= 5)
+      )
+      .sort((a, b) => {
+        if (a.status === "STOPPED" && b.status !== "STOPPED") return -1;
+        if (b.status === "STOPPED" && a.status !== "STOPPED") return 1;
+        return Math.abs(b.divNum || 0) - Math.abs(a.divNum || 0);
+      });
+    if (countEl) countEl.textContent = String(views.length);
     if (!views.length) {
-      host.innerHTML = "";
-      host.hidden = true;
+      host.innerHTML =
+        '<div class="eg-radar-empty">Nothing on the radar for this filter — no ≥5 pp divergences or STOP stories.</div>';
       return;
     }
-    host.hidden = false;
-    const cards = views
+    host.innerHTML = views
       .map((v) => {
-        const reason =
-          v.flashReason === "STOP"
-            ? "STOP"
-            : v.divLabel
-              ? `|div| ${esc(v.divLabel)} pp`
-              : "flash";
-        const sub =
-          v.flashReason === "STOP" && v.story
-            ? esc(v.story.replace(/^STOP ·\s*/, "").slice(0, 72))
-            : v.valueSideLabel && v.valueSideLabel !== "None"
-              ? `value ${esc(v.valueSideLabel)}`
-              : esc(v.fundPctLabel || "");
-        return `<button type="button" class="eg-flash-card${
+        const isStop = v.status === "STOPPED" || v.flashReason === "STOP";
+        const headline = isStop
+          ? "STOP"
+          : v.divLabel
+            ? `${esc(v.divLabel)} pp`
+            : "—";
+        const sub = isStop
+          ? esc((v.story || "STOP story").replace(/^STOP ·\s*/, "").slice(0, 90))
+          : "model–market divergence";
+        const focusTeam =
+          v.valueSideLabel && v.valueSideLabel !== "None" && v.valueSideLabel !== "HOLD" && v.valueSideLabel !== "TBD"
+            ? v.valueSideLabel
+            : v.home;
+        const dk =
+          v.valueOdds != null
+            ? `DK ${esc(fmtOdds(v.valueOdds))}`
+            : v.hasDk
+              ? `DK ${esc(fmtOdds(v.awayOdds))} / ${esc(fmtOdds(v.homeOdds))}`
+              : "no quote";
+        return `<button type="button" class="eg-radar-card${
           v.id === state.selectedId ? " selected" : ""
-        }${v.flashReason === "STOP" ? " eg-flash-stop" : ""}" data-eg-id="${esc(v.id)}">
-          <div class="eg-flash-matchup">${esc(v.away)} @ ${esc(v.home)}</div>
-          <div class="eg-flash-reason">${esc(reason)}</div>
-          <div class="eg-flash-sub">${sub}</div>
+        }${isStop ? " is-stop" : ""}" data-eg-id="${esc(v.id)}">
+          <div class="eg-radar-top">
+            <div>
+              <div class="eg-radar-team">${esc(focusTeam)}</div>
+              <div class="eg-radar-meta">${esc(v.away)} @ ${esc(v.home)}</div>
+            </div>
+            <span class="eg-radar-tag">${esc(v.sport)}${isStop ? " · STOP" : " · ARCHIVED"}</span>
+          </div>
+          <div class="eg-radar-div${isStop ? " stop" : ""}">${headline}</div>
+          <div class="eg-radar-div-label">${sub}</div>
+          ${isStop ? "" : miniSpectrum(v)}
+          <div class="eg-radar-foot">
+            ${statusPill(v)}
+            <span class="eg-dk-price">${dk}</span>
+          </div>
         </button>`;
       })
       .join("");
-    host.innerHTML = `
-      <div class="eg-flash-head">Where the Glass is flashing</div>
-      <div class="eg-flash-row">${cards}</div>
-    `;
-    host.querySelectorAll(".eg-flash-card").forEach((btn) => {
+    host.querySelectorAll(".eg-radar-card").forEach((btn) => {
       btn.addEventListener("click", () => {
         state.selectedId = btn.getAttribute("data-eg-id");
         render();
+        const spec = document.getElementById("eg-spectrum");
+        if (spec) spec.scrollIntoView({ behavior: "smooth", block: "nearest" });
       });
     });
   }
 
   function renderTable() {
     const host = document.getElementById("eg-master-table");
+    const countEl = document.getElementById("eg-board-count");
     if (!host) return;
     if (state.error) {
       host.innerHTML = `<div class="eg-empty">Feed error: ${esc(state.error)}</div>`;
+      if (countEl) countEl.textContent = "0";
       return;
     }
     if (state.loading && !state.slate) {
@@ -540,10 +875,11 @@
       return;
     }
     const events = filteredEvents();
+    if (countEl) countEl.textContent = String(events.length);
     if (!events.length) {
       const total = ((state.slate && state.slate.events) || []).length;
       const msg = total
-        ? `No events for current sport/date filter.`
+        ? "No events for current sport/date/team filter."
         : state.feedSource === "live"
           ? "Live SI board empty — waiting for feeds."
           : "No events in sample feed.";
@@ -563,18 +899,14 @@
               ? "eg-status-hold"
               : "";
         const dkCell = v.hasDk
-          ? `<span class="mono">${esc(fmtOdds(v.awayOdds))} / ${esc(fmtOdds(v.homeOdds))}</span>
-             ${
-               v.quoteLabel
-                 ? `<span class="eg-badge-mirror" title="Not DK-direct until verified">${esc(
-                     v.quoteLabel
-                   )}</span>`
-                 : ""
-             }`
+          ? `<span class="mono">${esc(fmtOdds(v.awayOdds))} / ${esc(fmtOdds(v.homeOdds))}</span>${
+              v.quoteLabel
+                ? `<span class="eg-badge-mirror" title="Not DK-direct until verified">${esc(
+                    v.quoteLabel
+                  )}</span>`
+                : ""
+            }`
           : `<span class="eg-status-hold">no quote</span>`;
-        const fairCell = v.fairMlLabel
-          ? `<span class="mono">${esc(v.fairMlLabel)}</span>`
-          : `<span class="eg-muted">—</span>`;
         const fundCell =
           v.mostLikelyKind === "ok"
             ? `<span title="experimental">${esc(v.fundPctLabel)} <span class="eg-exp">exp</span></span>`
@@ -584,22 +916,29 @@
         const divCell = v.divLabel
           ? `<span class="mono${
               v.divNum != null && Math.abs(v.divNum) >= 5 ? " eg-div-hot" : ""
-            }">${esc(v.divLabel)}</span>`
+            }">${esc(v.divLabel)} pp</span>`
           : `<span class="eg-muted">—</span>`;
+        const valueCell =
+          v.valueSideLabel &&
+          v.valueSideLabel !== "None" &&
+          v.valueSideLabel !== "HOLD" &&
+          v.valueSideLabel !== "TBD"
+            ? `<span class="eg-value-side">${esc(v.valueSideLabel)}</span>`
+            : `<span class="eg-muted">${esc(v.valueSideLabel || "—")}</span>`;
 
         return `<tr class="eg-row${selected}${flashCls}" data-eg-id="${esc(v.id)}" tabindex="0">
           <td class="eg-game">
-            <div class="eg-matchup"><span class="eg-sport-tag">${esc(v.sport)}</span> ${esc(
-          v.away
-        )} @ ${esc(v.home)}</div>
-            <div class="eg-meta">${esc(v.start)}${v.flash ? " · flashing" : ""}</div>
+            <div class="eg-matchup"><span class="eg-sport-tag">${esc(v.sport)}</span>${esc(
+              v.away
+            )} @ ${esc(v.home)}</div>
+            <div class="eg-meta">${esc(v.date || v.start)}</div>
           </td>
           <td><span class="${mlCls}">${esc(v.mostLikelyLabel)}</span></td>
           <td>${fundCell}</td>
-          <td>${fairCell}</td>
+          <td>${valueCell}</td>
           <td class="eg-dk">${dkCell}</td>
-          <td>${esc(v.valueSideLabel || "—")}</td>
           <td>${divCell}</td>
+          <td>${statusPill(v)}</td>
         </tr>`;
       })
       .join("");
@@ -610,12 +949,12 @@
           <thead>
             <tr>
               <th>Matchup</th>
-              <th>Most likely</th>
-              <th>Fundamental %</th>
-              <th>Fair ML</th>
-              <th>DK current</th>
-              <th>Value side</th>
+              <th>Most likely winner</th>
+              <th>Win estimate</th>
+              <th>Relative value side</th>
+              <th>DK archive</th>
               <th>Divergence</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
@@ -627,9 +966,7 @@
     host.querySelectorAll(".eg-row").forEach((tr) => {
       tr.addEventListener("click", () => {
         state.selectedId = tr.getAttribute("data-eg-id");
-        renderTable();
-        renderFlashStrip();
-        renderSpectrum();
+        render();
       });
       tr.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -651,7 +988,7 @@
     if (!host) return;
     const row = selectedRow();
     if (!row) {
-      host.innerHTML = `<div class="eg-empty">Select a game to inspect market vs fundamental spectrum.</div>`;
+      host.innerHTML = `<div class="eg-empty">Select a game to inspect market vs research spectrum.</div>`;
       return;
     }
     const ev = row.event || {};
@@ -663,7 +1000,6 @@
     const filters = (fund.filters || []).filter((f) => f && f.active);
     const status = fund.status || "";
 
-    // STOP / INSUFFICIENT: lead with story, not empty price card
     if (status === "STOPPED" || status === "INSUFFICIENT") {
       const facts = ((row.provenance && row.provenance.facts) || [])
         .map((f) => {
@@ -682,20 +1018,20 @@
       host.innerHTML = `
         <div class="eg-spectrum-head">
           <h3>${esc(ev.away)} @ ${esc(ev.home)}</h3>
+          ${statusPill(view)}
           <span class="eg-decision ${decisionClass(gate.decision)}">${esc(gate.decision)}</span>
-          <span class="eg-status-stop">${esc(status)}</span>
           <span class="eg-meta">${esc(ev.event_id || "")}</span>
         </div>
         <div class="eg-story-card ${status === "STOPPED" ? "eg-story-stop" : "eg-story-hold"}" role="status">
           <div class="eg-story-label">${status === "STOPPED" ? "STOP story" : "Status"}</div>
           <div class="eg-story-body">${esc(storyLead)}</div>
-          <p class="eg-hint" style="margin:8px 0 0">No fundamental price card — SI reason leads. DK current shown only as context (${esc(
+          <p class="eg-hint" style="margin:8px 0 0">No fundamental price card — SI reason leads. DK archive shown only as context (${esc(
             view.quoteLabel || "no quote"
           )}).</p>
         </div>
         <div class="eg-spectrum-grid">
           <div>
-            <h4>DK current (context)</h4>
+            <h4>DK archive (context)</h4>
             <ul class="eg-kv">
               <li><span>Board</span><b class="mono">${
                 view.hasDk
@@ -703,8 +1039,8 @@
                   : "—"
               }</b></li>
               <li><span>Quote</span><b>${esc(view.quoteLabel || "—")} · dk_direct=${esc(
-        String(!!view.isDkDirect)
-      )}</b></li>
+                String(!!view.isDkDirect)
+              )}</b></li>
               <li><span>Fair / Div</span><b>not computed (${esc(status)})</b></li>
             </ul>
           </div>
@@ -716,6 +1052,9 @@
                 (row.provenance && row.provenance.si_action) || "—"
               )}</b></li>
               <li><span>Grade</span><b>${esc((row.provenance && row.provenance.overall) || "—")}</b></li>
+              <li><span>Feed</span><b>${esc(state.feedSource || "—")} · ${esc(
+                (state.slate && state.slate.model_version) || ""
+              )}</b></li>
             </ul>
             ${facts ? `<ul class="eg-fact-list">${facts}</ul>` : ""}
           </div>
@@ -783,6 +1122,7 @@
     host.innerHTML = `
       <div class="eg-spectrum-head">
         <h3>${esc(ev.away)} @ ${esc(ev.home)}</h3>
+        ${statusPill(view)}
         <span class="eg-decision ${decisionClass(gate.decision)}">${esc(gate.decision)}</span>
         <span class="eg-exp">experimental</span>
         <span class="eg-meta">${esc(ev.event_id || "")}</span>
@@ -799,7 +1139,7 @@
       </div>
       <div class="eg-spectrum-legend">
         <span><i class="eg-swatch market"></i> Market (de-vig)</span>
-        <span><i class="eg-swatch fund"></i> Fundamental</span>
+        <span><i class="eg-swatch fund"></i> Research estimate</span>
         <span><i class="eg-swatch filter"></i> Active filters</span>
         <span><i class="eg-swatch band"></i> Uncertainty band</span>
         <span class="mono">gap ${esc(fmtPp(gap) || "—")} pp</span>
@@ -809,10 +1149,10 @@
           <h4>Pass #1 pricing</h4>
           <ul class="eg-kv">
             <li><span>Most likely</span><b>${esc(view.mostLikelyLabel)} · ${esc(
-      view.fundPctLabel || "—"
-    )}</b></li>
+              view.fundPctLabel || "—"
+            )}</b></li>
             <li><span>Fair ML</span><b class="mono">${esc(view.fairMlLabel || "—")}</b></li>
-            <li><span>DK current</span><b class="mono">${
+            <li><span>DK archive</span><b class="mono">${
               view.hasDk
                 ? `${esc(fmtOdds(view.awayOdds))} / ${esc(fmtOdds(view.homeOdds))}`
                 : "—"
@@ -823,8 +1163,8 @@
                   : ""
               }</li>
             <li><span>Value / Div</span><b>${esc(view.valueSideLabel || "None")} · ${esc(
-      view.divLabel || "—"
-    )} pp</b></li>
+              view.divLabel || "—"
+            )} pp</b></li>
           </ul>
         </div>
         <div>
@@ -874,8 +1214,10 @@
   }
 
   function render() {
+    renderChrome();
     renderBanner();
-    renderFlashStrip();
+    renderMetrics();
+    renderRadar();
     renderTable();
     renderSpectrum();
   }
@@ -885,7 +1227,7 @@
     state.loading = true;
     state.error = null;
     state.feedSource = null;
-    renderBanner();
+    renderChrome();
     try {
       let data = null;
       if (state.feedUrl) {
@@ -902,6 +1244,10 @@
         }
       }
       state.slate = data;
+      const sports = availableSports(data);
+      if (state.sportFilter !== "ALL" && sports.length && sports.indexOf(state.sportFilter) === -1) {
+        state.sportFilter = sports.indexOf("NFL") !== -1 ? "NFL" : sports[0] || "ALL";
+      }
       const events = filteredEvents();
       const all = (data && data.events) || [];
       if (!state.selectedId && events[0]) {
@@ -959,5 +1305,6 @@
     },
     applyHardGate,
     boardRow,
+    statusInfo,
   };
 })(window);
