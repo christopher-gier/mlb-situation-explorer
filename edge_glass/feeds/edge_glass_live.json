@@ -1,19 +1,3747 @@
 {
   "_example": false,
   "_live_si": true,
-  "_warning": "Experimental PRICE DIAGNOSTICS — live SI verify shells only. No DraftKings prices wired yet; p_model null; not validated edge; no tickets. SI verify files not present yet for si_verify_20260914.json, si_verify_20260917.json, si_verify_20260920.json.",
-  "generated_at": "2026-09-14T21:41:05Z",
+  "_warning": "Experimental PRICE DIAGNOSTICS — live SI verify shells only. No DraftKings prices wired yet; p_model null; not validated edge; no tickets.",
+  "generated_at": "2026-09-14T21:41:34Z",
   "model_version": "si-verify-shell-v0",
-  "slate_dates": [],
+  "slate_dates": [
+    "2026-09-14",
+    "2026-09-17",
+    "2026-09-20"
+  ],
   "slate_date": null,
   "sport": "MULTI",
-  "sports": [],
-  "feed_status": "MISSING",
-  "si_sources": [],
-  "si_missing_primary": [
-    "si_verify_20260914.json",
-    "si_verify_20260917.json",
-    "si_verify_20260920.json"
+  "sports": [
+    "MLB",
+    "NFL"
   ],
-  "events": []
+  "feed_status": "OK",
+  "si_sources": [
+    {
+      "path": "/workspace/mlb-price-first/edge_glass/feeds/si_verify_20260914.json",
+      "slate_date": "2026-09-14",
+      "event_count": 10,
+      "sport_filter": [
+        "MLB"
+      ],
+      "generated_at": "2026-09-14T21:41:13Z"
+    },
+    {
+      "path": "/workspace/mlb-price-first/edge_glass/feeds/si_verify_20260917.json",
+      "slate_date": "2026-09-17",
+      "event_count": 1,
+      "sport_filter": [
+        "NFL"
+      ],
+      "generated_at": "2026-09-14T21:41:13Z"
+    },
+    {
+      "path": "/workspace/mlb-price-first/edge_glass/feeds/si_verify_20260920.json",
+      "slate_date": "2026-09-20",
+      "event_count": 14,
+      "sport_filter": [
+        "NFL"
+      ],
+      "generated_at": "2026-09-14T21:41:13Z"
+    }
+  ],
+  "si_missing_primary": [],
+  "events": [
+    {
+      "event": {
+        "event_id": "mlb-20260914-chw-cle",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-14T22:40Z",
+        "away": "CHW",
+        "home": "CLE",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-chw-cle",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Sean Newcomb (2-4, 2.77)",
+            "normalized_value": "Sean Newcomb",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-chw-cle",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "Gavin Williams (13-7, 3.78)",
+            "normalized_value": "Gavin Williams",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-chw-cle",
+            "evidence_grade": "B",
+            "field_name": "forecast_near_first_pitch",
+            "raw_value": "Partly Cloudy; 56F; wind 2-10 mph E; PoP 0%",
+            "normalized_value": "Partly Cloudy",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-chw-cle",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-14T22:40Z",
+            "normalized_value": "2026-09-14T22:40Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "CLEAR_FOR_PRICE"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "mlb-20260914-lad-cin",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-14T22:40Z",
+        "away": "LAD",
+        "home": "CIN",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-lad-cin",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Tarik Skubal (9-7, 2.84)",
+            "normalized_value": "Tarik Skubal",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-lad-cin",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "Nick Lodolo (3-4, 5.12)",
+            "normalized_value": "Nick Lodolo",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-lad-cin",
+            "evidence_grade": "B",
+            "field_name": "forecast_near_first_pitch",
+            "raw_value": "Mostly Clear; 59F; wind 5 mph E; PoP 0%",
+            "normalized_value": "Mostly Clear",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-lad-cin",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-14T22:40Z",
+            "normalized_value": "2026-09-14T22:40Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "CLEAR_FOR_PRICE"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "mlb-20260914-det-tor",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-14T23:07Z",
+        "away": "DET",
+        "home": "TOR",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-det-tor",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Troy Melton (8-4, 2.42)",
+            "normalized_value": "Troy Melton",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-det-tor",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "Jose Soriano (12-7, 3.48)",
+            "normalized_value": "Jose Soriano",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-venue",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-det-tor",
+            "evidence_grade": "A",
+            "field_name": "venue_roof",
+            "raw_value": "Rogers Centre indoor=true (ESPN)",
+            "normalized_value": "indoor",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-det-tor",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-14T23:07Z",
+            "normalized_value": "2026-09-14T23:07Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "CLEAR_FOR_PRICE"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "mlb-20260914-bal-nym",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-14T23:10Z",
+        "away": "BAL",
+        "home": "NYM",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-bal-nym",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Brandon Young (9-4, 3.71)",
+            "normalized_value": "Brandon Young",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-bal-nym",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "Jonah Tong (2-1, 4.80)",
+            "normalized_value": "Jonah Tong",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-bal-nym",
+            "evidence_grade": "B",
+            "field_name": "forecast_near_first_pitch",
+            "raw_value": "Mostly Clear; 60F; wind 8-15 mph N; PoP 0%",
+            "normalized_value": "Mostly Clear",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-bal-nym",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-14T23:10Z",
+            "normalized_value": "2026-09-14T23:10Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "CLEAR_FOR_PRICE"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "mlb-20260914-atl-chc",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-14T23:40Z",
+        "away": "ATL",
+        "home": "CHC",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-atl-chc",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Reynaldo Lopez (4-4, 4.13)",
+            "normalized_value": "Reynaldo Lopez",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-atl-chc",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "David Peterson (7-8, 5.28)",
+            "normalized_value": "David Peterson",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-atl-chc",
+            "evidence_grade": "B",
+            "field_name": "forecast_near_first_pitch",
+            "raw_value": "Mostly Cloudy then Chance Showers And Thunderstorms; 67F; wind 15-20 mph S; PoP 47%",
+            "normalized_value": "Mostly Cloudy then Chance Showers And Thunderstorms",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-atl-chc",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-14T23:40Z",
+            "normalized_value": "2026-09-14T23:40Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "mlb-20260914-nyy-min",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-14T23:40Z",
+        "away": "NYY",
+        "home": "MIN",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-nyy-min",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Will Warren (10-6, 4.05)",
+            "normalized_value": "Will Warren",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-nyy-min",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "Dean Kremer (3-5, 5.65)",
+            "normalized_value": "Dean Kremer",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-nyy-min",
+            "evidence_grade": "B",
+            "field_name": "forecast_near_first_pitch",
+            "raw_value": "Showers And Thunderstorms Likely then Slight Chance; 57F; wind 5-20 mph SSW; PoP 64%",
+            "normalized_value": "Showers And Thunderstorms Likely then Slight Chance",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-nyy-min",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-14T23:40Z",
+            "normalized_value": "2026-09-14T23:40Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "mlb-20260914-sf-stl",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-14T23:45Z",
+        "away": "SF",
+        "home": "STL",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sf-stl",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Landen Roupp (9-13, 4.00)",
+            "normalized_value": "Landen Roupp",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sf-stl",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "Quinn Mathews (1-3, 4.11)",
+            "normalized_value": "Quinn Mathews",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sf-stl",
+            "evidence_grade": "B",
+            "field_name": "forecast_near_first_pitch",
+            "raw_value": "Mostly Clear; 74F; wind 7-10 mph SE; PoP 0%",
+            "normalized_value": "Mostly Clear",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sf-stl",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-14T23:45Z",
+            "normalized_value": "2026-09-14T23:45Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "CLEAR_FOR_PRICE"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "mlb-20260914-sd-col",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-15",
+        "start_time": "2026-09-15T00:40Z",
+        "away": "SD",
+        "home": "COL",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sd-col",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Casey Mize (5-9, 3.70)",
+            "normalized_value": "Casey Mize",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sd-col",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "Tomoyuki Sugano (12-9, 5.30)",
+            "normalized_value": "Tomoyuki Sugano",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sd-col",
+            "evidence_grade": "B",
+            "field_name": "forecast_near_first_pitch",
+            "raw_value": "Chance Rain Showers; 56F; wind 6-12 mph NW; PoP 25%",
+            "normalized_value": "Chance Rain Showers",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "venue-climate",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sd-col",
+            "evidence_grade": "A",
+            "field_name": "altitude_coors",
+            "raw_value": "Coors Field elevation ~5280 ft — run environment material",
+            "normalized_value": "high_altitude",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sd-col",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-15T00:40Z",
+            "normalized_value": "2026-09-15T00:40Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "mlb-20260914-sea-laa",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-15",
+        "start_time": "2026-09-15T01:38Z",
+        "away": "SEA",
+        "home": "LAA",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sea-laa",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Kade Anderson (1-1, 4.29)",
+            "normalized_value": "Kade Anderson",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sea-laa",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "Reid Detmers (5-8, 3.32)",
+            "normalized_value": "Reid Detmers",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sea-laa",
+            "evidence_grade": "B",
+            "field_name": "forecast_near_first_pitch",
+            "raw_value": "Mostly Cloudy; 65F; wind 5-10 mph S; PoP 1%",
+            "normalized_value": "Mostly Cloudy",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-sea-laa",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-15T01:38Z",
+            "normalized_value": "2026-09-15T01:38Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "CLEAR_FOR_PRICE"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "mlb-20260914-mia-ari",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-15",
+        "start_time": "2026-09-15T01:40Z",
+        "away": "MIA",
+        "home": "ARI",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-mia-ari",
+            "evidence_grade": "B",
+            "field_name": "sp_away",
+            "raw_value": "Sandy Alcantara (13-10, 3.78)",
+            "normalized_value": "Sandy Alcantara",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-probable",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-mia-ari",
+            "evidence_grade": "B",
+            "field_name": "sp_home",
+            "raw_value": "Corbin Burnes (0-0, 0.00)",
+            "normalized_value": "Corbin Burnes",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-venue",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-mia-ari",
+            "evidence_grade": "A",
+            "field_name": "venue_roof",
+            "raw_value": "Chase Field indoor=true (ESPN)",
+            "normalized_value": "indoor",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-mlb-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=20260914",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "mlb-20260914-mia-ari",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-15T01:40Z",
+            "normalized_value": "2026-09-15T01:40Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "CLEAR_FOR_PRICE"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260917-det-buf",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-18",
+        "start_time": "2026-09-18T00:15Z",
+        "away": "DET",
+        "home": "BUF",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260917-det-buf",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Jared Goff depth#1; ESPN injury status=Active",
+            "normalized_value": "Jared Goff",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260917-det-buf",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Josh Allen depth#1; ESPN injury status=Active",
+            "normalized_value": "Josh Allen",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T20:16Z",
+            "event_id": "nfl-20260917-det-buf",
+            "evidence_grade": "B",
+            "field_name": "rb_home_ty_johnson",
+            "raw_value": "RB Ty Johnson: Out",
+            "normalized_value": "Ty Johnson",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-08T20:42Z",
+            "event_id": "nfl-20260917-det-buf",
+            "evidence_grade": "B",
+            "field_name": "wr_home_tyrell_shavers",
+            "raw_value": "WR Tyrell Shavers: Out",
+            "normalized_value": "Tyrell Shavers",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260917-det-buf",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Showers And Thunderstorms Likely; 78F day / 61F night; wind 2-6 mph SW then NW; PoP 66%",
+            "normalized_value": "Showers And Thunderstorms Likely",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260917",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260917-det-buf",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-18T00:15Z",
+            "normalized_value": "2026-09-18T00:15Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-car-atl",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T17:00Z",
+        "away": "CAR",
+        "home": "ATL",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-car-atl",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Bryce Young depth#1; ESPN injury status=Active",
+            "normalized_value": "Bryce Young",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T18:33Z",
+            "event_id": "nfl-20260920-car-atl",
+            "evidence_grade": "B",
+            "field_name": "wr_away_jalen_coker",
+            "raw_value": "WR Jalen Coker: Questionable",
+            "normalized_value": "Jalen Coker",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-08T20:42Z",
+            "event_id": "nfl-20260920-car-atl",
+            "evidence_grade": "B",
+            "field_name": "rb_away_trevor_etienne",
+            "raw_value": "RB Trevor Etienne: Injured Reserve",
+            "normalized_value": "Trevor Etienne",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-car-atl",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Penix Jr. Out; Tua Out; Cooper Rush Active (ESPN injuries). Depth chart still lists Penix #1.",
+            "normalized_value": "Cooper Rush",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-08T20:42Z",
+            "event_id": "nfl-20260920-car-atl",
+            "evidence_grade": "B",
+            "field_name": "rb_home_trey_sermon",
+            "raw_value": "RB Trey Sermon: Injured Reserve",
+            "normalized_value": "Trey Sermon",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-venue",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-car-atl",
+            "evidence_grade": "A",
+            "field_name": "venue_roof",
+            "raw_value": "Mercedes-Benz Stadium indoor=true (ESPN)",
+            "normalized_value": "indoor",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-car-atl",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T17:00Z",
+            "normalized_value": "2026-09-20T17:00Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-min-chi",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T17:00Z",
+        "away": "MIN",
+        "home": "CHI",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [
+          "injury"
+        ],
+        "status": "STOPPED",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "UNVERIFIED"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [
+          "injury"
+        ],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [
+          "injury"
+        ],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-min-chi",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Kyler Murray depth#1; ESPN injury status=Questionable",
+            "normalized_value": "Kyler Murray",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T18:52Z",
+            "event_id": "nfl-20260920-min-chi",
+            "evidence_grade": "B",
+            "field_name": "rb_away_jordan_mason",
+            "raw_value": "RB Jordan Mason: Questionable",
+            "normalized_value": "Jordan Mason",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-08T23:56Z",
+            "event_id": "nfl-20260920-min-chi",
+            "evidence_grade": "B",
+            "field_name": "te_away_ben_yurosek",
+            "raw_value": "TE Ben Yurosek: Injured Reserve",
+            "normalized_value": "Ben Yurosek",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-min-chi",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Caleb Williams depth#1; ESPN injury status=Active",
+            "normalized_value": "Caleb Williams",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-min-chi",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Chance Showers And Thunderstorms; 77F; wind 5-10 mph NE; PoP 44%",
+            "normalized_value": "Chance Showers And Thunderstorms",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-min-chi",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T17:00Z",
+            "normalized_value": "2026-09-20T17:00Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "STOP"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-phi-ten",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T17:00Z",
+        "away": "PHI",
+        "home": "TEN",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-phi-ten",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Jalen Hurts depth#1; ESPN injury status=Active",
+            "normalized_value": "Jalen Hurts",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-12T20:06Z",
+            "event_id": "nfl-20260920-phi-ten",
+            "evidence_grade": "B",
+            "field_name": "te_away_eli_stowers",
+            "raw_value": "TE Eli Stowers: Injured Reserve",
+            "normalized_value": "Eli Stowers",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T18:50Z",
+            "event_id": "nfl-20260920-phi-ten",
+            "evidence_grade": "B",
+            "field_name": "te_away_grant_calcaterra",
+            "raw_value": "TE Grant Calcaterra: Injured Reserve",
+            "normalized_value": "Grant Calcaterra",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-22T21:59Z",
+            "event_id": "nfl-20260920-phi-ten",
+            "evidence_grade": "B",
+            "field_name": "wr_away_johnny_wilson",
+            "raw_value": "WR Johnny Wilson: Injured Reserve",
+            "normalized_value": "Johnny Wilson",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-phi-ten",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Cam Ward depth#1; ESPN injury status=Active",
+            "normalized_value": "Cam Ward",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-19T12:07Z",
+            "event_id": "nfl-20260920-phi-ten",
+            "evidence_grade": "B",
+            "field_name": "te_home_jaren_kanak",
+            "raw_value": "TE Jaren Kanak: Injured Reserve",
+            "normalized_value": "Jaren Kanak",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-phi-ten",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Mostly Sunny then Slight Chance Showers And Thunderstorms; 96F; wind 5 mph SSW; PoP 22%",
+            "normalized_value": "Mostly Sunny then Slight Chance Showers And Thunderstorms",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-phi-ten",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T17:00Z",
+            "normalized_value": "2026-09-20T17:00Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "CLEAR_FOR_PRICE"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-pit-ne",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T17:00Z",
+        "away": "PIT",
+        "home": "NE",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-pit-ne",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Aaron Rodgers depth#1; ESPN injury status=Active",
+            "normalized_value": "Aaron Rodgers",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-pit-ne",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Drake Maye depth#1; ESPN injury status=Active",
+            "normalized_value": "Drake Maye",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T16:07Z",
+            "event_id": "nfl-20260920-pit-ne",
+            "evidence_grade": "B",
+            "field_name": "rb_home_treveyon_henderson",
+            "raw_value": "RB TreVeyon Henderson: Out",
+            "normalized_value": "TreVeyon Henderson",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-13T13:52Z",
+            "event_id": "nfl-20260920-pit-ne",
+            "evidence_grade": "B",
+            "field_name": "wr_home_a.j._brown",
+            "raw_value": "WR A.J. Brown: Injured Reserve",
+            "normalized_value": "A.J. Brown",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-pit-ne",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Chance Rain Showers; 71F; wind 6-9 mph NW; PoP 45%",
+            "normalized_value": "Chance Rain Showers",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-pit-ne",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T17:00Z",
+            "normalized_value": "2026-09-20T17:00Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-gb-nyj",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T17:00Z",
+        "away": "GB",
+        "home": "NYJ",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Jordan Love depth#1; ESPN injury status=Active",
+            "normalized_value": "Jordan Love",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-13T22:32Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "B",
+            "field_name": "te_away_josh_whyle",
+            "raw_value": "TE Josh Whyle: Questionable",
+            "normalized_value": "Josh Whyle",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-13T15:09Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "B",
+            "field_name": "rb_away_josh_jacobs",
+            "raw_value": "RB Josh Jacobs: Out",
+            "normalized_value": "Josh Jacobs",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-08T20:42Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "B",
+            "field_name": "wr_away_savion_williams",
+            "raw_value": "WR Savion Williams: Injured Reserve",
+            "normalized_value": "Savion Williams",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Geno Smith depth#1; ESPN injury status=Active",
+            "normalized_value": "Geno Smith",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:30Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "B",
+            "field_name": "rb_home_kene_nwangwu",
+            "raw_value": "RB Kene Nwangwu: Out",
+            "normalized_value": "Kene Nwangwu",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-13T23:21Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "B",
+            "field_name": "wr_home_omar_cooper_jr.",
+            "raw_value": "WR Omar Cooper Jr.: Questionable",
+            "normalized_value": "Omar Cooper Jr.",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-12T18:56Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "B",
+            "field_name": "wr_home_tim_patrick",
+            "raw_value": "WR Tim Patrick: Injured Reserve",
+            "normalized_value": "Tim Patrick",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Chance Rain Showers; 79F; wind 8-12 mph W; PoP 38%",
+            "normalized_value": "Chance Rain Showers",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-gb-nyj",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T17:00Z",
+            "normalized_value": "2026-09-20T17:00Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-cle-tb",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T17:00Z",
+        "away": "CLE",
+        "home": "TB",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Deshaun Watson depth#1; ESPN injury status=Active",
+            "normalized_value": "Deshaun Watson",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T18:19Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "B",
+            "field_name": "rb_away_dylan_sampson",
+            "raw_value": "RB Dylan Sampson: Questionable",
+            "normalized_value": "Dylan Sampson",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-30T21:32Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "B",
+            "field_name": "te_away_joe_royer",
+            "raw_value": "TE Joe Royer: Out",
+            "normalized_value": "Joe Royer",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Baker Mayfield depth#1; ESPN injury status=Active",
+            "normalized_value": "Baker Mayfield",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:30Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "B",
+            "field_name": "rb_home_sean_tucker",
+            "raw_value": "RB Sean Tucker: Out",
+            "normalized_value": "Sean Tucker",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:30Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "B",
+            "field_name": "wr_home_jalen_mcmillan",
+            "raw_value": "WR Jalen McMillan: Out",
+            "normalized_value": "Jalen McMillan",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T21:46Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "B",
+            "field_name": "wr_home_david_sills_v",
+            "raw_value": "WR David Sills V: Injured Reserve",
+            "normalized_value": "David Sills V",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Chance Showers And Thunderstorms; 90F; wind 6 mph SE; PoP 73%",
+            "normalized_value": "Chance Showers And Thunderstorms",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-cle-tb",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T17:00Z",
+            "normalized_value": "2026-09-20T17:00Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-no-bal",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T17:00Z",
+        "away": "NO",
+        "home": "BAL",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Tyler Shough depth#1; ESPN injury status=Active",
+            "normalized_value": "Tyler Shough",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:29Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "rb_away_alvin_kamara",
+            "raw_value": "RB Alvin Kamara: Out",
+            "normalized_value": "Alvin Kamara",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:29Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "te_away_oscar_delp",
+            "raw_value": "TE Oscar Delp: Out",
+            "normalized_value": "Oscar Delp",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-12T18:18Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "rb_away_audric_estime",
+            "raw_value": "RB Audric Estime: Injured Reserve",
+            "normalized_value": "Audric Estime",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Lamar Jackson depth#1; ESPN injury status=Active",
+            "normalized_value": "Lamar Jackson",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:27Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "wr_home_devontez_walker",
+            "raw_value": "WR Devontez Walker: Out",
+            "normalized_value": "Devontez Walker",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:19Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "wr_home_ja'kobi_lane",
+            "raw_value": "WR Ja'Kobi Lane: Doubtful",
+            "normalized_value": "Ja'Kobi Lane",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:16Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "wr_home_zay_flowers",
+            "raw_value": "WR Zay Flowers: Questionable",
+            "normalized_value": "Zay Flowers",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T03:52Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "rb_home_adam_randall",
+            "raw_value": "RB Adam Randall: Injured Reserve",
+            "normalized_value": "Adam Randall",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Mostly Sunny then Chance Showers And Thunderstorms; 87F; wind 3-10 mph W; PoP 32%",
+            "normalized_value": "Mostly Sunny then Chance Showers And Thunderstorms",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-no-bal",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T17:00Z",
+            "normalized_value": "2026-09-20T17:00Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-cin-hou",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T17:00Z",
+        "away": "CIN",
+        "home": "HOU",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-cin-hou",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Joe Burrow depth#1; ESPN injury status=Active",
+            "normalized_value": "Joe Burrow",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-cin-hou",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "C.J. Stroud depth#1; ESPN injury status=Active",
+            "normalized_value": "C.J. Stroud",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-08T20:42Z",
+            "event_id": "nfl-20260920-cin-hou",
+            "evidence_grade": "B",
+            "field_name": "wr_home_jayden_higgins",
+            "raw_value": "WR Jayden Higgins: Injured Reserve",
+            "normalized_value": "Jayden Higgins",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-04T15:55Z",
+            "event_id": "nfl-20260920-cin-hou",
+            "evidence_grade": "B",
+            "field_name": "wr_home_tank_dell",
+            "raw_value": "WR Tank Dell: Injured Reserve",
+            "normalized_value": "Tank Dell",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-venue",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-cin-hou",
+            "evidence_grade": "A",
+            "field_name": "venue_roof",
+            "raw_value": "Reliant Stadium indoor=true (ESPN)",
+            "normalized_value": "indoor",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-cin-hou",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T17:00Z",
+            "normalized_value": "2026-09-20T17:00Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "CLEAR_FOR_PRICE"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-jax-den",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T20:05Z",
+        "away": "JAX",
+        "home": "DEN",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-jax-den",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Trevor Lawrence depth#1; ESPN injury status=Active",
+            "normalized_value": "Trevor Lawrence",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T17:48Z",
+            "event_id": "nfl-20260920-jax-den",
+            "evidence_grade": "B",
+            "field_name": "wr_away_brian_thomas_jr.",
+            "raw_value": "WR Brian Thomas Jr.: Questionable",
+            "normalized_value": "Brian Thomas Jr.",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-jax-den",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Bo Nix depth#1; not listed on ESPN injuries pull",
+            "normalized_value": "Bo Nix",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T16:50Z",
+            "event_id": "nfl-20260920-jax-den",
+            "evidence_grade": "B",
+            "field_name": "te_home_caleb_lohner",
+            "raw_value": "TE Caleb Lohner: Injured Reserve",
+            "normalized_value": "Caleb Lohner",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-jax-den",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Mostly Sunny then Chance Showers And Thunderstorms; 77F; wind 2-7 mph NNE; PoP 27%",
+            "normalized_value": "Mostly Sunny then Chance Showers And Thunderstorms",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "venue-climate",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-jax-den",
+            "evidence_grade": "A",
+            "field_name": "altitude_mile_high",
+            "raw_value": "Empower Field at Mile High — altitude climate factor",
+            "normalized_value": "high_altitude",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-jax-den",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T20:05Z",
+            "normalized_value": "2026-09-20T20:05Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-lv-lac",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T20:05Z",
+        "away": "LV",
+        "home": "LAC",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Kirk Cousins depth#1; ESPN injury status=Active",
+            "normalized_value": "Kirk Cousins",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:55Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "B",
+            "field_name": "te_away_brock_bowers",
+            "raw_value": "TE Brock Bowers: Out",
+            "normalized_value": "Brock Bowers",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-08T20:42Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "B",
+            "field_name": "wr_away_dont'e_thornton_jr.",
+            "raw_value": "WR Dont'e Thornton Jr.: Injured Reserve",
+            "normalized_value": "Dont'e Thornton Jr.",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T17:52Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "B",
+            "field_name": "te_away_carter_runyon",
+            "raw_value": "TE Carter Runyon: Injured Reserve",
+            "normalized_value": "Carter Runyon",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Justin Herbert depth#1; ESPN injury status=Active",
+            "normalized_value": "Justin Herbert",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T20:55Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "B",
+            "field_name": "wr_home_keandre_lambert-smith",
+            "raw_value": "WR KeAndre Lambert-Smith: Doubtful",
+            "normalized_value": "KeAndre Lambert-Smith",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T20:54Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "B",
+            "field_name": "wr_home_derius_davis",
+            "raw_value": "WR Derius Davis: Questionable",
+            "normalized_value": "Derius Davis",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T20:44Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "B",
+            "field_name": "wr_home_ladd_mcconkey",
+            "raw_value": "WR Ladd McConkey: Questionable",
+            "normalized_value": "Ladd McConkey",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "C",
+            "field_name": "forecast_gameday",
+            "raw_value": null,
+            "normalized_value": null,
+            "freshness_status": "missing"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-lv-lac",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T20:05Z",
+            "normalized_value": "2026-09-20T20:05Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-wsh-dal",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T20:25Z",
+        "away": "WSH",
+        "home": "DAL",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-wsh-dal",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Jayden Daniels depth#1; ESPN injury status=Active",
+            "normalized_value": "Jayden Daniels",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-13T23:08Z",
+            "event_id": "nfl-20260920-wsh-dal",
+            "evidence_grade": "B",
+            "field_name": "te_away_chig_okonkwo",
+            "raw_value": "TE Chig Okonkwo: Questionable",
+            "normalized_value": "Chig Okonkwo",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-wsh-dal",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Dak Prescott depth#1; ESPN injury status=Active",
+            "normalized_value": "Dak Prescott",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-12T18:20Z",
+            "event_id": "nfl-20260920-wsh-dal",
+            "evidence_grade": "B",
+            "field_name": "rb_home_malik_davis",
+            "raw_value": "RB Malik Davis: Injured Reserve",
+            "normalized_value": "Malik Davis",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T22:59Z",
+            "event_id": "nfl-20260920-wsh-dal",
+            "evidence_grade": "B",
+            "field_name": "te_home_dj_rogers",
+            "raw_value": "TE DJ Rogers: Injured Reserve",
+            "normalized_value": "DJ Rogers",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-venue",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-wsh-dal",
+            "evidence_grade": "A",
+            "field_name": "venue_roof",
+            "raw_value": "AT&T Stadium indoor=true (ESPN)",
+            "normalized_value": "indoor",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-wsh-dal",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T20:25Z",
+            "normalized_value": "2026-09-20T20:25Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-sea-ari",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T20:25Z",
+        "away": "SEA",
+        "home": "ARI",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [
+          "injury"
+        ],
+        "status": "STOPPED",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "UNVERIFIED"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [
+          "injury"
+        ],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [
+          "injury"
+        ],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-sea-ari",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Darnold Doubtful; Lock Active. Depth still Darnold #1.",
+            "normalized_value": "Sam Darnold",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T19:29Z",
+            "event_id": "nfl-20260920-sea-ari",
+            "evidence_grade": "B",
+            "field_name": "wr_away_tory_horton",
+            "raw_value": "WR Tory Horton: Out",
+            "normalized_value": "Tory Horton",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-sea-ari",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Jacoby Brissett depth#1; ESPN injury status=Active",
+            "normalized_value": "Jacoby Brissett",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T03:56Z",
+            "event_id": "nfl-20260920-sea-ari",
+            "evidence_grade": "B",
+            "field_name": "te_home_tip_reiman",
+            "raw_value": "TE Tip Reiman: Out",
+            "normalized_value": "Tip Reiman",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-30T21:50Z",
+            "event_id": "nfl-20260920-sea-ari",
+            "evidence_grade": "B",
+            "field_name": "rb_home_james_conner",
+            "raw_value": "RB James Conner: Injured Reserve",
+            "normalized_value": "James Conner",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-venue",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-sea-ari",
+            "evidence_grade": "A",
+            "field_name": "venue_roof",
+            "raw_value": "State Farm Stadium indoor=true (ESPN)",
+            "normalized_value": "indoor",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-sea-ari",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T20:25Z",
+            "normalized_value": "2026-09-20T20:25Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "STOP"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-mia-sf",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-20",
+        "start_time": "2026-09-20T20:25Z",
+        "away": "MIA",
+        "home": "SF",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-mia-sf",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Malik Willis depth#1; ESPN injury status=Active",
+            "normalized_value": "Malik Willis",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-mia-sf",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Brock Purdy depth#1; ESPN injury status=Active",
+            "normalized_value": "Brock Purdy",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-13T13:41Z",
+            "event_id": "nfl-20260920-mia-sf",
+            "evidence_grade": "B",
+            "field_name": "wr_home_de'zhaun_stribling",
+            "raw_value": "WR De'Zhaun Stribling: Doubtful",
+            "normalized_value": "De'Zhaun Stribling",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-11T04:11Z",
+            "event_id": "nfl-20260920-mia-sf",
+            "evidence_grade": "B",
+            "field_name": "te_home_jake_tonges",
+            "raw_value": "TE Jake Tonges: Questionable",
+            "normalized_value": "Jake Tonges",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-mia-sf",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Mostly Sunny; 78F; wind 2-12 mph WNW; PoP 0%",
+            "normalized_value": "Mostly Sunny",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-mia-sf",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-20T20:25Z",
+            "normalized_value": "2026-09-20T20:25Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "nfl-20260920-ind-kc",
+        "sport": "NFL",
+        "season": 2026,
+        "date": "2026-09-21",
+        "start_time": "2026-09-21T00:20Z",
+        "away": "IND",
+        "home": "KC",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": null,
+        "experimental": true,
+        "stop_fields": [],
+        "status": "INSUFFICIENT",
+        "p0": null,
+        "decision_cutoff": null,
+        "tags": [
+          "si_verify_shell",
+          "no_prices"
+        ],
+        "filters": []
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
+        "grade": null,
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SI_VERIFY_LIVE",
+          "NO_MARKET_PRICES",
+          "EXPERIMENTAL"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "facts": [
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "B",
+            "field_name": "qb_away",
+            "raw_value": "Daniel Jones depth#1; ESPN injury status=Active",
+            "normalized_value": "Daniel Jones",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T18:37Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "B",
+            "field_name": "wr_away_alec_pierce",
+            "raw_value": "WR Alec Pierce: Questionable",
+            "normalized_value": "Alec Pierce",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-08T20:42Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "B",
+            "field_name": "te_away_carson_towt",
+            "raw_value": "TE Carson Towt: Injured Reserve",
+            "normalized_value": "Carson Towt",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-08T20:42Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "B",
+            "field_name": "te_away_sean_mckeon",
+            "raw_value": "TE Sean McKeon: Questionable",
+            "normalized_value": "Sean McKeon",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T17:16Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "B",
+            "field_name": "wr_away_d.j._montgomery",
+            "raw_value": "WR D.J. Montgomery: Injured Reserve",
+            "normalized_value": "D.J. Montgomery",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T17:12Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "B",
+            "field_name": "te_away_will_mallory",
+            "raw_value": "TE Will Mallory: Injured Reserve",
+            "normalized_value": "Will Mallory",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries+depthchart",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "B",
+            "field_name": "qb_home",
+            "raw_value": "Patrick Mahomes depth#1; ESPN injury status=Active",
+            "normalized_value": "Patrick Mahomes",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "espn-nfl-injuries",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-08-31T17:40Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "B",
+            "field_name": "wr_home_jimmy_holiday",
+            "raw_value": "WR Jimmy Holiday: Injured Reserve",
+            "normalized_value": "Jimmy Holiday",
+            "freshness_status": "stale"
+          },
+          {
+            "source_id": "nws-forecast",
+            "source_url": "https://api.weather.gov/",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "B",
+            "field_name": "forecast_gameday",
+            "raw_value": "Chance Showers And Thunderstorms; 80F; wind 5-8 mph WNW; PoP 43%",
+            "normalized_value": "Chance Showers And Thunderstorms",
+            "freshness_status": "fresh"
+          },
+          {
+            "source_id": "espn-nfl-scoreboard",
+            "source_url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=20260920",
+            "fetched_at": "2026-09-14T21:41:13Z",
+            "effective_at": "2026-09-14T21:41:13Z",
+            "event_id": "nfl-20260920-ind-kc",
+            "evidence_grade": "A",
+            "field_name": "start_time",
+            "raw_value": "2026-09-21T00:20Z",
+            "normalized_value": "2026-09-21T00:20Z",
+            "freshness_status": "fresh"
+          }
+        ],
+        "si_action": "WATCH"
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    }
+  ]
 }
