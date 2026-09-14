@@ -84,6 +84,62 @@
 }
 .eg-banner strong { color: var(--warn); }
 .eg-banner > span { color: var(--muted); }
+
+.eg-banner-live {
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(56, 189, 248, 0.08);
+}
+.eg-banner-live strong { color: #38bdf8; }
+.eg-banner-extra { display: block; width: 100%; color: var(--muted); font-size: 0.72rem; }
+.eg-pill-live {
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #7dd3fc;
+}
+.eg-pill-warn {
+  border-color: rgba(245, 165, 36, 0.55);
+  color: var(--warn);
+}
+.eg-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-bottom: 10px;
+}
+.eg-sport-filter {
+  font-size: 0.78rem;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.eg-sport-filter select {
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  background: var(--chip);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 8px;
+}
+.eg-feed-meta {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.eg-sport-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  padding: 1px 6px;
+  margin-right: 4px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  color: var(--accent2);
+  vertical-align: middle;
+}
+
 .eg-pill {
   display: inline-block;
   font-family: var(--mono);

@@ -1,0 +1,19 @@
+{
+  "_example": false,
+  "_live_si": true,
+  "_warning": "Experimental PRICE DIAGNOSTICS — live SI verify shells only. No DraftKings prices wired yet; p_model null; not validated edge; no tickets. SI verify files not present yet for si_verify_20260914.json, si_verify_20260917.json, si_verify_20260920.json.",
+  "generated_at": "2026-09-14T21:41:05Z",
+  "model_version": "si-verify-shell-v0",
+  "slate_dates": [],
+  "slate_date": null,
+  "sport": "MULTI",
+  "sports": [],
+  "feed_status": "MISSING",
+  "si_sources": [],
+  "si_missing_primary": [
+    "si_verify_20260914.json",
+    "si_verify_20260917.json",
+    "si_verify_20260920.json"
+  ],
+  "events": []
+}

@@ -34,10 +34,43 @@
     standalone: false,
     baseUrl: detectBaseUrl(),
     feedUrl: null,
+    feedSource: null, // 'live' | 'sample' | null
+    sportFilter: "ALL", // ALL | MLB | NFL | NBA
   };
 
+  function sampleFeedUrl() {
+    return state.baseUrl + "feeds/edge_glass_sample.json";
+  }
+
+  function liveFeedUrl() {
+    return state.baseUrl + "feeds/edge_glass_live.json";
+  }
+
   function resolveFeedUrl() {
-    return state.feedUrl || state.baseUrl + "feeds/edge_glass_sample.json";
+    // Explicit override wins; otherwise prefer live then sample (handled in loadFeed).
+    return state.feedUrl || liveFeedUrl();
+  }
+
+  function boardHasMissingMarkets(slate) {
+    const events = (slate && slate.events) || [];
+    if (!events.length) return true;
+    return events.every((row) => !row.market || row.market.away_odds == null);
+  }
+
+  function availableSports(slate) {
+    const set = new Set();
+    ((slate && slate.events) || []).forEach((row) => {
+      const sp = row.event && row.event.sport;
+      if (sp) set.add(sp);
+    });
+    (slate && slate.sports || []).forEach((sp) => set.add(sp));
+    return Array.from(set);
+  }
+
+  function filteredEvents() {
+    const events = (state.slate && state.slate.events) || [];
+    if (state.sportFilter === "ALL") return events;
+    return events.filter((row) => (row.event && row.event.sport) === state.sportFilter);
   }
 
   function panelMarkup() {
@@ -45,9 +78,20 @@
       '<div class="eg-root" id="eg-root">' +
         '<div class="panel-title eg-panel-title">' +
           '<h2>Edge Glass <span class="eg-exp-title">PRICE DIAGNOSTICS</span></h2>' +
-          '<span class="hint eg-hint-top">MLB ML diagnostic · sample/example only · not wired to Bet</span>' +
+          '<span class="hint eg-hint-top">Live SI shells · experimental · not wired to Bet</span>' +
         '</div>' +
         '<div class="eg-banner" id="eg-banner" role="status"></div>' +
+        '<div class="eg-toolbar" id="eg-toolbar">' +
+          '<label class="eg-sport-filter">Sport ' +
+            '<select id="eg-sport-select" aria-label="Filter by sport">' +
+              '<option value="ALL">All</option>' +
+              '<option value="MLB">MLB</option>' +
+              '<option value="NFL">NFL</option>' +
+              '<option value="NBA">NBA</option>' +
+            '</select>' +
+          '</label>' +
+          '<span class="eg-feed-meta" id="eg-feed-meta"></span>' +
+        '</div>' +
         '<div id="eg-master-table"></div>' +
         '<div class="eg-spectrum-panel" id="eg-spectrum"></div>' +
       '</div>'
@@ -248,14 +292,64 @@
     if (!el) return;
     const s = state.slate;
     const warn = (s && s._warning) || "not real odds";
+    const isExample = !!(s && s._example);
+    const isLiveSi = !!(s && s._live_si) || state.feedSource === "live";
+    const noPrices = boardHasMissingMarkets(s);
+    const pills = [];
+    if (isLiveSi) pills.push('<span class="eg-pill eg-pill-live">live SI</span>');
+    if (isExample) pills.push('<span class="eg-pill">_example: true</span>');
+    if (noPrices) pills.push('<span class="eg-pill eg-pill-warn">no prices yet</span>');
+    pills.push('<span class="eg-pill">no stake / no Kelly</span>');
+    if (s && s.model_version) pills.push(`<span class="eg-pill">${esc(s.model_version)}</span>`);
+    if (s && s.slate_date) pills.push(`<span class="eg-pill">slate ${esc(s.slate_date)}</span>`);
+    else if (s && Array.isArray(s.slate_dates) && s.slate_dates.length) {
+      pills.push(`<span class="eg-pill">slates ${esc(s.slate_dates.join(", "))}</span>`);
+    }
+    if (s && s.feed_status) pills.push(`<span class="eg-pill">feed ${esc(s.feed_status)}</span>`);
+
+    const liveLine = noPrices
+      ? '<strong>Live SI / no prices yet</strong>'
+      : '<strong>Experimental / not validated edge</strong>';
+    const extra = noPrices
+      ? '<span class="eg-banner-extra">Market odds omitted — EventPayload display only. SI C/D / stops → STOPPED/UNVERIFIED.</span>'
+      : "";
+
+    el.classList.toggle("eg-banner-live", isLiveSi && noPrices);
     el.innerHTML = `
-      <strong>Experimental / not validated edge</strong>
+      ${liveLine}
       <span>${esc(warn)}</span>
-      <span class="eg-pill">_example: true</span>
-      <span class="eg-pill">no stake / no Kelly</span>
-      ${s && s.model_version ? `<span class="eg-pill">${esc(s.model_version)}</span>` : ""}
-      ${s && s.slate_date ? `<span class="eg-pill">slate ${esc(s.slate_date)}</span>` : ""}
+      ${extra}
+      ${pills.join("")}
     `;
+
+    const meta = document.getElementById("eg-feed-meta");
+    if (meta) {
+      const n = ((s && s.events) || []).length;
+      const src = state.feedSource || (isExample ? "sample" : "—");
+      meta.textContent = `${n} event${n === 1 ? "" : "s"} · feed: ${src}`;
+    }
+
+    const sel = document.getElementById("eg-sport-select");
+    if (sel && !sel._egBound) {
+      sel._egBound = true;
+      sel.addEventListener("change", () => {
+        state.sportFilter = sel.value || "ALL";
+        renderTable();
+        renderSpectrum();
+      });
+    }
+    if (sel) {
+      const sports = availableSports(s);
+      // Keep ALL/MLB/NFL/NBA; disable absent sports except ALL
+      Array.from(sel.options).forEach((opt) => {
+        if (opt.value === "ALL") {
+          opt.disabled = false;
+          return;
+        }
+        opt.disabled = sports.length > 0 && sports.indexOf(opt.value) === -1;
+      });
+      sel.value = state.sportFilter;
+    }
   }
 
   function renderTable() {
@@ -266,12 +360,18 @@
       return;
     }
     if (state.loading && !state.slate) {
-      host.innerHTML = `<div class="eg-empty">Loading Edge Glass sample…</div>`;
+      host.innerHTML = `<div class="eg-empty">Loading Edge Glass live / sample…</div>`;
       return;
     }
-    const events = (state.slate && state.slate.events) || [];
+    const events = filteredEvents();
     if (!events.length) {
-      host.innerHTML = `<div class="eg-empty">No events in sample feed.</div>`;
+      const total = ((state.slate && state.slate.events) || []).length;
+      const msg = total
+        ? `No events for sport filter ${esc(state.sportFilter)}.`
+        : (state.feedSource === "live"
+            ? "Live SI board empty — waiting for si_verify feeds / no prices yet."
+            : "No events in sample feed.");
+      host.innerHTML = `<div class="eg-empty">${msg}</div>`;
       return;
     }
 
@@ -294,8 +394,8 @@
 
         return `<tr class="eg-row${selected}" data-eg-id="${esc(id)}" tabindex="0">
           <td class="eg-game">
-            <div class="eg-matchup">${esc(ev.away)} @ ${esc(ev.home)}</div>
-            <div class="eg-meta">${esc(ev.start_time || ev.date || "")} · ${esc(ev.event_id || "")}</div>
+            <div class="eg-matchup"><span class="eg-sport-tag">${esc(ev.sport || "")}</span> ${esc(ev.away || "—")} @ ${esc(ev.home || "—")}</div>
+            <div class="eg-meta">${esc(ev.start_time || ev.date || "")} · ${esc(ev.event_id || "")}${!row.market ? " · <span class='eg-pill eg-pill-warn'>no market</span>" : ""}</div>
           </td>
           <td>${esc(marketFavorite(row))}</td>
           <td>${mf ? esc(mf.team) : "<span class='eg-muted'>—</span>"}</td>
@@ -519,16 +619,34 @@
     if (state.loading) return;
     state.loading = true;
     state.error = null;
+    state.feedSource = null;
     renderBanner();
     try {
-      const data = await fetchJson(resolveFeedUrl());
+      let data = null;
+      if (state.feedUrl) {
+        data = await fetchJson(state.feedUrl);
+        state.feedSource = state.feedUrl.indexOf("edge_glass_live") !== -1 ? "live" : "override";
+      } else {
+        try {
+          data = await fetchJson(liveFeedUrl());
+          state.feedSource = "live";
+        } catch (liveErr) {
+          data = await fetchJson(sampleFeedUrl());
+          state.feedSource = "sample";
+        }
+      }
       state.slate = data;
-      if (!state.selectedId && data.events && data.events[0]) {
-        state.selectedId = data.events[0].event.event_id;
+      const events = filteredEvents();
+      const all = (data && data.events) || [];
+      if (!state.selectedId && events[0]) {
+        state.selectedId = events[0].event.event_id;
+      } else if (!state.selectedId && all[0]) {
+        state.selectedId = all[0].event.event_id;
       }
     } catch (e) {
       state.error = e.message || String(e);
       state.slate = null;
+      state.feedSource = null;
     }
     state.loading = false;
     state.loaded = true;

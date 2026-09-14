@@ -54,7 +54,7 @@ python3 -m http.server 8765
 - `odds.*` — american / de-vig / fair / divergence / edge / EV (from spine `odds.py`)
 - `applyHardGate(row)` — client gate
 
-Feed URL resolves relative to `edge_glass.js` (`feeds/edge_glass_sample.json`).
+Feed URL resolves relative to `edge_glass.js`: prefers `feeds/edge_glass_live.json` (SI verify shells, no invented prices), falls back to `feeds/edge_glass_sample.json`. Sport filter: MLB/NFL/NBA.
 
 ## Non-goals
 
