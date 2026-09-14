@@ -1257,3 +1257,7 @@ footer {
 .panel[data-view="floor"] {
   min-height: 70vh;
 }
+
+/* Thin host polish when Edge Glass tab is active (Glass UI CSS lives in edge_glass/) */
+.app.edgeglass-mode .sidebar { opacity: 0.55; pointer-events: none; }
+.panel[data-view="edgeglass"] { min-height: 70vh; }

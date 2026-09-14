@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edge Glass — PRICE DIAGNOSTICS</title>
+  <link rel="stylesheet" href="edge_glass/edge_glass.css" />
+</head>
+<body class="eg-standalone">
+  <header class="eg-standalone-header">
+    <h1>Edge Glass <span class="eg-exp-title">PRICE DIAGNOSTICS</span></h1>
+    <a href="index.html">← Situation Explorer (legacy host)</a>
+  </header>
+  <div id="eg-standalone-root"></div>
+  <script src="edge_glass/edge_glass.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      EdgeGlass.bootStandalone();
+    });
+  </script>
+</body>
+</html>

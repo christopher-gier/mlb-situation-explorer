@@ -2572,6 +2572,10 @@
       try { window.DeskFloor.activate(); } catch (_) {}
     }
     if (app) app.classList.toggle("floor-mode", tab === "floor");
+    if (tab === "edgeglass" && window.EdgeGlass) {
+      try { window.EdgeGlass.activate(); } catch (_) {}
+    }
+    if (app) app.classList.toggle("edgeglass-mode", tab === "edgeglass");
     saveState();
   }
 

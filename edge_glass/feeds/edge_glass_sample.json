@@ -1,0 +1,361 @@
+{
+  "_example": true,
+  "_warning": "not real odds \u2014 SYNTHETIC labeled EXAMPLE only for Edge Glass Phase 1 UI. Do not use for betting.",
+  "generated_at": "2026-09-14T18:00:00Z",
+  "model_version": "mlb-heuristic-v0",
+  "slate_date": "2026-09-14",
+  "sport": "MLB",
+  "events": [
+    {
+      "event": {
+        "event_id": "EX-MLB-20260914-AAA-BBB",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-14T23:10:00Z",
+        "away": "AAA",
+        "home": "BBB",
+        "away_team_id": "team_aaa",
+        "home_team_id": "team_bbb",
+        "venue_id": "venue_bbb",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": 0.53,
+        "home_p": 0.47,
+        "consensus": 76,
+        "range": [
+          0.5,
+          0.56
+        ],
+        "model_version": "mlb-heuristic-v0",
+        "experimental": true,
+        "stop_fields": [],
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-14T22:40:00Z",
+        "tags": [
+          "five_filter_screen"
+        ],
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": true,
+            "z": 0.8,
+            "w": 0.28,
+            "logit_contribution": 0.224,
+            "unverified_reason": null,
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T17:00:00Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": 0.4,
+            "w": 0.12,
+            "logit_contribution": 0.048,
+            "unverified_reason": null,
+            "evidence_grade": "B",
+            "as_of": "2026-09-14T12:00:00Z"
+          }
+        ]
+      },
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 118,
+        "home_odds": -138,
+        "away_break_even": 0.4587,
+        "home_break_even": 0.5798,
+        "away_no_vig_p": 0.442,
+        "home_no_vig_p": 0.558,
+        "fetched_at": "2026-09-14T17:15:00Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror_example",
+        "provenance": {
+          "source_id": "example_dk_synthetic",
+          "source_url": "https://example.invalid/odds/EX-MLB-20260914-AAA-BBB",
+          "fetched_at": "2026-09-14T17:15:00Z",
+          "effective_at": "2026-09-14T17:15:00Z",
+          "event_id": "EX-MLB-20260914-AAA-BBB",
+          "evidence_grade": "B",
+          "field_name": "moneyline",
+          "freshness_status": "fresh_example"
+        }
+      },
+      "value": {
+        "most_likely_winner": "AWAY",
+        "best_side": "AWAY",
+        "divergence_pp": 8.8,
+        "executable_edge_pp": 7.1,
+        "ev": 0.155,
+        "fair_odds": -113,
+        "fair_odds_away": -113,
+        "fair_odds_home": 113,
+        "classification": "MISPRICED_DOG",
+        "grade": "B",
+        "price_trigger": 110,
+        "decision": "BUY_CANDIDATE"
+      },
+      "explanation": {
+        "positive": [
+          "example_matchup_tag",
+          "example_starter_quality_tag"
+        ],
+        "negative": [
+          "example_road_penalty_tag"
+        ],
+        "invalidators": [
+          "late lineup scratch",
+          "price through buy threshold"
+        ],
+        "data_quality_flags": [
+          "SYNTHETIC_EXAMPLE"
+        ],
+        "market_hypotheses": [
+          "example narrative inflation \u2014 not real"
+        ]
+      },
+      "provenance": {
+        "overall": "B",
+        "stops": [],
+        "si_action": null,
+        "facts": [
+          {
+            "source_id": "example_dk_synthetic",
+            "source_url": "https://example.invalid/odds/EX-MLB-20260914-AAA-BBB",
+            "fetched_at": "2026-09-14T17:15:00Z",
+            "effective_at": "2026-09-14T17:15:00Z",
+            "event_id": "EX-MLB-20260914-AAA-BBB",
+            "evidence_grade": "B",
+            "field_name": "moneyline",
+            "freshness_status": "fresh_example"
+          }
+        ]
+      },
+      "bankroll_id": null,
+      "open_exposure_total": null,
+      "correlated_by_game": null,
+      "correlated_by_team": null,
+      "remaining_risk_budget": null,
+      "same_game_related_bets": null,
+      "max_per_position_cap_pct": null,
+      "fractional_kelly_factor": null,
+      "clv_at_close": null,
+      "accepted_vs_recommended_price": null,
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "EX-MLB-20260914-CCC-DDD",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-15T00:40:00Z",
+        "away": "CCC",
+        "home": "DDD",
+        "away_team_id": "team_ccc",
+        "home_team_id": "team_ddd",
+        "venue_id": "venue_ddd",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": 0.36,
+        "home_p": 0.64,
+        "consensus": 70,
+        "range": [
+          0.6,
+          0.68
+        ],
+        "model_version": "mlb-heuristic-v0",
+        "experimental": true,
+        "stop_fields": [],
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T00:10:00Z",
+        "tags": [],
+        "filters": []
+      },
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 150,
+        "home_odds": -175,
+        "away_break_even": 0.4,
+        "home_break_even": 0.6364,
+        "away_no_vig_p": 0.386,
+        "home_no_vig_p": 0.614,
+        "fetched_at": "2026-09-14T17:15:00Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "provenance": {
+          "source_id": "example_dk_synthetic",
+          "source_url": "https://example.invalid/odds/EX-MLB-20260914-CCC-DDD",
+          "fetched_at": "2026-09-14T17:15:00Z",
+          "event_id": "EX-MLB-20260914-CCC-DDD",
+          "evidence_grade": "D",
+          "field_name": "moneyline",
+          "freshness_status": "unverified"
+        }
+      },
+      "value": {
+        "most_likely_winner": "HOME",
+        "best_side": null,
+        "divergence_pp": 2.6,
+        "executable_edge_pp": 0.36,
+        "ev": 0.0057,
+        "fair_odds": -178,
+        "fair_odds_away": 178,
+        "fair_odds_home": -178,
+        "classification": "PASS",
+        "grade": "D",
+        "price_trigger": null,
+        "decision": "PASS_THE_BOARD"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [],
+        "data_quality_flags": [
+          "SYNTHETIC_EXAMPLE",
+          "efficient_market_example"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "D",
+        "stops": [],
+        "si_action": null,
+        "facts": []
+      },
+      "investigation_note": null
+    },
+    {
+      "event": {
+        "event_id": "EX-MLB-20260914-EEE-FFF",
+        "sport": "MLB",
+        "season": 2026,
+        "date": "2026-09-14",
+        "start_time": "2026-09-15T01:10:00Z",
+        "away": "EEE",
+        "home": "FFF",
+        "away_team_id": "team_eee",
+        "home_team_id": "team_fff",
+        "venue_id": "venue_fff",
+        "status": "scheduled"
+      },
+      "fundamental": {
+        "away_p": null,
+        "home_p": null,
+        "consensus": null,
+        "range": null,
+        "model_version": "mlb-heuristic-v0",
+        "experimental": true,
+        "stop_fields": [
+          "starter",
+          "lineup"
+        ],
+        "status": "STOPPED",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T00:40:00Z",
+        "tags": [],
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": 0.28,
+            "logit_contribution": null,
+            "unverified_reason": "STOP:starter",
+            "evidence_grade": "D",
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": 0.12,
+            "logit_contribution": null,
+            "unverified_reason": "STOP:lineup",
+            "evidence_grade": "D",
+            "as_of": null
+          }
+        ]
+      },
+      "market": {
+        "book": "DraftKings",
+        "away_odds": -120,
+        "home_odds": 100,
+        "away_break_even": 0.5455,
+        "home_break_even": 0.5,
+        "away_no_vig_p": 0.522,
+        "home_no_vig_p": 0.478,
+        "fetched_at": "2026-09-14T17:15:00Z",
+        "is_dk_direct": false,
+        "quote_source_label": "stale_cache",
+        "provenance": {
+          "source_id": "example_dk_synthetic",
+          "source_url": "https://example.invalid/odds/EX-MLB-20260914-EEE-FFF",
+          "fetched_at": "2026-09-14T17:15:00Z",
+          "event_id": "EX-MLB-20260914-EEE-FFF",
+          "evidence_grade": "D",
+          "field_name": "moneyline",
+          "freshness_status": "unverified"
+        }
+      },
+      "value": {
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
+        "ev": null,
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": "UNVERIFIED",
+        "grade": null,
+        "price_trigger": null,
+        "decision": "UNVERIFIED"
+      },
+      "explanation": {
+        "positive": [],
+        "negative": [],
+        "invalidators": [
+          "probable SP TBD",
+          "lineup unverified"
+        ],
+        "data_quality_flags": [
+          "SYNTHETIC_EXAMPLE",
+          "STOP_starter",
+          "STOP_lineup"
+        ],
+        "market_hypotheses": []
+      },
+      "provenance": {
+        "overall": "D",
+        "stops": [
+          "starter",
+          "lineup"
+        ],
+        "si_action": "STOP",
+        "facts": [
+          {
+            "source_id": "example_mlb_probable",
+            "source_url": "https://example.invalid/probable/EEE-FFF",
+            "fetched_at": "2026-09-14T16:00:00Z",
+            "event_id": "EX-MLB-20260914-EEE-FFF",
+            "evidence_grade": "D",
+            "field_name": "starter",
+            "raw_value": "TBD",
+            "freshness_status": "unverified"
+          }
+        ]
+      },
+      "investigation_note": null
+    }
+  ],
+  "ui_host": "mlb-situation-explorer",
+  "phase": 1
+}

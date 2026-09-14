@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="edge_glass/edge_glass.css" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 </head>
@@ -193,6 +194,7 @@
           <button type="button" data-tab="scatter">Scatter</button>
           <button type="button" data-tab="drift">League Drift</button>
           <button type="button" data-tab="floor">Desk Floor</button>
+          <button type="button" data-tab="edgeglass">Edge Glass</button>
           <button type="button" data-tab="list">Filtered list</button>
         </div>
         <div class="stats-pill">
@@ -406,6 +408,10 @@
         <div class="floor-footer">PAPER OS · real DK · screens ≠ tickets · 0u until Miles clear</div>
       </section>
 
+
+      <!-- Edge Glass host: markup + logic live under edge_glass/ (standalone: edge_glass.html) -->
+      <section class="panel view-panel hidden" data-view="edgeglass" id="edgeglass-panel"></section>
+
       <footer>
         <div id="meta-line"></div>
         <p style="margin:8px 0 0">
@@ -415,6 +421,7 @@
     </main>
   </div>
   <script src="desk_floor.js"></script>
+  <script src="edge_glass/edge_glass.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

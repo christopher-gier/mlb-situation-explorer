@@ -19,5 +19,11 @@ Chart line: chip green/amber/red = season Win%/RD screen only (LR under Climate)
 - **Miles:** chip = clear / watch / kill / stand_down. Green on Miles only if clear. Kill or stand_down = gray end — tap for true / likely / kill text.
 - **Kane:** after green clears New Bot + Miles, Kane sets units (fades smaller). Paper until CLV clears. No size from Bluff checkboxes alone.
 
+## Edge Glass (Phase 1)
 
+Self-contained under [`edge_glass/`](./edge_glass/) — sample data only, not validated edge, not wired to Bet.
+
+- Standalone: open [`edge_glass.html`](./edge_glass.html) (or `edge_glass/`)
+- Embedded: Situation Explorer → **Edge Glass** tab (thin host shell only)
+- Details: [`edge_glass/README.md`](./edge_glass/README.md)
 
