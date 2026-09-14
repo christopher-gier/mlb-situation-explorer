@@ -173,7 +173,9 @@
         "tags": [
           "si_clear",
           "p0_fallback_054",
-          "experimental"
+          "experimental",
+          "diagnostic_lean",
+          "fragile_rd_soft"
         ]
       },
       "value": {
@@ -294,7 +296,16 @@
         "quote_source_label": "AN_mirror",
         "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nstarter_away: Sean Newcomb [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Gavin Williams [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nweather: Partly Cloudy [FORECAST] grade B, fresh. NWS CLE forecast Tonight\nschedule: 2026-09-14T22:40Z [SCHEDULED] grade A, fresh. Slate CT 2026-09-14; late PT starts still same CT date\nLoad-bearing A/B facts present; CLEAR for pricing (not a ticket)."
+      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nstarter_away: Sean Newcomb [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Gavin Williams [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nweather: Partly Cloudy [FORECAST] grade B, fresh. NWS CLE forecast Tonight\nschedule: 2026-09-14T22:40Z [SCHEDULED] grade A, fresh. Slate CT 2026-09-14; late PT starts still same CT date\nLoad-bearing A/B facts present; CLEAR for pricing (not a ticket).",
+      "diagnostic_lean": {
+        "side": "CHW",
+        "tags": [
+          "diagnostic_lean",
+          "fragile_rd_soft"
+        ],
+        "challenge_note": "feeds/daniel_challenge_20260914.md",
+        "display_only": true
+      }
     },
     {
       "event": {
@@ -422,7 +433,9 @@
         "tags": [
           "si_clear",
           "p0_fallback_054",
-          "experimental"
+          "experimental",
+          "diagnostic_lean",
+          "fragile_rd_soft"
         ]
       },
       "value": {
@@ -543,7 +556,16 @@
         "quote_source_label": "AN_mirror",
         "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nstarter_away: Tarik Skubal [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Nick Lodolo [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nweather: Mostly Clear [FORECAST] grade B, fresh. NWS ILN forecast Tonight\nschedule: 2026-09-14T22:40Z [SCHEDULED] grade A, fresh. Slate CT 2026-09-14; late PT starts still same CT date\nLoad-bearing A/B facts present; CLEAR for pricing (not a ticket)."
+      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nstarter_away: Tarik Skubal [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Nick Lodolo [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nweather: Mostly Clear [FORECAST] grade B, fresh. NWS ILN forecast Tonight\nschedule: 2026-09-14T22:40Z [SCHEDULED] grade A, fresh. Slate CT 2026-09-14; late PT starts still same CT date\nLoad-bearing A/B facts present; CLEAR for pricing (not a ticket).",
+      "diagnostic_lean": {
+        "side": "CIN",
+        "tags": [
+          "diagnostic_lean",
+          "fragile_rd_soft"
+        ],
+        "challenge_note": "feeds/daniel_challenge_20260914.md",
+        "display_only": true
+      }
     },
     {
       "event": {
@@ -671,7 +693,9 @@
         "tags": [
           "si_clear",
           "p0_fallback_054",
-          "experimental"
+          "experimental",
+          "diagnostic_lean",
+          "fragile_rd_soft"
         ]
       },
       "value": {
@@ -792,7 +816,16 @@
         "quote_source_label": "AN_mirror",
         "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nstarter_away: Troy Melton [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Jose Soriano [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nclimate: indoor [INDOOR] grade A, fresh. Indoor/retractable venue per ESPN \u2014 outdoor weather not load-bearing\nschedule: 2026-09-14T23:07Z [SCHEDULED] grade A, fresh. Slate CT 2026-09-14; late PT starts still same CT date\nLoad-bearing A/B facts present; CLEAR for pricing (not a ticket)."
+      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nstarter_away: Troy Melton [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Jose Soriano [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nclimate: indoor [INDOOR] grade A, fresh. Indoor/retractable venue per ESPN \u2014 outdoor weather not load-bearing\nschedule: 2026-09-14T23:07Z [SCHEDULED] grade A, fresh. Slate CT 2026-09-14; late PT starts still same CT date\nLoad-bearing A/B facts present; CLEAR for pricing (not a ticket).",
+      "diagnostic_lean": {
+        "side": "DET",
+        "tags": [
+          "diagnostic_lean",
+          "fragile_rd_soft"
+        ],
+        "challenge_note": "feeds/daniel_challenge_20260914.md",
+        "display_only": true
+      }
     },
     {
       "event": {

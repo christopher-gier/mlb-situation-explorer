@@ -1437,3 +1437,38 @@ body.eg-standalone {
 .eg-row.eg-row-diagnostic-lean.selected {
   background: #fef3c7;
 }
+
+
+/* DIAGNOSTIC LEAN side + fragility tags */
+.eg-diag-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+.eg-diag-tag {
+  font-size: 0.58rem;
+  font-weight: 600;
+  font-family: var(--eg-mono);
+  letter-spacing: 0.02em;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fdba74;
+}
+.eg-diag-callout {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #fbbf24;
+  background: #fffbeb;
+  font-size: 0.82rem;
+}
+.eg-challenge-note {
+  margin: 8px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--eg-muted);
+  font-weight: 400;
+}

@@ -384,6 +384,12 @@
     }
   }
 
+
+  const DANIEL_CHALLENGE_FOOTNOTE =
+    "Daniel challenge (2026-09-14): soft stack F05+F06 only; F01 inactive (no SP FIP); consensus INSUFFICIENT. " +
+    "DIAGNOSTIC LEAN is display-only — not BUY, not tickets. Tags: diagnostic_lean + fragile_rd_soft. " +
+    "See feeds/daniel_challenge_20260914.md.";
+
   /**
    * Adrian DIAGNOSTIC LEAN — display/radar only.
    * CLEAR / CLEAR_FOR_PRICE + |divergence_pp|≥5 + AN_mirror quotes.
@@ -430,9 +436,10 @@
       return { key: "stop", label: "STOP", cls: "eg-status-stop" };
     }
     if (v.diagnosticLean) {
+      const side = v.diagnosticLeanSide ? ` · ${v.diagnosticLeanSide}` : "";
       return {
         key: "diagnostic_lean",
-        label: "DIAGNOSTIC LEAN",
+        label: `DIAGNOSTIC LEAN${side}`,
         cls: "eg-status-diagnostic-lean",
       };
     }
@@ -607,6 +614,20 @@
       row,
     };
     view.diagnosticLean = isDiagnosticLean(row, view);
+    view.diagnosticLeanSide = null;
+    view.diagnosticTags = [];
+    if (view.diagnosticLean) {
+      const ann = row.diagnostic_lean || {};
+      const vs = val.value_side_team;
+      view.diagnosticLeanSide =
+        ann.side ||
+        vs ||
+        (view.valueSideLabel &&
+        ["None", "HOLD", "TBD"].indexOf(view.valueSideLabel) === -1
+          ? view.valueSideLabel
+          : null);
+      view.diagnosticTags = ["diagnostic_lean", "fragile_rd_soft"];
+    }
     return view;
   }
 
@@ -885,11 +906,20 @@
             : "—";
         const sub = isStop
           ? esc((v.story || "STOP story").replace(/^STOP ·\s*/, "").slice(0, 90))
-          : "model–market divergence";
+          : v.diagnosticLean
+            ? `DIAGNOSTIC LEAN · ${esc(
+                v.diagnosticLeanSide || v.valueSideLabel || "—"
+              )} · fragile_rd_soft`
+            : "model–market divergence";
         const focusTeam =
-          v.valueSideLabel && v.valueSideLabel !== "None" && v.valueSideLabel !== "HOLD" && v.valueSideLabel !== "TBD"
-            ? v.valueSideLabel
-            : v.home;
+          v.diagnosticLean && v.diagnosticLeanSide
+            ? v.diagnosticLeanSide
+            : v.valueSideLabel &&
+                v.valueSideLabel !== "None" &&
+                v.valueSideLabel !== "HOLD" &&
+                v.valueSideLabel !== "TBD"
+              ? v.valueSideLabel
+              : v.home;
         const dk =
           v.valueOdds != null
             ? `DK ${esc(fmtOdds(v.valueOdds))}`
@@ -1005,7 +1035,13 @@
           <td>${valueCell}</td>
           <td class="eg-dk">${dkCell}</td>
           <td>${divCell}</td>
-          <td>${statusPill(v)}</td>
+          <td>${statusPill(v)}${
+            v.diagnosticLean && v.diagnosticTags.length
+              ? `<div class="eg-diag-tags">${v.diagnosticTags
+                  .map((t) => `<span class="eg-diag-tag">${esc(t)}</span>`)
+                  .join("")}</div>`
+              : ""
+          }</td>
         </tr>`;
       })
       .join("");
@@ -1391,6 +1427,18 @@
       <section class="eg-drawer-section">
         <h3>Adrian / gates</h3>
         ${adrianGateBlock(row, view, gate)}
+        ${
+          view.diagnosticLean
+            ? `<div class="eg-diag-callout"><strong>DIAGNOSTIC LEAN · ${esc(
+                view.diagnosticLeanSide || "—"
+              )}</strong>
+                <div class="eg-diag-tags">${(view.diagnosticTags || [])
+                  .map((t) => `<span class="eg-diag-tag">${esc(t)}</span>`)
+                  .join("")}</div>
+                <p class="eg-challenge-note">${esc(DANIEL_CHALLENGE_FOOTNOTE)}</p>
+              </div>`
+            : ""
+        }
       </section>
     `;
 
