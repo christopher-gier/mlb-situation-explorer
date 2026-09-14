@@ -365,3 +365,149 @@
 .eg-panel-title h2 { margin: 0; font-size: 1.05rem; }
 .eg-hint-top { color: var(--muted); font-size: 0.78rem; }
 .eg-host { min-height: 60vh; }
+
+/* —— Pass #1 board additions —— */
+.eg-pill-mirror {
+  border-color: rgba(245, 165, 36, 0.55);
+  color: var(--warn);
+}
+.eg-table-pass1 {
+  min-width: 780px;
+}
+.eg-table-pass1 th:nth-child(1),
+.eg-table-pass1 td.eg-game {
+  white-space: normal;
+  min-width: 160px;
+}
+.eg-badge-mirror {
+  display: inline-block;
+  margin-left: 6px;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 165, 36, 0.5);
+  color: var(--warn);
+  background: rgba(245, 165, 36, 0.08);
+  vertical-align: middle;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.eg-dk { white-space: normal; max-width: 200px; }
+.eg-status-stop {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--danger);
+  letter-spacing: 0.03em;
+}
+.eg-status-hold {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--warn);
+}
+.eg-div-hot {
+  color: var(--accent);
+  font-weight: 700;
+}
+.eg-row-flash {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.eg-flash-strip {
+  margin-bottom: 12px;
+}
+.eg-flash-strip[hidden] { display: none !important; }
+.eg-flash-head {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.eg-flash-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.eg-flash-card {
+  text-align: left;
+  cursor: pointer;
+  min-width: 140px;
+  max-width: 220px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(61, 214, 198, 0.45);
+  background: rgba(61, 214, 198, 0.08);
+  color: var(--text);
+  font: inherit;
+}
+.eg-flash-card:hover { background: rgba(61, 214, 198, 0.14); }
+.eg-flash-card.selected {
+  outline: 1px solid var(--accent);
+  background: rgba(61, 214, 198, 0.16);
+}
+.eg-flash-card.eg-flash-stop {
+  border-color: rgba(255, 92, 122, 0.55);
+  background: rgba(255, 92, 122, 0.08);
+}
+.eg-flash-card.eg-flash-stop.selected {
+  outline-color: var(--danger);
+}
+.eg-flash-matchup { font-weight: 600; font-size: 0.78rem; }
+.eg-flash-reason {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--accent);
+  margin-top: 2px;
+}
+.eg-flash-stop .eg-flash-reason { color: var(--danger); }
+.eg-flash-sub {
+  font-size: 0.65rem;
+  color: var(--muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eg-story-card {
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  background: var(--chip);
+}
+.eg-story-stop {
+  border-color: rgba(255, 92, 122, 0.55);
+  background: rgba(255, 92, 122, 0.08);
+}
+.eg-story-hold {
+  border-color: rgba(245, 165, 36, 0.45);
+  background: rgba(245, 165, 36, 0.07);
+}
+.eg-story-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.eg-story-body {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+}
+.eg-fact-list {
+  margin: 8px 0 0;
+  padding-left: 16px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+.eg-fact-list code {
+  font-family: var(--mono);
+  color: var(--accent2);
+  margin-right: 4px;
+}

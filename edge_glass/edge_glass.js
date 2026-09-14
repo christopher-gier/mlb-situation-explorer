@@ -1,4 +1,4 @@
-/* Edge Glass — Phase 1 (self-contained). No Bet / Drift / DeskFloor / TR imports. */
+/* Edge Glass — Phase 1 Pass #1 board (self-contained). No Bet / Drift / DeskFloor / TR imports. */
 (function (global) {
   "use strict";
 
@@ -34,8 +34,9 @@
     standalone: false,
     baseUrl: detectBaseUrl(),
     feedUrl: null,
-    feedSource: null, // 'live' | 'sample' | null
-    sportFilter: "ALL", // ALL | MLB | NFL | NBA
+    feedSource: null,
+    sportFilter: "ALL",
+    dateFilter: "ALL",
   };
 
   function sampleFeedUrl() {
@@ -44,11 +45,6 @@
 
   function liveFeedUrl() {
     return state.baseUrl + "feeds/edge_glass_live.json";
-  }
-
-  function resolveFeedUrl() {
-    // Explicit override wins; otherwise prefer live then sample (handled in loadFeed).
-    return state.feedUrl || liveFeedUrl();
   }
 
   function boardHasMissingMarkets(slate) {
@@ -67,10 +63,25 @@
     return Array.from(set);
   }
 
+  function availableDates(slate) {
+    const set = new Set();
+    ((slate && slate.events) || []).forEach((row) => {
+      const d = row.event && row.event.date;
+      if (d) set.add(d);
+    });
+    (slate && slate.slate_dates || []).forEach((d) => set.add(d));
+    return Array.from(set).sort();
+  }
+
   function filteredEvents() {
-    const events = (state.slate && state.slate.events) || [];
-    if (state.sportFilter === "ALL") return events;
-    return events.filter((row) => (row.event && row.event.sport) === state.sportFilter);
+    let events = (state.slate && state.slate.events) || [];
+    if (state.sportFilter !== "ALL") {
+      events = events.filter((row) => (row.event && row.event.sport) === state.sportFilter);
+    }
+    if (state.dateFilter !== "ALL") {
+      events = events.filter((row) => (row.event && row.event.date) === state.dateFilter);
+    }
+    return events;
   }
 
   function panelMarkup() {
@@ -78,7 +89,7 @@
       '<div class="eg-root" id="eg-root">' +
         '<div class="panel-title eg-panel-title">' +
           '<h2>Edge Glass <span class="eg-exp-title">PRICE DIAGNOSTICS</span></h2>' +
-          '<span class="hint eg-hint-top">Live SI shells · experimental · not wired to Bet</span>' +
+          '<span class="hint eg-hint-top">Pass #1 board · experimental · not wired to Bet</span>' +
         '</div>' +
         '<div class="eg-banner" id="eg-banner" role="status"></div>' +
         '<div class="eg-toolbar" id="eg-toolbar">' +
@@ -90,15 +101,20 @@
               '<option value="NBA">NBA</option>' +
             '</select>' +
           '</label>' +
+          '<label class="eg-sport-filter">Date ' +
+            '<select id="eg-date-select" aria-label="Filter by date">' +
+              '<option value="ALL">All</option>' +
+            '</select>' +
+          '</label>' +
           '<span class="eg-feed-meta" id="eg-feed-meta"></span>' +
         '</div>' +
+        '<div class="eg-flash-strip" id="eg-flash-strip"></div>' +
         '<div id="eg-master-table"></div>' +
         '<div class="eg-spectrum-panel" id="eg-spectrum"></div>' +
       '</div>'
     );
   }
 
-  /** Mount Glass UI into a host element (explorer tab shell or standalone body). */
   function mount(host, opts) {
     opts = opts || {};
     if (!host) return null;
@@ -163,29 +179,23 @@
   }
 
   function fmtOdds(n) {
-    if (n == null || Number.isNaN(Number(n))) return "—";
+    if (n == null || Number.isNaN(Number(n))) return null;
     const v = Math.round(Number(n));
     return v > 0 ? `+${v}` : String(v);
   }
 
   function fmtPp(n, digits = 1) {
-    if (n == null || Number.isNaN(Number(n))) return "—";
+    if (n == null || Number.isNaN(Number(n))) return null;
     const v = Number(n);
     const sign = v > 0 ? "+" : "";
     return `${sign}${v.toFixed(digits)}`;
   }
 
   function fmtPct(p, digits = 1) {
-    if (p == null || Number.isNaN(Number(p))) return "—";
+    if (p == null || Number.isNaN(Number(p))) return null;
     return `${(Number(p) * 100).toFixed(digits)}%`;
   }
 
-  function fmtEv(n) {
-    if (n == null || Number.isNaN(Number(n))) return "—";
-    return Number(n).toFixed(3);
-  }
-
-  /** Hard gate: never BUY/LEAN if stops, load-bearing C/D, or |div|>12 w/o investigation note. */
   function applyHardGate(row) {
     const raw = (row.value && row.value.decision) || "UNVERIFIED";
     const decision = DECISIONS.has(raw) ? raw : "UNVERIFIED";
@@ -227,23 +237,6 @@
     return { decision, gated: false, reasons, raw };
   }
 
-  function marketFavorite(row) {
-    const m = row.market;
-    if (!m || m.away_odds == null || m.home_odds == null) return "—";
-    // Lower American (more negative) = favorite
-    if (Number(m.home_odds) < Number(m.away_odds)) return row.event.home;
-    if (Number(m.away_odds) < Number(m.home_odds)) return row.event.away;
-    return "PICK";
-  }
-
-  function modelFavorite(row) {
-    const f = row.fundamental;
-    if (!f || f.status === "STOPPED" || f.away_p == null || f.home_p == null) return null;
-    if (f.home_p > 0.5) return { side: "HOME", team: row.event.home, p: f.home_p };
-    if (f.away_p > 0.5) return { side: "AWAY", team: row.event.away, p: f.away_p };
-    return null;
-  }
-
   function decisionClass(d) {
     switch (d) {
       case "BUY_CANDIDATE":
@@ -261,6 +254,128 @@
       default:
         return "";
     }
+  }
+
+  /** Pass #1 row view-model — never invent odds. */
+  function boardRow(row) {
+    const ev = row.event || {};
+    const fund = row.fundamental || {};
+    const mkt = row.market || {};
+    const val = row.value || {};
+    const status = fund.status || "INSUFFICIENT";
+    const stops = (row.provenance && row.provenance.stops) || fund.stop_fields || [];
+    const awayOdds = mkt.away_odds != null ? mkt.away_odds : val.board_ml_away;
+    const homeOdds = mkt.home_odds != null ? mkt.home_odds : val.board_ml_home;
+    const hasDk = awayOdds != null && homeOdds != null;
+
+    let mostLikelyLabel = null;
+    let mostLikelyKind = "ok";
+    let fundPctLabel = null;
+    let fairMlLabel = null;
+    let valueSideLabel = null;
+    let divLabel = null;
+    let divNum = null;
+
+    if (status === "STOPPED") {
+      mostLikelyLabel = "STOPPED";
+      mostLikelyKind = "stop";
+      fundPctLabel = stops.length ? stops.join(", ") : "STOP";
+      fairMlLabel = null;
+      valueSideLabel = "HOLD";
+      divLabel = null;
+    } else if (status === "INSUFFICIENT") {
+      mostLikelyLabel = "HOLD";
+      mostLikelyKind = "hold";
+      fundPctLabel = "Conditional";
+      fairMlLabel = null;
+      valueSideLabel = "TBD";
+      divLabel = null;
+    } else if (status === "OK" && fund.away_p != null && fund.home_p != null) {
+      const homeFav = Number(fund.home_p) >= Number(fund.away_p);
+      const mlTeam = homeFav ? ev.home : ev.away;
+      const mlP = homeFav ? fund.home_p : fund.away_p;
+      mostLikelyLabel = val.most_likely_team || mlTeam;
+      fundPctLabel = val.fundamental_pct != null
+        ? `${Number(val.fundamental_pct).toFixed(0)}%`
+        : fmtPct(mlP, 0);
+      const fair = val.fair_odds != null
+        ? val.fair_odds
+        : (homeFav ? val.fair_odds_home : val.fair_odds_away);
+      fairMlLabel = fmtOdds(fair);
+
+      // Value side from payload or recompute
+      let vTeam = val.value_side_team;
+      let div = val.divergence_pp;
+      if (vTeam == null && hasDk) {
+        try {
+          let pAway = mkt.away_no_vig_p;
+          let pHome = mkt.home_no_vig_p;
+          if (pAway == null || pHome == null) {
+            const d = twoSidedDevig(awayOdds, homeOdds);
+            pAway = d[0];
+            pHome = d[1];
+          }
+          const eA = executableEdgePp(Number(fund.away_p), awayOdds);
+          const eH = executableEdgePp(Number(fund.home_p), homeOdds);
+          if (eA >= eH && eA >= 0.5) {
+            vTeam = ev.away;
+            div = divergencePp(Number(fund.away_p), Number(pAway));
+          } else if (eH > eA && eH >= 0.5) {
+            vTeam = ev.home;
+            div = divergencePp(Number(fund.home_p), Number(pHome));
+          } else {
+            vTeam = null;
+            div = homeFav
+              ? divergencePp(Number(fund.home_p), Number(pHome))
+              : divergencePp(Number(fund.away_p), Number(pAway));
+          }
+        } catch (_) {}
+      }
+      valueSideLabel = vTeam || "None";
+      divNum = div != null ? Number(div) : null;
+      divLabel = divNum != null ? fmtPp(divNum) : null;
+      if (vTeam && divNum != null && Math.abs(divNum) >= 0.05) {
+        // Pass #1 often shows value-side team beside div when small
+      }
+    } else {
+      mostLikelyLabel = "HOLD";
+      mostLikelyKind = "hold";
+      fundPctLabel = status;
+      valueSideLabel = "TBD";
+    }
+
+    const story = val.story || null;
+    const flash =
+      !!val.flash ||
+      status === "STOPPED" ||
+      (divNum != null && Math.abs(divNum) >= 5);
+
+    return {
+      id: ev.event_id || "",
+      sport: ev.sport || "",
+      date: ev.date || "",
+      away: ev.away || "—",
+      home: ev.home || "—",
+      start: ev.start_time || ev.date || "",
+      status,
+      mostLikelyLabel,
+      mostLikelyKind,
+      fundPctLabel,
+      fairMlLabel,
+      awayOdds,
+      homeOdds,
+      hasDk,
+      quoteLabel: mkt.quote_source_label || val.quote_source || (hasDk ? "AN_mirror" : null),
+      isDkDirect: !!(mkt.is_dk_direct || val.is_dk_direct),
+      valueSideLabel,
+      divLabel,
+      divNum,
+      flash,
+      flashReason: val.flash_reason || (status === "STOPPED" ? "STOP" : (divNum != null && Math.abs(divNum) >= 5 ? "DIVERGENCE" : null)),
+      story,
+      stops,
+      row,
+    };
   }
 
   async function fetchJson(url) {
@@ -286,70 +401,131 @@
     return true;
   }
 
+  function bindFilters() {
+    const sportSel = document.getElementById("eg-sport-select");
+    if (sportSel && !sportSel._egBound) {
+      sportSel._egBound = true;
+      sportSel.addEventListener("change", () => {
+        state.sportFilter = sportSel.value || "ALL";
+        render();
+      });
+    }
+    const dateSel = document.getElementById("eg-date-select");
+    if (dateSel && !dateSel._egBound) {
+      dateSel._egBound = true;
+      dateSel.addEventListener("change", () => {
+        state.dateFilter = dateSel.value || "ALL";
+        render();
+      });
+    }
+  }
 
   function renderBanner() {
     const el = document.getElementById("eg-banner");
     if (!el) return;
     const s = state.slate;
-    const warn = (s && s._warning) || "not real odds";
-    const isExample = !!(s && s._example);
+    const warn =
+      (s && s._warning) ||
+      "PRICE DIAGNOSTICS · experimental · AN_mirror ≠ live DK until verified";
     const isLiveSi = !!(s && s._live_si) || state.feedSource === "live";
     const noPrices = boardHasMissingMarkets(s);
     const pills = [];
+    pills.push('<span class="eg-pill eg-pill-warn">PRICE DIAGNOSTICS</span>');
+    pills.push('<span class="eg-pill">experimental</span>');
+    pills.push('<span class="eg-pill eg-pill-mirror">AN_mirror ≠ live DK until verified</span>');
     if (isLiveSi) pills.push('<span class="eg-pill eg-pill-live">live SI</span>');
-    if (isExample) pills.push('<span class="eg-pill">_example: true</span>');
     if (noPrices) pills.push('<span class="eg-pill eg-pill-warn">no prices yet</span>');
-    pills.push('<span class="eg-pill">no stake / no Kelly</span>');
+    pills.push('<span class="eg-pill">no tickets</span>');
     if (s && s.model_version) pills.push(`<span class="eg-pill">${esc(s.model_version)}</span>`);
-    if (s && s.slate_date) pills.push(`<span class="eg-pill">slate ${esc(s.slate_date)}</span>`);
-    else if (s && Array.isArray(s.slate_dates) && s.slate_dates.length) {
+    if (s && Array.isArray(s.slate_dates) && s.slate_dates.length) {
       pills.push(`<span class="eg-pill">slates ${esc(s.slate_dates.join(", "))}</span>`);
     }
-    if (s && s.feed_status) pills.push(`<span class="eg-pill">feed ${esc(s.feed_status)}</span>`);
-
-    const liveLine = noPrices
-      ? '<strong>Live SI / no prices yet</strong>'
-      : '<strong>Experimental / not validated edge</strong>';
-    const extra = noPrices
-      ? '<span class="eg-banner-extra">Market odds omitted — EventPayload display only. SI C/D / stops → STOPPED/UNVERIFIED.</span>'
-      : "";
 
     el.classList.toggle("eg-banner-live", isLiveSi && noPrices);
     el.innerHTML = `
-      ${liveLine}
+      <strong>PRICE DIAGNOSTICS · experimental · AN_mirror ≠ live DK until verified</strong>
       <span>${esc(warn)}</span>
-      ${extra}
       ${pills.join("")}
     `;
 
     const meta = document.getElementById("eg-feed-meta");
     if (meta) {
       const n = ((s && s.events) || []).length;
-      const src = state.feedSource || (isExample ? "sample" : "—");
-      meta.textContent = `${n} event${n === 1 ? "" : "s"} · feed: ${src}`;
+      const filled = ((s && s.events) || []).filter(
+        (r) => r.market && r.market.away_odds != null
+      ).length;
+      const src = state.feedSource || "—";
+      meta.textContent = `${n} events · ${filled} w/ DK current · feed: ${src}`;
     }
 
-    const sel = document.getElementById("eg-sport-select");
-    if (sel && !sel._egBound) {
-      sel._egBound = true;
-      sel.addEventListener("change", () => {
-        state.sportFilter = sel.value || "ALL";
-        renderTable();
-        renderSpectrum();
-      });
-    }
-    if (sel) {
+    bindFilters();
+    const sportSel = document.getElementById("eg-sport-select");
+    if (sportSel) {
       const sports = availableSports(s);
-      // Keep ALL/MLB/NFL/NBA; disable absent sports except ALL
-      Array.from(sel.options).forEach((opt) => {
+      Array.from(sportSel.options).forEach((opt) => {
         if (opt.value === "ALL") {
           opt.disabled = false;
           return;
         }
         opt.disabled = sports.length > 0 && sports.indexOf(opt.value) === -1;
       });
-      sel.value = state.sportFilter;
+      sportSel.value = state.sportFilter;
     }
+    const dateSel = document.getElementById("eg-date-select");
+    if (dateSel) {
+      const dates = availableDates(s);
+      const cur = state.dateFilter;
+      dateSel.innerHTML =
+        '<option value="ALL">All</option>' +
+        dates.map((d) => `<option value="${esc(d)}">${esc(d)}</option>`).join("");
+      dateSel.value = dates.indexOf(cur) !== -1 || cur === "ALL" ? cur : "ALL";
+      if (dateSel.value !== cur) state.dateFilter = dateSel.value;
+    }
+  }
+
+  function renderFlashStrip() {
+    const host = document.getElementById("eg-flash-strip");
+    if (!host) return;
+    const views = filteredEvents().map(boardRow).filter((v) => v.flash);
+    if (!views.length) {
+      host.innerHTML = "";
+      host.hidden = true;
+      return;
+    }
+    host.hidden = false;
+    const cards = views
+      .map((v) => {
+        const reason =
+          v.flashReason === "STOP"
+            ? "STOP"
+            : v.divLabel
+              ? `|div| ${esc(v.divLabel)} pp`
+              : "flash";
+        const sub =
+          v.flashReason === "STOP" && v.story
+            ? esc(v.story.replace(/^STOP ·\s*/, "").slice(0, 72))
+            : v.valueSideLabel && v.valueSideLabel !== "None"
+              ? `value ${esc(v.valueSideLabel)}`
+              : esc(v.fundPctLabel || "");
+        return `<button type="button" class="eg-flash-card${
+          v.id === state.selectedId ? " selected" : ""
+        }${v.flashReason === "STOP" ? " eg-flash-stop" : ""}" data-eg-id="${esc(v.id)}">
+          <div class="eg-flash-matchup">${esc(v.away)} @ ${esc(v.home)}</div>
+          <div class="eg-flash-reason">${esc(reason)}</div>
+          <div class="eg-flash-sub">${sub}</div>
+        </button>`;
+      })
+      .join("");
+    host.innerHTML = `
+      <div class="eg-flash-head">Where the Glass is flashing</div>
+      <div class="eg-flash-row">${cards}</div>
+    `;
+    host.querySelectorAll(".eg-flash-card").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.selectedId = btn.getAttribute("data-eg-id");
+        render();
+      });
+    });
   }
 
   function renderTable() {
@@ -367,91 +543,92 @@
     if (!events.length) {
       const total = ((state.slate && state.slate.events) || []).length;
       const msg = total
-        ? `No events for sport filter ${esc(state.sportFilter)}.`
-        : (state.feedSource === "live"
-            ? "Live SI board empty — waiting for si_verify feeds / no prices yet."
-            : "No events in sample feed.");
+        ? `No events for current sport/date filter.`
+        : state.feedSource === "live"
+          ? "Live SI board empty — waiting for feeds."
+          : "No events in sample feed.";
       host.innerHTML = `<div class="eg-empty">${msg}</div>`;
       return;
     }
 
     const rows = events
       .map((row) => {
-        const gate = applyHardGate(row);
-        const ev = row.event || {};
-        const val = row.value || {};
-        const mkt = row.market || {};
-        const fund = row.fundamental || {};
-        const mf = modelFavorite(row);
-        const stops = ((row.provenance && row.provenance.stops) || []).join(", ") || "—";
-        const id = ev.event_id || "";
-        const selected = id === state.selectedId ? " selected" : "";
-        const dqBits = [];
-        if (fund.status) dqBits.push(fund.status);
-        if (mkt.quote_source_label) dqBits.push(mkt.quote_source_label);
-        if (row.provenance && row.provenance.si_action) dqBits.push(`SI:${row.provenance.si_action}`);
-        if ((row.provenance && row.provenance.stops || []).length) dqBits.push("STOP");
+        const v = boardRow(row);
+        const selected = v.id === state.selectedId ? " selected" : "";
+        const flashCls = v.flash ? " eg-row-flash" : "";
+        const mlCls =
+          v.mostLikelyKind === "stop"
+            ? "eg-status-stop"
+            : v.mostLikelyKind === "hold"
+              ? "eg-status-hold"
+              : "";
+        const dkCell = v.hasDk
+          ? `<span class="mono">${esc(fmtOdds(v.awayOdds))} / ${esc(fmtOdds(v.homeOdds))}</span>
+             ${
+               v.quoteLabel
+                 ? `<span class="eg-badge-mirror" title="Not DK-direct until verified">${esc(
+                     v.quoteLabel
+                   )}</span>`
+                 : ""
+             }`
+          : `<span class="eg-status-hold">no quote</span>`;
+        const fairCell = v.fairMlLabel
+          ? `<span class="mono">${esc(v.fairMlLabel)}</span>`
+          : `<span class="eg-muted">—</span>`;
+        const fundCell =
+          v.mostLikelyKind === "ok"
+            ? `<span title="experimental">${esc(v.fundPctLabel)} <span class="eg-exp">exp</span></span>`
+            : `<span class="eg-status-hold" title="${esc(v.story || v.fundPctLabel || "")}">${esc(
+                v.fundPctLabel || "—"
+              )}</span>`;
+        const divCell = v.divLabel
+          ? `<span class="mono${
+              v.divNum != null && Math.abs(v.divNum) >= 5 ? " eg-div-hot" : ""
+            }">${esc(v.divLabel)}</span>`
+          : `<span class="eg-muted">—</span>`;
 
-        return `<tr class="eg-row${selected}" data-eg-id="${esc(id)}" tabindex="0">
+        return `<tr class="eg-row${selected}${flashCls}" data-eg-id="${esc(v.id)}" tabindex="0">
           <td class="eg-game">
-            <div class="eg-matchup"><span class="eg-sport-tag">${esc(ev.sport || "")}</span> ${esc(ev.away || "—")} @ ${esc(ev.home || "—")}</div>
-            <div class="eg-meta">${esc(ev.start_time || ev.date || "")} · ${esc(ev.event_id || "")}${!row.market ? " · <span class='eg-pill eg-pill-warn'>no market</span>" : ""}</div>
+            <div class="eg-matchup"><span class="eg-sport-tag">${esc(v.sport)}</span> ${esc(
+          v.away
+        )} @ ${esc(v.home)}</div>
+            <div class="eg-meta">${esc(v.start)}${v.flash ? " · flashing" : ""}</div>
           </td>
-          <td>${esc(marketFavorite(row))}</td>
-          <td>${mf ? esc(mf.team) : "<span class='eg-muted'>—</span>"}</td>
-          <td title="experimental">${mf ? esc(fmtPct(mf.p)) + ' <span class="eg-exp">exp</span>' : "—"}</td>
-          <td class="mono">${esc(fmtOdds(val.fair_odds_away))} / ${esc(fmtOdds(val.fair_odds_home))}</td>
-          <td class="mono" title="${esc(mkt.fetched_at || "")}">${esc(fmtOdds(mkt.away_odds))} / ${esc(fmtOdds(mkt.home_odds))}</td>
-          <td class="mono">${esc(fmtPct(mkt.away_no_vig_p))} / ${esc(fmtPct(mkt.home_no_vig_p))}</td>
-          <td>${val.best_side ? esc(val.best_side) : "<span class='eg-muted'>PASS</span>"}</td>
-          <td class="mono">${esc(fmtPp(val.divergence_pp))}</td>
-          <td class="mono">${esc(fmtPp(val.executable_edge_pp))}</td>
-          <td class="mono">${esc(fmtEv(val.ev))}</td>
-          <td>${fund.consensus != null ? esc(fund.consensus) : "—"}</td>
-          <td><span class="eg-flag">${esc(val.classification || "—")}</span></td>
-          <td>
-            <span class="eg-decision ${decisionClass(gate.decision)}" title="${gate.gated ? "hard-gated from " + esc(gate.raw) + ": " + esc(gate.reasons.join("; ")) : ""}">${esc(gate.decision)}</span>
-            ${gate.gated ? '<span class="eg-gate-badge" title="hard gate applied">gated</span>' : ""}
-          </td>
-          <td class="eg-dq">${esc(dqBits.join(" · ") || "—")}<div class="eg-meta">stops: ${esc(stops)}</div></td>
-          <td class="mono">${val.price_trigger != null ? esc(fmtOdds(val.price_trigger)) : "—"}</td>
+          <td><span class="${mlCls}">${esc(v.mostLikelyLabel)}</span></td>
+          <td>${fundCell}</td>
+          <td>${fairCell}</td>
+          <td class="eg-dk">${dkCell}</td>
+          <td>${esc(v.valueSideLabel || "—")}</td>
+          <td>${divCell}</td>
         </tr>`;
       })
       .join("");
 
     host.innerHTML = `
       <div class="eg-table-wrap">
-        <table class="eg-table">
+        <table class="eg-table eg-table-pass1">
           <thead>
             <tr>
-              <th>Sport / Game</th>
-              <th>Mkt fav</th>
-              <th>Model fav</th>
-              <th>Win p <span class="eg-exp">exp</span></th>
-              <th>Fair ML A/H</th>
-              <th>DK ML A/H</th>
-              <th>No-vig A/H</th>
-              <th>Best value</th>
-              <th>Div pp</th>
-              <th>Edge pp</th>
-              <th>EV</th>
-              <th>Consensus</th>
-              <th>Flag</th>
-              <th>Decision</th>
-              <th>Data quality</th>
-              <th>Buy-to (p_low−0.02)</th>
+              <th>Matchup</th>
+              <th>Most likely</th>
+              <th>Fundamental %</th>
+              <th>Fair ML</th>
+              <th>DK current</th>
+              <th>Value side</th>
+              <th>Divergence</th>
             </tr>
           </thead>
           <tbody>${rows}</tbody>
         </table>
       </div>
-      <p class="eg-hint">Click a row for spectrum detail. Decisions are diagnostic only — never stake advice.</p>
+      <p class="eg-hint">Divergence = fundamental − de-vigged DK (value side). AN_mirror quotes are display-only. Click a row for detail. No tickets.</p>
     `;
 
     host.querySelectorAll(".eg-row").forEach((tr) => {
       tr.addEventListener("click", () => {
         state.selectedId = tr.getAttribute("data-eg-id");
         renderTable();
+        renderFlashStrip();
         renderSpectrum();
       });
       tr.addEventListener("keydown", (e) => {
@@ -482,22 +659,82 @@
     const mkt = row.market || {};
     const val = row.value || {};
     const gate = applyHardGate(row);
+    const view = boardRow(row);
     const filters = (fund.filters || []).filter((f) => f && f.active);
+    const status = fund.status || "";
 
-    // Spectrum axis: away win probability 0..1 (left = away, right = home)
+    // STOP / INSUFFICIENT: lead with story, not empty price card
+    if (status === "STOPPED" || status === "INSUFFICIENT") {
+      const facts = ((row.provenance && row.provenance.facts) || [])
+        .map((f) => {
+          const raw = (f && f.raw_value) || "";
+          const fn = (f && f.field_name) || "";
+          if (!raw) return "";
+          return `<li><code>${esc(fn)}</code> ${esc(raw)}</li>`;
+        })
+        .filter(Boolean)
+        .join("");
+      const storyLead =
+        view.story ||
+        (status === "STOPPED"
+          ? `STOP · ${(view.stops || []).join(", ") || "unverified inputs"}`
+          : "INSUFFICIENT · fundamentals not ready");
+      host.innerHTML = `
+        <div class="eg-spectrum-head">
+          <h3>${esc(ev.away)} @ ${esc(ev.home)}</h3>
+          <span class="eg-decision ${decisionClass(gate.decision)}">${esc(gate.decision)}</span>
+          <span class="eg-status-stop">${esc(status)}</span>
+          <span class="eg-meta">${esc(ev.event_id || "")}</span>
+        </div>
+        <div class="eg-story-card ${status === "STOPPED" ? "eg-story-stop" : "eg-story-hold"}" role="status">
+          <div class="eg-story-label">${status === "STOPPED" ? "STOP story" : "Status"}</div>
+          <div class="eg-story-body">${esc(storyLead)}</div>
+          <p class="eg-hint" style="margin:8px 0 0">No fundamental price card — SI reason leads. DK current shown only as context (${esc(
+            view.quoteLabel || "no quote"
+          )}).</p>
+        </div>
+        <div class="eg-spectrum-grid">
+          <div>
+            <h4>DK current (context)</h4>
+            <ul class="eg-kv">
+              <li><span>Board</span><b class="mono">${
+                view.hasDk
+                  ? `${esc(fmtOdds(view.awayOdds))} / ${esc(fmtOdds(view.homeOdds))}`
+                  : "—"
+              }</b></li>
+              <li><span>Quote</span><b>${esc(view.quoteLabel || "—")} · dk_direct=${esc(
+        String(!!view.isDkDirect)
+      )}</b></li>
+              <li><span>Fair / Div</span><b>not computed (${esc(status)})</b></li>
+            </ul>
+          </div>
+          <div>
+            <h4>SI / provenance</h4>
+            <ul class="eg-kv">
+              <li><span>Stops</span><b>${esc((view.stops || []).join(", ") || "none")}</b></li>
+              <li><span>SI action</span><b>${esc(
+                (row.provenance && row.provenance.si_action) || "—"
+              )}</b></li>
+              <li><span>Grade</span><b>${esc((row.provenance && row.provenance.overall) || "—")}</b></li>
+            </ul>
+            ${facts ? `<ul class="eg-fact-list">${facts}</ul>` : ""}
+          </div>
+        </div>
+      `;
+      return;
+    }
+
     const marketAway = mkt.away_no_vig_p;
     const modelAway = fund.away_p;
-    const range = fund.range; // around home or away? sample uses away-ish for AAA; treat as model-side interval on away_p when away is model fav
+    const range = fund.range;
     let lo = null;
     let hi = null;
     if (Array.isArray(range) && range.length === 2 && modelAway != null) {
-      // sample range is around away_p for event1; around home_p for event2 — use as absolute p band on the side that owns consensus
       if (fund.away_p != null && fund.home_p != null) {
         if (fund.away_p >= fund.home_p) {
           lo = range[0];
           hi = range[1];
         } else {
-          // home favorite: convert home range → away = 1-p
           lo = 1 - range[1];
           hi = 1 - range[0];
         }
@@ -507,12 +744,13 @@
     function marker(pct, cls, label, title) {
       if (pct == null || Number.isNaN(Number(pct))) return "";
       const left = Math.max(0, Math.min(100, Number(pct) * 100));
-      return `<div class="eg-marker ${cls}" style="left:${left}%" title="${esc(title || label)}"><span>${esc(label)}</span></div>`;
+      return `<div class="eg-marker ${cls}" style="left:${left}%" title="${esc(
+        title || label
+      )}"><span>${esc(label)}</span></div>`;
     }
 
     const filterMarks = filters
       .map((f, i) => {
-        // Approximate factor nudge on away axis using logit contribution sign only (visual)
         const base = modelAway != null ? modelAway : 0.5;
         const nudge = (f.logit_contribution || 0) * 0.05;
         const p = Math.max(0.02, Math.min(0.98, base + nudge));
@@ -520,7 +758,7 @@
           p,
           "eg-mark-filter",
           f.label || f.id || `F${i}`,
-          `${f.label || f.id}: z=${f.z} w=${f.w} contrib=${f.logit_contribution} grade=${f.evidence_grade} as_of=${f.as_of || "—"}`
+          `${f.label || f.id}: z=${f.z} w=${f.w} contrib=${f.logit_contribution}`
         );
       })
       .join("");
@@ -546,7 +784,7 @@
       <div class="eg-spectrum-head">
         <h3>${esc(ev.away)} @ ${esc(ev.home)}</h3>
         <span class="eg-decision ${decisionClass(gate.decision)}">${esc(gate.decision)}</span>
-        ${fund.experimental || true ? '<span class="eg-exp">experimental</span>' : ""}
+        <span class="eg-exp">experimental</span>
         <span class="eg-meta">${esc(ev.event_id || "")}</span>
       </div>
       <div class="eg-spectrum-axis" aria-label="Away win probability spectrum">
@@ -554,7 +792,7 @@
         <div class="eg-axis-track">
           ${band}
           ${marker(marketAway, "eg-mark-market", "Mkt", `Market no-vig away ${fmtPct(marketAway)}`)}
-          ${marker(modelAway, "eg-mark-fund", "Fund", `Fundamental away ${fmtPct(modelAway)} (independent, before book)`)}
+          ${marker(modelAway, "eg-mark-fund", "Fund", `Fundamental away ${fmtPct(modelAway)}`)}
           ${filterMarks}
         </div>
         <div class="eg-axis-label right">${esc(ev.home)} home</div>
@@ -564,32 +802,53 @@
         <span><i class="eg-swatch fund"></i> Fundamental</span>
         <span><i class="eg-swatch filter"></i> Active filters</span>
         <span><i class="eg-swatch band"></i> Uncertainty band</span>
-        <span class="mono">gap ${esc(fmtPp(gap))} pp</span>
+        <span class="mono">gap ${esc(fmtPp(gap) || "—")} pp</span>
       </div>
       <div class="eg-spectrum-grid">
         <div>
-          <h4>Pricing</h4>
+          <h4>Pass #1 pricing</h4>
           <ul class="eg-kv">
-            <li><span>DK</span><b class="mono">${esc(fmtOdds(mkt.away_odds))} / ${esc(fmtOdds(mkt.home_odds))}</b></li>
-            <li><span>Fair</span><b class="mono">${esc(fmtOdds(val.fair_odds_away))} / ${esc(fmtOdds(val.fair_odds_home))}</b></li>
-            <li><span>Edge / EV</span><b class="mono">${esc(fmtPp(val.executable_edge_pp))} pp · ${esc(fmtEv(val.ev))}</b></li>
-            <li><span>Quote</span><b>${esc(mkt.quote_source_label || "—")} · dk_direct=${esc(String(!!mkt.is_dk_direct))}</b></li>
+            <li><span>Most likely</span><b>${esc(view.mostLikelyLabel)} · ${esc(
+      view.fundPctLabel || "—"
+    )}</b></li>
+            <li><span>Fair ML</span><b class="mono">${esc(view.fairMlLabel || "—")}</b></li>
+            <li><span>DK current</span><b class="mono">${
+              view.hasDk
+                ? `${esc(fmtOdds(view.awayOdds))} / ${esc(fmtOdds(view.homeOdds))}`
+                : "—"
+            }</b>
+              ${
+                view.quoteLabel
+                  ? `<span class="eg-badge-mirror">${esc(view.quoteLabel)}</span>`
+                  : ""
+              }</li>
+            <li><span>Value / Div</span><b>${esc(view.valueSideLabel || "None")} · ${esc(
+      view.divLabel || "—"
+    )} pp</b></li>
           </ul>
         </div>
         <div>
           <h4>Flags / gates</h4>
           <ul class="eg-kv">
-            <li><span>Flag</span><b>${esc(val.classification || "—")}</b></li>
             <li><span>Raw decision</span><b>${esc(gate.raw)}</b></li>
-            <li><span>Hard gate</span><b>${gate.gated ? esc(gate.reasons.join("; ")) : "clear"}</b></li>
-            <li><span>Stops</span><b>${esc(((row.provenance && row.provenance.stops) || []).join(", ") || "none")}</b></li>
+            <li><span>Hard gate</span><b>${
+              gate.gated ? esc(gate.reasons.join("; ")) : "clear"
+            }</b></li>
+            <li><span>Stops</span><b>${esc(
+              ((row.provenance && row.provenance.stops) || []).join(", ") || "none"
+            )}</b></li>
+            <li><span>Quote</span><b>dk_direct=${esc(String(!!view.isDkDirect))}</b></li>
           </ul>
         </div>
         <div>
           <h4>Explanation</h4>
           ${positives ? `<div class="eg-tiny">+</div><ul>${positives}</ul>` : ""}
           ${negatives ? `<div class="eg-tiny">−</div><ul>${negatives}</ul>` : ""}
-          ${invalidators ? `<div class="eg-tiny">invalidators</div><ul>${invalidators}</ul>` : "<p class='eg-muted'>No invalidators listed.</p>"}
+          ${
+            invalidators
+              ? `<div class="eg-tiny">invalidators</div><ul>${invalidators}</ul>`
+              : "<p class='eg-muted'>No invalidators listed.</p>"
+          }
         </div>
         <div>
           <h4>Filters ${filters.length ? "" : "(none active)"}</h4>
@@ -597,13 +856,18 @@
             ${(fund.filters || [])
               .map(
                 (f) =>
-                  `<li class="${f.active ? "on" : "off"}"><code>${esc(f.id)}</code> ${esc(f.label || "")}
+                  `<li class="${f.active ? "on" : "off"}"><code>${esc(f.id)}</code> ${esc(
+                    f.label || ""
+                  )}
                     · z=${esc(f.z)} w=${esc(f.w)} · ${esc(f.evidence_grade || "—")}
-                    ${f.unverified_reason ? ` · <em>${esc(f.unverified_reason)}</em>` : ""}</li>`
+                    ${
+                      f.unverified_reason
+                        ? ` · <em>${esc(f.unverified_reason)}</em>`
+                        : ""
+                    }</li>`
               )
-              .join("") || "<li class='eg-muted'>—</li>"}
+              .join("") || "<li class='eg-muted'>none</li>"}
           </ul>
-          ${(fund.tags || []).length ? `<div class="eg-tags">${fund.tags.map((t) => `<span class="eg-pill">${esc(t)}</span>`).join("")}</div>` : ""}
         </div>
       </div>
     `;
@@ -611,6 +875,7 @@
 
   function render() {
     renderBanner();
+    renderFlashStrip();
     renderTable();
     renderSpectrum();
   }
@@ -625,7 +890,8 @@
       let data = null;
       if (state.feedUrl) {
         data = await fetchJson(state.feedUrl);
-        state.feedSource = state.feedUrl.indexOf("edge_glass_live") !== -1 ? "live" : "override";
+        state.feedSource =
+          state.feedUrl.indexOf("edge_glass_live") !== -1 ? "live" : "override";
       } else {
         try {
           data = await fetchJson(liveFeedUrl());
@@ -662,14 +928,14 @@
     }
     if (!ensureDom()) return;
     if (opts.baseUrl || opts.feedUrl) {
-      if (opts.baseUrl) state.baseUrl = opts.baseUrl.endsWith("/") ? opts.baseUrl : opts.baseUrl + "/";
+      if (opts.baseUrl)
+        state.baseUrl = opts.baseUrl.endsWith("/") ? opts.baseUrl : opts.baseUrl + "/";
       if (opts.feedUrl) state.feedUrl = opts.feedUrl;
     }
     if (!state.loaded) await loadFeed();
     else render();
   }
 
-  /** Boot standalone page: call after DOM ready. Zero explorer imports. */
   async function bootStandalone(opts) {
     opts = opts || {};
     const host = document.getElementById("eg-standalone-root");
@@ -692,5 +958,6 @@
       expectedValue,
     },
     applyHardGate,
+    boardRow,
   };
 })(window);

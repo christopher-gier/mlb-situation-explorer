@@ -1,8 +1,8 @@
 {
   "_example": false,
   "_live_si": true,
-  "_warning": "Experimental PRICE DIAGNOSTICS \u2014 Daniel fundamentals v1.1 (MLB heuristic). Market not in p; AN_mirror quotes context-only; no tickets; not validated edge.",
-  "generated_at": "2026-09-14T21:45:38Z",
+  "_warning": "PRICE DIAGNOSTICS \u00b7 experimental \u00b7 AN_mirror \u2260 live DK until verified. Daniel fundamentals v1.1 (MLB heuristic); NFL fundamentals pending. No tickets; not validated edge.",
+  "generated_at": "2026-09-14T22:00:51Z",
   "model_version": "mlb-heuristic-v1.1",
   "slate_dates": [
     "2026-09-14",
@@ -15,7 +15,7 @@
     "MLB",
     "NFL"
   ],
-  "feed_status": "experimental_fundamentals",
+  "feed_status": "live_SI + board_prices_AN_mirror_display_only",
   "si_sources": [
     {
       "path": "/workspace/mlb-price-first/edge_glass/feeds/si_verify_20260914.json",
@@ -178,9 +178,9 @@
       },
       "value": {
         "most_likely_winner": "HOME",
-        "best_side": null,
-        "divergence_pp": -6.934,
-        "executable_edge_pp": null,
+        "best_side": "AWAY",
+        "divergence_pp": 6.9,
+        "executable_edge_pp": 5.1,
         "ev": null,
         "fair_odds": -109.9,
         "fair_odds_away": 109.9,
@@ -191,7 +191,16 @@
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Interesting"
+        "divergence_band": "INTERESTING",
+        "board_ml_away": 135,
+        "board_ml_home": -163,
+        "board_source": "AN_mirror",
+        "flash": true,
+        "most_likely_team": "CLE",
+        "fundamental_pct": 52.4,
+        "value_side_team": "CHW",
+        "divergence_ml_pp": -6.9,
+        "flash_reason": "DIVERGENCE"
       },
       "explanation": {
         "positive": [],
@@ -270,7 +279,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 135,
+        "home_odds": -163,
+        "away_no_vig_p": 0.4071,
+        "home_no_vig_p": 0.5929,
+        "away_break_even": 0.4255,
+        "home_break_even": 0.6198,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -403,9 +425,9 @@
       },
       "value": {
         "most_likely_winner": "AWAY",
-        "best_side": null,
-        "divergence_pp": 13.822,
-        "executable_edge_pp": null,
+        "best_side": "HOME",
+        "divergence_pp": 13.8,
+        "executable_edge_pp": 12.3,
         "ev": null,
         "fair_odds": -108.3,
         "fair_odds_away": -108.3,
@@ -416,7 +438,16 @@
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Investigate Aggressively"
+        "divergence_band": "EXTREME",
+        "board_ml_away": -220,
+        "board_ml_home": 180,
+        "board_source": "AN_mirror",
+        "flash": true,
+        "most_likely_team": "LAD",
+        "fundamental_pct": 52.0,
+        "value_side_team": "CIN",
+        "divergence_ml_pp": -13.8,
+        "flash_reason": "DIVERGENCE"
       },
       "explanation": {
         "positive": [],
@@ -495,7 +526,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": -220,
+        "home_odds": 180,
+        "away_no_vig_p": 0.6581,
+        "home_no_vig_p": 0.3419,
+        "away_break_even": 0.6875,
+        "home_break_even": 0.3571,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -628,9 +672,9 @@
       },
       "value": {
         "most_likely_winner": "AWAY",
-        "best_side": null,
-        "divergence_pp": -6.541,
-        "executable_edge_pp": null,
+        "best_side": "AWAY",
+        "divergence_pp": 6.5,
+        "executable_edge_pp": 4.6,
         "ev": null,
         "fair_odds": -100.2,
         "fair_odds_away": -100.2,
@@ -638,10 +682,19 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD",
+        "decision": "WAIT_PRICE_DEPENDENT",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Interesting"
+        "divergence_band": "INTERESTING",
+        "board_ml_away": 120,
+        "board_ml_home": -144,
+        "board_source": "AN_mirror",
+        "flash": true,
+        "most_likely_team": "DET",
+        "fundamental_pct": 50.1,
+        "value_side_team": "DET",
+        "divergence_ml_pp": 6.5,
+        "flash_reason": "DIVERGENCE"
       },
       "explanation": {
         "positive": [],
@@ -720,7 +773,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 120,
+        "home_odds": -144,
+        "away_no_vig_p": 0.4351,
+        "home_no_vig_p": 0.5649,
+        "away_break_even": 0.4545,
+        "home_break_even": 0.5902,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -853,9 +919,9 @@
       },
       "value": {
         "most_likely_winner": "HOME",
-        "best_side": null,
-        "divergence_pp": -2.319,
-        "executable_edge_pp": null,
+        "best_side": "AWAY",
+        "divergence_pp": 2.3,
+        "executable_edge_pp": 0.5,
         "ev": null,
         "fair_odds": -117.5,
         "fair_odds_away": 117.5,
@@ -866,7 +932,15 @@
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Watch"
+        "divergence_band": "WATCH",
+        "board_ml_away": 120,
+        "board_ml_home": -142,
+        "board_source": "AN_mirror",
+        "most_likely_team": "NYM",
+        "fundamental_pct": 54.0,
+        "value_side_team": "BAL",
+        "divergence_ml_pp": -2.3,
+        "flash": false
       },
       "explanation": {
         "positive": [],
@@ -945,7 +1019,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 120,
+        "home_odds": -142,
+        "away_no_vig_p": 0.4365,
+        "home_no_vig_p": 0.5635,
+        "away_break_even": 0.4545,
+        "home_break_even": 0.5868,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -1079,8 +1166,8 @@
       "value": {
         "most_likely_winner": "HOME",
         "best_side": null,
-        "divergence_pp": 0.079,
-        "executable_edge_pp": null,
+        "divergence_pp": 0.1,
+        "executable_edge_pp": -2.3,
         "ev": null,
         "fair_odds": -121.6,
         "fair_odds_away": 121.6,
@@ -1091,7 +1178,15 @@
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Noise"
+        "divergence_band": "NOISE",
+        "board_ml_away": 111,
+        "board_ml_home": -135,
+        "board_source": "AN_mirror",
+        "most_likely_team": "CHC",
+        "fundamental_pct": 54.9,
+        "value_side_team": null,
+        "divergence_ml_pp": 0.1,
+        "flash": false
       },
       "explanation": {
         "positive": [],
@@ -1170,7 +1265,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 111,
+        "home_odds": -135,
+        "away_no_vig_p": 0.4521,
+        "home_no_vig_p": 0.5479,
+        "away_break_even": 0.4739,
+        "home_break_even": 0.5745,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -1304,8 +1412,8 @@
       "value": {
         "most_likely_winner": "AWAY",
         "best_side": null,
-        "divergence_pp": 2.366,
-        "executable_edge_pp": null,
+        "divergence_pp": -2.4,
+        "executable_edge_pp": 0.4,
         "ev": null,
         "fair_odds": -108.3,
         "fair_odds_away": -108.3,
@@ -1316,7 +1424,15 @@
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Watch"
+        "divergence_band": "WATCH",
+        "board_ml_away": -131,
+        "board_ml_home": 110,
+        "board_source": "AN_mirror",
+        "most_likely_team": "NYY",
+        "fundamental_pct": 52.0,
+        "value_side_team": null,
+        "divergence_ml_pp": -2.4,
+        "flash": false
       },
       "explanation": {
         "positive": [],
@@ -1395,7 +1511,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": -131,
+        "home_odds": 110,
+        "away_no_vig_p": 0.5436,
+        "home_no_vig_p": 0.4564,
+        "away_break_even": 0.5671,
+        "home_break_even": 0.4762,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -1529,8 +1658,8 @@
       "value": {
         "most_likely_winner": "HOME",
         "best_side": null,
-        "divergence_pp": -0.506,
-        "executable_edge_pp": null,
+        "divergence_pp": -0.5,
+        "executable_edge_pp": -1.4,
         "ev": null,
         "fair_odds": -131.3,
         "fair_odds_away": 131.3,
@@ -1541,7 +1670,15 @@
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Noise"
+        "divergence_band": "NOISE",
+        "board_ml_away": 124,
+        "board_ml_home": -149,
+        "board_source": "AN_mirror",
+        "most_likely_team": "STL",
+        "fundamental_pct": 56.8,
+        "value_side_team": null,
+        "divergence_ml_pp": -0.5,
+        "flash": false
       },
       "explanation": {
         "positive": [],
@@ -1620,7 +1757,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 124,
+        "home_odds": -149,
+        "away_no_vig_p": 0.4273,
+        "home_no_vig_p": 0.5727,
+        "away_break_even": 0.4464,
+        "home_break_even": 0.5984,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -1753,9 +1903,9 @@
       },
       "value": {
         "most_likely_winner": "AWAY",
-        "best_side": null,
-        "divergence_pp": 12.238,
-        "executable_edge_pp": null,
+        "best_side": "HOME",
+        "divergence_pp": 12.2,
+        "executable_edge_pp": 10.7,
         "ev": null,
         "fair_odds": -108.3,
         "fair_odds_away": -108.3,
@@ -1766,7 +1916,16 @@
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Investigate Aggressively"
+        "divergence_band": "EXTREME",
+        "board_ml_away": -203,
+        "board_ml_home": 168,
+        "board_source": "AN_mirror",
+        "flash": true,
+        "most_likely_team": "SD",
+        "fundamental_pct": 52.0,
+        "value_side_team": "COL",
+        "divergence_ml_pp": -12.2,
+        "flash_reason": "DIVERGENCE"
       },
       "explanation": {
         "positive": [],
@@ -1857,7 +2016,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": -203,
+        "home_odds": 168,
+        "away_no_vig_p": 0.6423,
+        "home_no_vig_p": 0.3577,
+        "away_break_even": 0.67,
+        "home_break_even": 0.3731,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -1990,9 +2162,9 @@
       },
       "value": {
         "most_likely_winner": "HOME",
-        "best_side": null,
-        "divergence_pp": 3.922,
-        "executable_edge_pp": null,
+        "best_side": "HOME",
+        "divergence_pp": 3.9,
+        "executable_edge_pp": 1.8,
         "ev": null,
         "fair_odds": -114.0,
         "fair_odds_away": 114.0,
@@ -2000,10 +2172,18 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD",
+        "decision": "WAIT_PRICE_DEPENDENT",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Watch"
+        "divergence_band": "WATCH",
+        "board_ml_away": -112,
+        "board_ml_home": -106,
+        "board_source": "AN_mirror",
+        "most_likely_team": "LAA",
+        "fundamental_pct": 53.3,
+        "value_side_team": "LAA",
+        "divergence_ml_pp": 3.9,
+        "flash": false
       },
       "explanation": {
         "positive": [],
@@ -2082,7 +2262,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": -112,
+        "home_odds": -106,
+        "away_no_vig_p": 0.5066,
+        "home_no_vig_p": 0.4934,
+        "away_break_even": 0.5283,
+        "home_break_even": 0.5146,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -2216,8 +2409,8 @@
       "value": {
         "most_likely_winner": "HOME",
         "best_side": null,
-        "divergence_pp": -0.949,
-        "executable_edge_pp": null,
+        "divergence_pp": -0.9,
+        "executable_edge_pp": -0.8,
         "ev": null,
         "fair_odds": -116.6,
         "fair_odds_away": 116.6,
@@ -2228,7 +2421,15 @@
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
         "is_dk_direct": false,
-        "divergence_band": "Noise"
+        "divergence_band": "NOISE",
+        "board_ml_away": 113,
+        "board_ml_home": -132,
+        "board_source": "AN_mirror",
+        "most_likely_team": "ARI",
+        "fundamental_pct": 53.8,
+        "value_side_team": null,
+        "divergence_ml_pp": -0.9,
+        "flash": false
       },
       "explanation": {
         "positive": [],
@@ -2307,7 +2508,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 113,
+        "home_odds": -132,
+        "away_no_vig_p": 0.4521,
+        "home_no_vig_p": 0.5479,
+        "away_break_even": 0.4695,
+        "home_break_even": 0.569,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -2352,7 +2566,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 180,
+        "board_ml_home": -215,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -2455,7 +2676,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 180,
+        "home_odds": -215,
+        "away_no_vig_p": 0.3435,
+        "home_no_vig_p": 0.6565,
+        "away_break_even": 0.3571,
+        "home_break_even": 0.6825,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -2500,7 +2734,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": -122,
+        "board_ml_home": 101,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -2615,7 +2856,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": -122,
+        "home_odds": 101,
+        "away_no_vig_p": 0.5248,
+        "home_no_vig_p": 0.4752,
+        "away_break_even": 0.5495,
+        "home_break_even": 0.4975,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -2661,7 +2915,16 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 195,
+        "board_ml_home": -237,
+        "board_source": "AN_mirror",
+        "story": "STOP \u00b7 Kyler Murray depth#1; ESPN injury status=Questionable \u00b7 Caleb Williams depth#1; ESPN injury status=Active",
+        "flash": true,
+        "flash_reason": "STOP",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -2768,7 +3031,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 195,
+        "home_odds": -237,
+        "away_no_vig_p": 0.3252,
+        "home_no_vig_p": 0.6748,
+        "away_break_even": 0.339,
+        "home_break_even": 0.7033,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -2813,7 +3089,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": -332,
+        "board_ml_home": 270,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -2952,7 +3235,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": -332,
+        "home_odds": 270,
+        "away_no_vig_p": 0.7398,
+        "home_no_vig_p": 0.2602,
+        "away_break_even": 0.7685,
+        "home_break_even": 0.2703,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -2997,7 +3293,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 196,
+        "board_ml_home": -239,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -3100,7 +3403,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 196,
+        "home_odds": -239,
+        "away_no_vig_p": 0.324,
+        "home_no_vig_p": 0.676,
+        "away_break_even": 0.3378,
+        "home_break_even": 0.705,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -3145,7 +3461,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": -205,
+        "board_ml_home": 170,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -3296,7 +3619,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": -205,
+        "home_odds": 170,
+        "away_no_vig_p": 0.6447,
+        "home_no_vig_p": 0.3553,
+        "away_break_even": 0.6721,
+        "home_break_even": 0.3704,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -3341,7 +3677,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 332,
+        "board_ml_home": -442,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -3492,7 +3835,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 332,
+        "home_odds": -442,
+        "away_no_vig_p": 0.2211,
+        "home_no_vig_p": 0.7789,
+        "away_break_even": 0.2315,
+        "home_break_even": 0.8155,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -3537,7 +3893,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 320,
+        "board_ml_home": -412,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -3700,7 +4063,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 320,
+        "home_odds": -412,
+        "away_no_vig_p": 0.2283,
+        "home_no_vig_p": 0.7717,
+        "away_break_even": 0.2381,
+        "home_break_even": 0.8047,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -3745,7 +4121,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 130,
+        "board_ml_home": -157,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -3848,7 +4231,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 130,
+        "home_odds": -157,
+        "away_no_vig_p": 0.4158,
+        "home_no_vig_p": 0.5842,
+        "away_break_even": 0.4348,
+        "home_break_even": 0.6109,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -3893,7 +4289,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 120,
+        "board_ml_home": -145,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -4008,7 +4411,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 120,
+        "home_odds": -145,
+        "away_no_vig_p": 0.4344,
+        "home_no_vig_p": 0.5656,
+        "away_break_even": 0.4545,
+        "home_break_even": 0.5918,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -4053,7 +4469,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 257,
+        "board_ml_home": -324,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -4204,7 +4627,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 257,
+        "home_odds": -324,
+        "away_no_vig_p": 0.2682,
+        "home_no_vig_p": 0.7318,
+        "away_break_even": 0.2801,
+        "home_break_even": 0.7642,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -4249,7 +4685,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 170,
+        "board_ml_home": -209,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -4364,7 +4807,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 170,
+        "home_odds": -209,
+        "away_no_vig_p": 0.3538,
+        "home_no_vig_p": 0.6462,
+        "away_break_even": 0.3704,
+        "home_break_even": 0.6764,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -4410,7 +4866,16 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": -225,
+        "board_ml_home": 185,
+        "board_source": "AN_mirror",
+        "story": "STOP \u00b7 Darnold Doubtful; Lock Active. Depth still Darnold #1. \u00b7 WR Tory Horton: Out \u00b7 Jacoby Brissett depth#1; ESPN injury status=Active",
+        "flash": true,
+        "flash_reason": "STOP",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -4529,7 +4994,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": -225,
+        "home_odds": 185,
+        "away_no_vig_p": 0.6636,
+        "home_no_vig_p": 0.3364,
+        "away_break_even": 0.6923,
+        "home_break_even": 0.3509,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -4574,7 +5052,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 645,
+        "board_ml_home": -950,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -4677,7 +5162,20 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 645,
+        "home_odds": -950,
+        "away_no_vig_p": 0.1292,
+        "home_no_vig_p": 0.8708,
+        "away_break_even": 0.1342,
+        "home_break_even": 0.9048,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     },
     {
       "event": {
@@ -4722,7 +5220,14 @@
         "price_trigger": null,
         "decision": "PASS_THE_BOARD",
         "quote_source": "AN_mirror",
-        "is_dk_direct": false
+        "is_dk_direct": false,
+        "board_ml_away": 240,
+        "board_ml_home": -295,
+        "board_source": "AN_mirror",
+        "story": "INSUFFICIENT \u00b7 NFL adapter / fundamentals pending",
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null
       },
       "explanation": {
         "positive": [],
@@ -4873,7 +5378,27 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings (AN mirror)",
+        "away_odds": 240,
+        "home_odds": -295,
+        "away_no_vig_p": 0.2825,
+        "home_no_vig_p": 0.7175,
+        "away_break_even": 0.2941,
+        "home_break_even": 0.7468,
+        "fetched_at": "2026-09-14T21:40:03Z",
+        "is_dk_direct": false,
+        "quote_source_label": "AN_mirror",
+        "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
+      }
     }
-  ]
+  ],
+  "price_display": {
+    "is_dk_direct": false,
+    "quote_source_label": "AN_mirror",
+    "buy_lean_locked": true,
+    "ui_note": "Show DK/board columns from market.*; label AN_mirror \u2014 not executable"
+  },
+  "ux_pass": "chatgpt_nfl_pass1_columns"
 }

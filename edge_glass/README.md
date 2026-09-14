@@ -54,7 +54,7 @@ python3 -m http.server 8765
 - `odds.*` — american / de-vig / fair / divergence / edge / EV (from spine `odds.py`)
 - `applyHardGate(row)` — client gate
 
-Feed URL resolves relative to `edge_glass.js`: prefers `feeds/edge_glass_live.json` (SI verify shells, no invented prices), falls back to `feeds/edge_glass_sample.json`. Sport filter: MLB/NFL/NBA.
+Feed URL resolves relative to `edge_glass.js`: prefers `feeds/edge_glass_live.json` (live SI + AN_mirror DK current), falls back to `feeds/edge_glass_sample.json`. Pass #1 master columns: Matchup · Most likely · Fundamental % · Fair ML · DK current (AN_mirror badge) · Value side · Divergence. Sport/date filters. Flash strip for |div|≥5pp or STOP stories. Banner: PRICE DIAGNOSTICS · experimental · AN_mirror ≠ live DK until verified.
 
 ## Non-goals
 
