@@ -424,6 +424,11 @@
   function isDiagnosticLean(row, view) {
     if (!row || !view) return false;
     if (view.status === "STOPPED" || view.flashReason === "STOP") return false;
+    const val = row.value || {};
+    const cls = String(val.classification || "").toUpperCase().replace(/\s+/g, "_");
+    // Prefer Adrian feed tag — display badge only; never maps to BUY/LEAN.
+    if (cls === "DIAGNOSTIC_LEAN") return true;
+    // Fallback heuristic when classification unset
     if (view.divNum == null || Math.abs(Number(view.divNum)) < 5) return false;
     if (!isClearSiAction(row)) return false;
     if (!isAnMirrorQuote(row, view)) return false;
@@ -616,6 +621,8 @@
     view.diagnosticLean = isDiagnosticLean(row, view);
     view.diagnosticLeanSide = null;
     view.diagnosticTags = [];
+    view.buyLocked = val.buy_locked === true || val.buy_locked === "true";
+    view.classification = val.classification || null;
     if (view.diagnosticLean) {
       const ann = row.diagnostic_lean || {};
       const vs = val.value_side_team;
@@ -626,7 +633,15 @@
         ["None", "HOLD", "TBD"].indexOf(view.valueSideLabel) === -1
           ? view.valueSideLabel
           : null);
-      view.diagnosticTags = ["diagnostic_lean", "fragile_rd_soft"];
+      const fundTags = fund.tags || [];
+      const tags = ["diagnostic_lean", "fragile_rd_soft"];
+      fundTags.forEach((t) => {
+        if (t && tags.indexOf(t) === -1 && (t === "diagnostic_lean" || t === "fragile_rd_soft"))
+          tags.push(t);
+      });
+      view.diagnosticTags = tags;
+      // BUY locked for diagnostic lean — never treat as BUY_CANDIDATE
+      view.buyLocked = true;
     }
     return view;
   }
@@ -1251,11 +1266,22 @@
     } else if (decision === "UNVERIFIED") {
       reasons.push("UNVERIFIED — SI / fundamentals not clear for pricing.");
     }
-    // BUY locked — never surface as actionable
-    const buyLocked =
-      decision === "BUY_CANDIDATE" || decision === "LEAN_CANDIDATE"
-        ? `<div class="eg-buy-lock">BUY / LEAN locked — Phase 01 research only. No tickets.</div>`
-        : `<div class="eg-buy-lock">BUY locked — research desk only.</div>`;
+    // BUY locked — never surface as actionable (classification DIAGNOSTIC_LEAN ≠ BUY)
+    const classif = val.classification || view.classification || null;
+    const buyLockedFlag =
+      val.buy_locked === true ||
+      val.buy_locked === "true" ||
+      view.buyLocked ||
+      view.diagnosticLean ||
+      decision === "BUY_CANDIDATE" ||
+      decision === "LEAN_CANDIDATE";
+    const buyLocked = buyLockedFlag
+      ? `<div class="eg-buy-lock">BUY locked${
+          classif === "DIAGNOSTIC_LEAN" || view.diagnosticLean
+            ? " — classification DIAGNOSTIC_LEAN is display-only (not BUY/LEAN)"
+            : " — research desk only"
+        }. No tickets.</div>`
+      : `<div class="eg-buy-lock">BUY locked — research desk only.</div>`;
 
     return `
       <ul class="eg-kv">
