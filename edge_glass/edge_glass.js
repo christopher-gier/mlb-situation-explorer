@@ -53,6 +53,7 @@
     error: null,
     slate: null,
     selectedId: null,
+    detailOpen: false,
     host: null,
     standalone: false,
     baseUrl: detectBaseUrl(),
@@ -230,6 +231,10 @@
           "</section>" +
           '<div class="eg-spectrum-panel" id="eg-spectrum"></div>' +
         "</main>" +
+        '<div class="eg-drawer-backdrop" id="eg-drawer-backdrop" hidden></div>' +
+        '<aside class="eg-drawer" id="eg-drawer" hidden aria-hidden="true" role="dialog" aria-labelledby="eg-drawer-title">' +
+          '<div class="eg-drawer-inner" id="eg-drawer-inner"></div>' +
+        "</aside>" +
       "</div>"
     );
   }
@@ -379,10 +384,57 @@
     }
   }
 
+  /**
+   * Adrian DIAGNOSTIC LEAN — display/radar only.
+   * CLEAR / CLEAR_FOR_PRICE + |divergence_pp|≥5 + AN_mirror quotes.
+   * Never maps to BUY_CANDIDATE / LEAN_CANDIDATE. STOPs stay STOP.
+   */
+  function isAnMirrorQuote(row, view) {
+    if (view && view.isDkDirect) return false;
+    const mkt = (row && row.market) || {};
+    const val = (row && row.value) || {};
+    if (mkt.is_dk_direct || val.is_dk_direct) return false;
+    const label = String(
+      (view && view.quoteLabel) ||
+        mkt.quote_source_label ||
+        val.quote_source ||
+        ""
+    ).toLowerCase();
+    return label.indexOf("an_mirror") !== -1 || label.indexOf("an-mirror") !== -1;
+  }
+
+  function isClearSiAction(row) {
+    const a = String(((row && row.provenance) || {}).si_action || "")
+      .toUpperCase()
+      .replace(/\s+/g, "_");
+    return (
+      a === "CLEAR" ||
+      a === "CLEAR_FOR_PRICE" ||
+      a.indexOf("CLEAR_FOR_PRICE") !== -1 ||
+      (a.indexOf("CLEAR") === 0 && a.indexOf("STOP") === -1)
+    );
+  }
+
+  function isDiagnosticLean(row, view) {
+    if (!row || !view) return false;
+    if (view.status === "STOPPED" || view.flashReason === "STOP") return false;
+    if (view.divNum == null || Math.abs(Number(view.divNum)) < 5) return false;
+    if (!isClearSiAction(row)) return false;
+    if (!isAnMirrorQuote(row, view)) return false;
+    return true;
+  }
+
   /** Status badge taxonomy for Research Desk pills. */
   function statusInfo(v) {
     if (v.status === "STOPPED" || v.flashReason === "STOP") {
       return { key: "stop", label: "STOP", cls: "eg-status-stop" };
+    }
+    if (v.diagnosticLean) {
+      return {
+        key: "diagnostic_lean",
+        label: "DIAGNOSTIC LEAN",
+        cls: "eg-status-diagnostic-lean",
+      };
     }
     if (v.divNum != null && Math.abs(v.divNum) >= 7.5) {
       return { key: "strong", label: "Strong disagreement", cls: "eg-status-strong" };
@@ -517,7 +569,7 @@
     const flash =
       !!val.flash || status === "STOPPED" || (divNum != null && Math.abs(divNum) >= 5);
 
-    return {
+    const view = {
       id: ev.event_id || "",
       sport: ev.sport || "",
       date: ev.date || "",
@@ -550,8 +602,12 @@
             : null),
       story,
       stops,
+      siAction: (row.provenance && row.provenance.si_action) || null,
+      diagnosticLean: false,
       row,
     };
+    view.diagnosticLean = isDiagnosticLean(row, view);
+    return view;
   }
 
   async function fetchJson(url) {
@@ -621,6 +677,12 @@
       importBtn.addEventListener("click", () => {
         const el = document.getElementById("eg-spectrum");
         if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+    if (!document._egDrawerEsc) {
+      document._egDrawerEsc = true;
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && state.detailOpen) closeDetail();
       });
     }
   }
@@ -797,11 +859,14 @@
         (v) =>
           v.status === "STOPPED" ||
           v.flashReason === "STOP" ||
+          v.diagnosticLean ||
           (v.divNum != null && Math.abs(v.divNum) >= 5)
       )
       .sort((a, b) => {
         if (a.status === "STOPPED" && b.status !== "STOPPED") return -1;
         if (b.status === "STOPPED" && a.status !== "STOPPED") return 1;
+        if (a.diagnosticLean && !b.diagnosticLean) return -1;
+        if (b.diagnosticLean && !a.diagnosticLean) return 1;
         return Math.abs(b.divNum || 0) - Math.abs(a.divNum || 0);
       });
     if (countEl) countEl.textContent = String(views.length);
@@ -833,13 +898,17 @@
               : "no quote";
         return `<button type="button" class="eg-radar-card${
           v.id === state.selectedId ? " selected" : ""
-        }${isStop ? " is-stop" : ""}" data-eg-id="${esc(v.id)}">
+        }${isStop ? " is-stop" : ""}${
+          v.diagnosticLean ? " is-diagnostic-lean" : ""
+        }" data-eg-id="${esc(v.id)}">
           <div class="eg-radar-top">
             <div>
               <div class="eg-radar-team">${esc(focusTeam)}</div>
               <div class="eg-radar-meta">${esc(v.away)} @ ${esc(v.home)}</div>
             </div>
-            <span class="eg-radar-tag">${esc(v.sport)}${isStop ? " · STOP" : " · ARCHIVED"}</span>
+            <span class="eg-radar-tag">${esc(v.sport)}${
+              isStop ? " · STOP" : v.diagnosticLean ? " · DIAGNOSTIC LEAN" : " · ARCHIVED"
+            }</span>
           </div>
           <div class="eg-radar-div${isStop ? " stop" : ""}">${headline}</div>
           <div class="eg-radar-div-label">${sub}</div>
@@ -853,10 +922,7 @@
       .join("");
     host.querySelectorAll(".eg-radar-card").forEach((btn) => {
       btn.addEventListener("click", () => {
-        state.selectedId = btn.getAttribute("data-eg-id");
-        render();
-        const spec = document.getElementById("eg-spectrum");
-        if (spec) spec.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        openDetail(btn.getAttribute("data-eg-id"));
       });
     });
   }
@@ -926,7 +992,8 @@
             ? `<span class="eg-value-side">${esc(v.valueSideLabel)}</span>`
             : `<span class="eg-muted">${esc(v.valueSideLabel || "—")}</span>`;
 
-        return `<tr class="eg-row${selected}${flashCls}" data-eg-id="${esc(v.id)}" tabindex="0">
+        const diagCls = v.diagnosticLean ? " eg-row-diagnostic-lean" : "";
+        return `<tr class="eg-row${selected}${flashCls}${diagCls}" data-eg-id="${esc(v.id)}" tabindex="0">
           <td class="eg-game">
             <div class="eg-matchup"><span class="eg-sport-tag">${esc(v.sport)}</span>${esc(
               v.away
@@ -965,8 +1032,7 @@
 
     host.querySelectorAll(".eg-row").forEach((tr) => {
       tr.addEventListener("click", () => {
-        state.selectedId = tr.getAttribute("data-eg-id");
-        render();
+        openDetail(tr.getAttribute("data-eg-id"));
       });
       tr.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -981,6 +1047,366 @@
     const events = (state.slate && state.slate.events) || [];
     if (!state.selectedId) return null;
     return events.find((r) => r.event && r.event.event_id === state.selectedId) || null;
+  }
+
+
+  /** Lead narrative — never invent. Prefer Marcus narrative fields, then facts. */
+  function leadNarrative(row) {
+    if (!row) return "";
+    const expl = row.explanation || {};
+    const candidates = [
+      row.narrative_text,
+      row.si_narrative,
+      expl.si_narrative,
+      expl.narrative_text,
+    ];
+    for (let i = 0; i < candidates.length; i++) {
+      const t = candidates[i];
+      if (t != null && String(t).trim()) return String(t).trim();
+    }
+    const view = boardRow(row);
+    const status = (row.fundamental && row.fundamental.status) || "";
+    if (status === "STOPPED" || view.flashReason === "STOP") {
+      return (
+        view.story ||
+        `STOP · ${((view.stops || []).join(", ") || "unverified inputs")}`
+      );
+    }
+    return "";
+  }
+
+  /** SI fact lines from provenance.facts — prefer notes, else raw_value. */
+  function siFactLines(row) {
+    const facts = (row.provenance && row.provenance.facts) || [];
+    return facts
+      .map((f) => {
+        if (!f) return null;
+        const kind = f.kind || f.field_name || f.label || "";
+        const notes =
+          f.notes ||
+          f.raw_value ||
+          (f.normalized_value != null ? String(f.normalized_value) : "");
+        if (!kind && !notes) return null;
+        return {
+          kind: kind || "fact",
+          notes: notes || "",
+          evidence_grade: f.evidence_grade || null,
+          freshness: f.freshness_status || f.freshness || null,
+          status: f.status || null,
+        };
+      })
+      .filter(Boolean);
+  }
+
+  /**
+   * Matchup dot position from signed contribution.
+   * Convention: positive z / logit_contribution = home-favoring (right).
+   * Map z ∈ [-2, 2] → axis [-1, 1] (clip). Prefer z; else logit_contribution.
+   */
+  function filterAxisPos(f) {
+    if (!f || !f.active) return null;
+    let raw = null;
+    let source = null;
+    if (f.z != null && !Number.isNaN(Number(f.z))) {
+      raw = Number(f.z);
+      source = "z";
+    } else if (
+      f.logit_contribution != null &&
+      !Number.isNaN(Number(f.logit_contribution))
+    ) {
+      raw = Number(f.logit_contribution);
+      source = "logit_contribution";
+    }
+    if (raw == null) return null;
+    const clipped = Math.max(-2, Math.min(2, raw));
+    const unit = clipped / 2; // [-1, 1]
+    return { unit, raw, source, clipped };
+  }
+
+  function filterFavoredText(unit, away, home) {
+    if (unit == null || Math.abs(unit) < 0.02) return "neutral / near center";
+    if (unit > 0) return `${home} favored (home)`;
+    return `${away} favored (away)`;
+  }
+
+  function matchupDotChart(row) {
+    const ev = row.event || {};
+    const away = ev.away || "Away";
+    const home = ev.home || "Home";
+    const filters = (row.fundamental && row.fundamental.filters) || [];
+    if (!filters.length) {
+      return `<div class="eg-dots-empty eg-muted">No Daniel filters on this row.</div>`;
+    }
+    const rows = filters
+      .map((f) => {
+        const label = f.label || f.id || "filter";
+        const pos = filterAxisPos(f);
+        const active = !!f.active && pos != null;
+        let pct = 50;
+        let cls = "eg-dot-inactive";
+        let title = f.unverified_reason
+          ? `inactive / unverified — ${f.unverified_reason}`
+          : "inactive / unverified";
+        let side = "inactive / unverified";
+        let meta = f.unverified_reason
+          ? esc(f.unverified_reason)
+          : "no signed z";
+        if (active) {
+          pct = 50 + pos.unit * 50;
+          cls = pos.unit > 0.02 ? "eg-dot-home" : pos.unit < -0.02 ? "eg-dot-away" : "eg-dot-neutral";
+          side = filterFavoredText(pos.unit, away, home);
+          title = `${label}: ${pos.source}=${pos.raw} (clipped ${pos.clipped}) · ${side}`;
+          meta = `${pos.source}=${esc(String(pos.raw))}${
+            f.logit_contribution != null
+              ? ` · logit=${esc(String(f.logit_contribution))}`
+              : ""
+          }`;
+        }
+        return `<div class="eg-dot-row" title="${esc(title)}">
+          <div class="eg-dot-label"><code>${esc(f.id || "")}</code> ${esc(label)}</div>
+          <div class="eg-dot-track" aria-hidden="true">
+            <span class="eg-dot-axis-end left">${esc(away)}</span>
+            <span class="eg-dot-center-line"></span>
+            <span class="eg-dot-marker ${cls}" style="left:${pct}%"></span>
+            <span class="eg-dot-axis-end right">${esc(home)}</span>
+          </div>
+          <div class="eg-dot-side">${esc(side)}</div>
+          <div class="eg-dot-meta">${meta}</div>
+        </div>`;
+      })
+      .join("");
+    return `
+      <div class="eg-dots" role="img" aria-label="Matchup filter contributions. Positive z favors home (right).">
+        <div class="eg-dots-legend">
+          <span><b>${esc(away)}</b> away ←</span>
+          <span>center</span>
+          <span>→ home <b>${esc(home)}</b></span>
+        </div>
+        <p class="eg-dots-convention eg-hint">Dot convention: signed <code>z</code> (prefer) or <code>logit_contribution</code>; + = home-favoring (right). Mapped from clipped [-2, 2] → axis. Inactive filters stay hollow at center — not zero evidence.</p>
+        ${rows}
+      </div>`;
+  }
+
+  function adrianGateBlock(row, view, gate) {
+    const val = row.value || {};
+    const mkt = row.market || {};
+    const decision = gate.decision || val.decision || "UNVERIFIED";
+    const quote =
+      mkt.quote_source_label || val.quote_source || view.quoteLabel || "—";
+    const isDk = !!(mkt.is_dk_direct || val.is_dk_direct || view.isDkDirect);
+    const div =
+      view.divLabel != null
+        ? `${view.divLabel} pp`
+        : val.divergence_pp != null
+          ? `${fmtPp(val.divergence_pp)} pp`
+          : "—";
+    const reasons = [];
+    if (gate.gated && gate.reasons && gate.reasons.length) {
+      reasons.push(`Hard gate: ${gate.reasons.join("; ")}`);
+    }
+    if (val.flash_reason) reasons.push(`Flash: ${val.flash_reason}`);
+    if (row.investigation_note) reasons.push(`Note: ${row.investigation_note}`);
+    if (decision === "WAIT_PRICE_DEPENDENT") {
+      reasons.push("WAIT — price-dependent; no ticket until quote + edge align.");
+    } else if (decision === "PASS_THE_BOARD") {
+      reasons.push("PASS the board — not a candidate at this price/research state.");
+    } else if (decision === "BAD_PRICE") {
+      reasons.push("BAD_PRICE — market does not support the research side.");
+    } else if (decision === "UNVERIFIED") {
+      reasons.push("UNVERIFIED — SI / fundamentals not clear for pricing.");
+    }
+    // BUY locked — never surface as actionable
+    const buyLocked =
+      decision === "BUY_CANDIDATE" || decision === "LEAN_CANDIDATE"
+        ? `<div class="eg-buy-lock">BUY / LEAN locked — Phase 01 research only. No tickets.</div>`
+        : `<div class="eg-buy-lock">BUY locked — research desk only.</div>`;
+
+    return `
+      <ul class="eg-kv">
+        <li><span>Decision</span><b><span class="eg-decision ${decisionClass(
+          decision
+        )}">${esc(decision)}</span></b></li>
+        <li><span>Quote source</span><b>${esc(quote)} · dk_direct=${esc(
+      String(!!isDk)
+    )}</b></li>
+        <li><span>Divergence</span><b class="mono">${esc(div)}</b></li>
+        <li><span>Raw / gated</span><b>${esc(gate.raw || "—")} → ${esc(
+      decision
+    )}${gate.gated ? " (hard-gated)" : ""}</b></li>
+      </ul>
+      ${
+        reasons.length
+          ? `<ul class="eg-reason-list">${reasons
+              .map((r) => `<li>${esc(r)}</li>`)
+              .join("")}</ul>`
+          : ""
+      }
+      ${buyLocked}`;
+  }
+
+  function danielFiltersBlock(row) {
+    const filters = (row.fundamental && row.fundamental.filters) || [];
+    if (!filters.length) {
+      return `<p class="eg-muted">No filters listed.</p>`;
+    }
+    return `<ul class="eg-filter-list eg-filter-narrative">
+      ${filters
+        .map((f) => {
+          if (f.active) {
+            const z = f.z != null ? `z=${esc(String(f.z))}` : "z=—";
+            const lg =
+              f.logit_contribution != null
+                ? `logit_contribution=${esc(String(f.logit_contribution))}`
+                : "logit_contribution=—";
+            return `<li class="on"><code>${esc(f.id)}</code> ${esc(
+              f.label || ""
+            )} · <strong>active</strong> · ${z} · ${lg} · grade ${esc(
+              f.evidence_grade || "—"
+            )}</li>`;
+          }
+          const why = f.unverified_reason
+            ? esc(f.unverified_reason)
+            : "inactive / unverified";
+          return `<li class="off"><code>${esc(f.id)}</code> ${esc(
+            f.label || ""
+          )} · <em>inactive / unverified</em> — ${why}</li>`;
+        })
+        .join("")}
+    </ul>`;
+  }
+
+  function siStoryBlock(row) {
+    const prov = row.provenance || {};
+    const lines = siFactLines(row);
+    const siAction = prov.si_action || "—";
+    const overall = prov.overall || "—";
+    const stops = (prov.stops || []).join(", ") || "none";
+    const factLis = lines
+      .map((f) => {
+        const bits = [
+          f.evidence_grade ? `grade ${f.evidence_grade}` : null,
+          f.freshness || null,
+        ].filter(Boolean);
+        return `<li><code>${esc(f.kind)}</code> ${esc(f.notes)}${
+          bits.length ? ` <span class="eg-muted">(${esc(bits.join(", "))})</span>` : ""
+        }</li>`;
+      })
+      .join("");
+    return `
+      <ul class="eg-kv">
+        <li><span>SI action</span><b>${esc(siAction)}</b></li>
+        <li><span>Evidence</span><b>${esc(overall)}</b></li>
+        <li><span>Stops</span><b>${esc(stops)}</b></li>
+      </ul>
+      ${factLis ? `<ul class="eg-fact-list">${factLis}</ul>` : `<p class="eg-muted">No provenance facts.</p>`}`;
+  }
+
+  function openDetail(id) {
+    if (!id) return;
+    state.selectedId = id;
+    state.detailOpen = true;
+    render();
+  }
+
+  function closeDetail() {
+    state.detailOpen = false;
+    render();
+  }
+
+  function renderDetailDrawer() {
+    const backdrop = document.getElementById("eg-drawer-backdrop");
+    const drawer = document.getElementById("eg-drawer");
+    const inner = document.getElementById("eg-drawer-inner");
+    if (!drawer || !inner) return;
+
+    if (!state.detailOpen || !state.selectedId) {
+      drawer.hidden = true;
+      drawer.setAttribute("aria-hidden", "true");
+      if (backdrop) backdrop.hidden = true;
+      inner.innerHTML = "";
+      return;
+    }
+
+    const row = selectedRow();
+    if (!row) {
+      drawer.hidden = true;
+      if (backdrop) backdrop.hidden = true;
+      return;
+    }
+
+    const ev = row.event || {};
+    const fund = row.fundamental || {};
+    const view = boardRow(row);
+    const gate = applyHardGate(row);
+    const status = fund.status || "";
+    const isStop = status === "STOPPED" || view.flashReason === "STOP";
+    const lead = leadNarrative(row);
+    const leadHtml = lead
+      ? lead
+          .split(/\n+/)
+          .map((p) => p.trim())
+          .filter(Boolean)
+          .map((p) => `<p class="eg-narr-p">${esc(p)}</p>`)
+          .join("")
+      : `<p class="eg-muted">No SI narrative text on this feed row.</p>`;
+
+    inner.innerHTML = `
+      <div class="eg-drawer-head">
+        <div>
+          <div class="eg-drawer-kicker">${esc(ev.sport || "")} · ${esc(
+      ev.date || ""
+    )} · ${esc(ev.event_id || "")}</div>
+          <h2 class="eg-drawer-title" id="eg-drawer-title">${esc(ev.away)} @ ${esc(
+      ev.home
+    )}</h2>
+          <div class="eg-drawer-pills">
+            ${statusPill(view)}
+            <span class="eg-decision ${decisionClass(gate.decision)}">${esc(
+      gate.decision
+    )}</span>
+            <span class="eg-exp">experimental</span>
+          </div>
+        </div>
+        <button type="button" class="eg-drawer-close" id="eg-drawer-close" aria-label="Close detail">×</button>
+      </div>
+      <div class="eg-drawer-banner" role="status">
+        Experimental model — wagering action disabled. BUY locked. Spectrum remains on the desk below.
+      </div>
+      <section class="eg-drawer-section ${isStop ? "eg-story-stop" : ""}">
+        <h3>${isStop ? "STOP story (leads)" : "How we got here"}</h3>
+        <div class="eg-narr-lead">${leadHtml}</div>
+      </section>
+      <section class="eg-drawer-section">
+        <h3>SI story</h3>
+        ${siStoryBlock(row)}
+      </section>
+      <section class="eg-drawer-section">
+        <h3>Daniel filters</h3>
+        ${danielFiltersBlock(row)}
+      </section>
+      <section class="eg-drawer-section">
+        <h3>Matchup dots</h3>
+        ${matchupDotChart(row)}
+      </section>
+      <section class="eg-drawer-section">
+        <h3>Adrian / gates</h3>
+        ${adrianGateBlock(row, view, gate)}
+      </section>
+    `;
+
+    drawer.hidden = false;
+    drawer.setAttribute("aria-hidden", "false");
+    if (backdrop) backdrop.hidden = false;
+
+    const closeBtn = document.getElementById("eg-drawer-close");
+    if (closeBtn && !closeBtn._egBound) {
+      closeBtn._egBound = true;
+      closeBtn.addEventListener("click", () => closeDetail());
+    }
+    if (backdrop && !backdrop._egBound) {
+      backdrop._egBound = true;
+      backdrop.addEventListener("click", () => closeDetail());
+    }
   }
 
   function renderSpectrum() {
@@ -1011,6 +1437,7 @@
         .filter(Boolean)
         .join("");
       const storyLead =
+        leadNarrative(row) ||
         view.story ||
         (status === "STOPPED"
           ? `STOP · ${(view.stops || []).join(", ") || "unverified inputs"}`
@@ -1024,7 +1451,12 @@
         </div>
         <div class="eg-story-card ${status === "STOPPED" ? "eg-story-stop" : "eg-story-hold"}" role="status">
           <div class="eg-story-label">${status === "STOPPED" ? "STOP story" : "Status"}</div>
-          <div class="eg-story-body">${esc(storyLead)}</div>
+          <div class="eg-story-body eg-narr-lead">${(storyLead || "")
+            .split(/\n+/)
+            .map((p) => p.trim())
+            .filter(Boolean)
+            .map((p) => `<p class="eg-narr-p">${esc(p)}</p>`)
+            .join("") || esc(storyLead)}</div>
           <p class="eg-hint" style="margin:8px 0 0">No fundamental price card — SI reason leads. DK archive shown only as context (${esc(
             view.quoteLabel || "no quote"
           )}).</p>
@@ -1220,6 +1652,7 @@
     renderRadar();
     renderTable();
     renderSpectrum();
+    renderDetailDrawer();
   }
 
   async function loadFeed() {
@@ -1295,6 +1728,8 @@
     mount,
     render,
     loadFeed,
+    openDetail,
+    closeDetail,
     odds: {
       americanToImplied,
       twoSidedDevig,
@@ -1306,5 +1741,8 @@
     applyHardGate,
     boardRow,
     statusInfo,
+    isDiagnosticLean,
+    leadNarrative,
+    filterAxisPos,
   };
 })(window);

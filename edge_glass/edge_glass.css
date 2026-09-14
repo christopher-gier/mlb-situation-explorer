@@ -748,6 +748,12 @@ body.eg-standalone {
   background: #edf2f7;
   color: var(--eg-muted);
 }
+.eg-status-diagnostic-lean {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fbbf24;
+  letter-spacing: 0.02em;
+}
 
 /* —— Research board table —— */
 .eg-table-wrap {
@@ -1163,4 +1169,271 @@ body.eg-standalone {
 .eg-toolbar,
 .eg-panel-title {
   /* superseded by Research Desk markup */
+}
+
+
+/* —— Detail drawer (narrative + matchup dots) —— */
+.eg-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 32, 44, 0.45);
+  z-index: 80;
+}
+.eg-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(520px, 100vw);
+  height: 100vh;
+  background: var(--eg-card);
+  border-left: 1px solid var(--eg-border);
+  box-shadow: -8px 0 32px rgba(16, 24, 40, 0.12);
+  z-index: 90;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.eg-drawer[hidden],
+.eg-drawer-backdrop[hidden] {
+  display: none !important;
+}
+.eg-drawer-inner {
+  padding: 18px 20px 32px;
+}
+.eg-drawer-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.eg-drawer-kicker {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--eg-muted);
+  margin-bottom: 4px;
+}
+.eg-drawer-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.eg-drawer-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  align-items: center;
+}
+.eg-drawer-close {
+  border: 1px solid var(--eg-border);
+  background: #f8fafc;
+  color: var(--eg-navy);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.eg-drawer-close:hover {
+  background: var(--eg-border-soft);
+}
+.eg-drawer-banner {
+  font-size: 0.78rem;
+  color: var(--eg-blue-text);
+  background: var(--eg-info-bg);
+  border: 1px solid var(--eg-info-border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 14px;
+}
+.eg-drawer-section {
+  border: 1px solid var(--eg-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  background: #fff;
+}
+.eg-drawer-section.eg-story-stop {
+  border-color: #fecaca;
+  background: var(--eg-stop-bg);
+}
+.eg-drawer-section h3 {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--eg-muted);
+  font-weight: 700;
+}
+.eg-narr-lead .eg-narr-p {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  font-weight: 500;
+  white-space: pre-wrap;
+}
+.eg-narr-lead .eg-narr-p:last-child {
+  margin-bottom: 0;
+}
+.eg-filter-narrative li.on {
+  color: var(--eg-text);
+}
+.eg-filter-narrative li.off {
+  color: var(--eg-muted);
+}
+.eg-reason-list {
+  margin: 8px 0 0;
+  padding-left: 16px;
+  font-size: 0.8rem;
+  color: var(--eg-muted);
+}
+.eg-buy-lock {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--eg-watch-text);
+  background: var(--eg-watch-bg);
+  border: 1px solid #fdba74;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+/* Matchup dot chart — +z = home (right) */
+.eg-dots-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--eg-muted);
+  margin-bottom: 4px;
+}
+.eg-dots-convention {
+  margin: 0 0 10px;
+}
+.eg-dot-row {
+  display: grid;
+  grid-template-columns: minmax(88px, 120px) 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--eg-border-soft);
+}
+.eg-dot-label {
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+.eg-dot-label code {
+  font-family: var(--eg-mono);
+  font-size: 0.68rem;
+  color: var(--eg-blue);
+  margin-right: 2px;
+}
+.eg-dot-track {
+  position: relative;
+  height: 22px;
+  margin: 2px 28px 0;
+  background: linear-gradient(90deg, #eff6ff 0%, #f8fafc 50%, #ecfdf5 100%);
+  border: 1px solid var(--eg-border);
+  border-radius: 999px;
+}
+.eg-dot-center-line {
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  bottom: 2px;
+  width: 1px;
+  background: var(--eg-border);
+  transform: translateX(-0.5px);
+}
+.eg-dot-axis-end {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--eg-muted-2);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+}
+.eg-dot-axis-end.left {
+  left: -26px;
+}
+.eg-dot-axis-end.right {
+  right: -28px;
+}
+.eg-dot-marker {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px #fff;
+}
+.eg-dot-away {
+  background: var(--eg-blue);
+  border: 2px solid #1d4ed8;
+}
+.eg-dot-home {
+  background: var(--eg-green);
+  border: 2px solid #15803d;
+}
+.eg-dot-neutral {
+  background: var(--eg-navy-soft);
+  border: 2px solid var(--eg-navy-2);
+}
+.eg-dot-inactive {
+  background: transparent;
+  border: 2px solid var(--eg-muted-2);
+  opacity: 0.85;
+}
+.eg-dot-side {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--eg-text);
+}
+.eg-dot-meta {
+  font-size: 0.65rem;
+  color: var(--eg-muted);
+  font-family: var(--eg-mono);
+}
+.eg-dots-empty {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 560px) {
+  .eg-drawer {
+    width: 100vw;
+  }
+  .eg-dot-row {
+    grid-template-columns: 1fr;
+  }
+  .eg-dot-label {
+    grid-row: auto;
+  }
+  .eg-dot-track {
+    margin: 4px 32px 0;
+  }
+}
+
+
+/* DIAGNOSTIC LEAN highlights (display only — not BUY/LEAN) */
+.eg-radar-card.is-diagnostic-lean {
+  border-color: #fbbf24;
+  box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.35), var(--eg-shadow);
+  background: linear-gradient(180deg, #fffbeb 0%, #ffffff 48%);
+}
+.eg-row.eg-row-diagnostic-lean {
+  background: #fffbeb;
+}
+.eg-row.eg-row-diagnostic-lean:hover,
+.eg-row.eg-row-diagnostic-lean.selected {
+  background: #fef3c7;
 }
