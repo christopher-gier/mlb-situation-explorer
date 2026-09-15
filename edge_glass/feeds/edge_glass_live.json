@@ -1,9 +1,9 @@
 {
   "_example": false,
   "_live_si": true,
-  "_warning": "Experimental PRICE DIAGNOSTICS — Marcus Tue SI + Adrian live_DK_browser quotes. Fundamental p not re-emitted for Tue yet; BUY locked; not validated edge.",
-  "generated_at": "2026-09-15T14:12:25Z",
-  "model_version": "si-verify-shell-v0",
+  "_warning": "Experimental PRICE DIAGNOSTICS — Daniel fundamentals v1.1 (MLB heuristic). Market not in p; morning DK quotes joined for divergence; buy_locked / no tickets; soft team-level RD/rest (dashboard slate may lag).",
+  "generated_at": "2026-09-15T14:13:19Z",
+  "model_version": "mlb-heuristic-v1.1",
   "slate_dates": [
     "2026-09-15",
     "2026-09-17",
@@ -15,7 +15,7 @@
     "MLB",
     "NFL"
   ],
-  "feed_status": "si_plus_dk_quotes",
+  "feed_status": "experimental_fundamentals",
   "si_sources": [
     {
       "path": "/workspace/mlb-price-first/edge_glass/feeds/si_verify_20260915.json",
@@ -59,31 +59,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.4012300173095279,
+        "home_p": 0.5987699826904721,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": 2.0,
+            "w": 0.12,
+            "logit_contribution": 0.24,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "HOME",
+        "best_side": "AWAY",
+        "divergence_pp": 7.5,
+        "executable_edge_pp": 6.0,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -149.2,
+        "fair_odds_away": 149.2,
+        "fair_odds_home": -149.2,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -93,7 +195,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "INTERESTING",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "TB",
+        "fundamental_pct": 59.9,
+        "value_side_team": "ATH",
+        "divergence_ml_pp": -7.5,
+        "flash": true,
+        "flash_reason": "DIVERGENCE",
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -101,10 +214,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "On watch for ATH@TB (climate).\nAway SP: Jack Perkins ((3-11, 6.53)) — probable.\nHome SP: Griffin Jax ((7-10, 3.99)) — probable.\nWeather: Indoor venue: Tropicana Field; outdoor ref n/a indoor (Partly sunny w/ t-storms, 86F outdoor ref).\nClinch/elim: ATH eliminated (ESPN clincher=e, 61-89); TB clinched playoff berth (ESPN clincher=z, 90-59, seed 1).\nScheduled start: 2026-09-15T22:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -200,16 +317,18 @@
         "book": "DraftKings",
         "away_odds": 193,
         "home_odds": -238,
-        "away_break_even": 0.3412969283276451,
-        "home_break_even": 0.7041420118343196,
-        "away_no_vig_p": 0.5009023957106897,
-        "home_no_vig_p": 0.4990976042893102,
+        "away_break_even": 0.3413,
+        "home_break_even": 0.7041,
+        "away_no_vig_p": 0.3265,
+        "home_no_vig_p": 0.6735,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "On watch for ATH@TB (climate).\nAway SP: Jack Perkins ((3-11, 6.53)) — probable.\nHome SP: Griffin Jax ((7-10, 3.99)) — probable.\nWeather: Indoor venue: Tropicana Field; outdoor ref n/a indoor (Partly sunny w/ t-storms, 86F outdoor ref).\nClinch/elim: ATH eliminated (ESPN clincher=e, 61-89); TB clinched playoff berth (ESPN clincher=z, 90-59, seed 1).\nScheduled start: 2026-09-15T22:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
     },
     {
       "event": {
@@ -223,31 +342,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.47642582901170305,
+        "home_p": 0.523574170988297,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -0.5498,
+            "w": 0.12,
+            "logit_contribution": -0.06597599999999999,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "HOME",
+        "best_side": "AWAY",
+        "divergence_pp": 5.2,
+        "executable_edge_pp": 3.2,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -109.9,
+        "fair_odds_away": 109.9,
+        "fair_odds_home": -109.9,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -257,7 +478,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "INTERESTING",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "CLE",
+        "fundamental_pct": 52.4,
+        "value_side_team": "CHW",
+        "divergence_ml_pp": -5.2,
+        "flash": true,
+        "flash_reason": "DIVERGENCE",
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -265,10 +497,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "On watch for CHW@CLE (injury).\nAway SP: Davis Martin ((9-7, 4.05)) — probable.\nHome SP: Foster Griffin ((15-5, 3.65)) — probable.\nWeather: Partly Cloudy; 82F; wind 12 mph S; PoP 2% | ESPN: Mostly sunny, 83F.\nInjury watch: Angel Martinez Day-To-Day — Angel Martinez (Side/Inflammation): Martinez was removed from Monday's game against the White Sox due to right side infl\nScheduled start: 2026-09-15T22:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -352,16 +588,18 @@
         "book": "DraftKings",
         "away_odds": 125,
         "home_odds": -151,
-        "away_break_even": 0.4444444444444444,
-        "home_break_even": 0.601593625498008,
-        "away_no_vig_p": 0.5003908288433888,
-        "home_no_vig_p": 0.49960917115661113,
+        "away_break_even": 0.4444,
+        "home_break_even": 0.6016,
+        "away_no_vig_p": 0.4249,
+        "home_no_vig_p": 0.5751,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "On watch for CHW@CLE (injury).\nAway SP: Davis Martin ((9-7, 4.05)) — probable.\nHome SP: Foster Griffin ((15-5, 3.65)) — probable.\nWeather: Partly Cloudy; 82F; wind 12 mph S; PoP 2% | ESPN: Mostly sunny, 83F.\nInjury watch: Angel Martinez Day-To-Day — Angel Martinez (Side/Inflammation): Martinez was removed from Monday's game against the White Sox due to right side infl\nScheduled start: 2026-09-15T22:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
     },
     {
       "event": {
@@ -375,31 +613,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5199038139657901,
+        "home_p": 0.48009618603420984,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -2.0,
+            "w": 0.12,
+            "logit_contribution": -0.24,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "AWAY",
+        "best_side": "HOME",
+        "divergence_pp": 15.9,
+        "executable_edge_pp": 14.5,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -108.3,
+        "fair_odds_away": -108.3,
+        "fair_odds_home": 108.3,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -409,7 +749,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "EXTREME",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "LAD",
+        "fundamental_pct": 52.0,
+        "value_side_team": "CIN",
+        "divergence_ml_pp": 15.9,
+        "flash": true,
+        "flash_reason": "DIVERGENCE",
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -417,10 +768,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "On watch for LAD@CIN (climate, injury).\nAway SP: Yoshinobu Yamamoto ((13-8, 2.62)) — probable.\nHome SP: Rhett Lowder ((6-10, 5.81)) — probable.\nWeather: Clear; 91F; wind 3 mph S; PoP 0% | ESPN: Mostly sunny, 91F.\nInjury watch: Freddie Freeman Day-To-Day — Freddie Freeman (Knee): Freeman (knee) will start at first base and bat second Saturday against the Marlins.\nInjury watch: Matt McLain Day-To-Day — Matt McLain (Shoulder/Soreness): McLain (shoulder) remains out of the lineup for Monday's game against the Dodgers.\nClinch/elim: LAD clinched playoff berth (ESPN clincher=z, 91-59, seed 2); CIN eliminated (ESPN clincher=e, 70-80).\nScheduled start: 2026-09-15T22:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -528,16 +883,18 @@
         "book": "DraftKings",
         "away_odds": -245,
         "home_odds": 198,
-        "away_break_even": 0.7101449275362319,
-        "home_break_even": 0.33557046979865773,
-        "away_no_vig_p": 0.49906843461697925,
-        "home_no_vig_p": 0.5009315653830206,
+        "away_break_even": 0.7101,
+        "home_break_even": 0.3356,
+        "away_no_vig_p": 0.6791,
+        "home_no_vig_p": 0.3209,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "On watch for LAD@CIN (climate, injury).\nAway SP: Yoshinobu Yamamoto ((13-8, 2.62)) — probable.\nHome SP: Rhett Lowder ((6-10, 5.81)) — probable.\nWeather: Clear; 91F; wind 3 mph S; PoP 0% | ESPN: Mostly sunny, 91F.\nInjury watch: Freddie Freeman Day-To-Day — Freddie Freeman (Knee): Freeman (knee) will start at first base and bat second Saturday against the Marlins.\nInjury watch: Matt McLain Day-To-Day — Matt McLain (Shoulder/Soreness): McLain (shoulder) remains out of the lineup for Monday's game against the Dodgers.\nClinch/elim: LAD clinched playoff berth (ESPN clincher=z, 91-59, seed 2); CIN eliminated (ESPN clincher=e, 70-80).\nScheduled start: 2026-09-15T22:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
     },
     {
       "event": {
@@ -551,31 +908,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5199038139657901,
+        "home_p": 0.48009618603420984,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -2.0,
+            "w": 0.12,
+            "logit_contribution": -0.24,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "AWAY",
+        "best_side": "HOME",
+        "divergence_pp": 14.6,
+        "executable_edge_pp": 13.0,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -108.3,
+        "fair_odds_away": -108.3,
+        "fair_odds_home": 108.3,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -585,7 +1044,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "EXTREME",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "MIL",
+        "fundamental_pct": 52.0,
+        "value_side_team": "PIT",
+        "divergence_ml_pp": 14.6,
+        "flash": true,
+        "flash_reason": "DIVERGENCE",
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -593,10 +1063,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "On watch for MIL@PIT (climate).\nAway SP: Jacob Misiorowski ((14-5, 1.95)) — probable.\nHome SP: Lake Bachar ((1-3, 3.52)) — probable.\nWeather: Clear; 80F; wind 6 mph S; PoP 1% | ESPN: Mostly sunny, 83F.\nClinch/elim: MIL clinched playoff berth (ESPN clincher=z, 93-57, seed 1).\nScheduled start: 2026-09-15T22:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -680,16 +1154,18 @@
         "book": "DraftKings",
         "away_odds": -229,
         "home_odds": 186,
-        "away_break_even": 0.6960486322188449,
-        "home_break_even": 0.34965034965034963,
-        "away_no_vig_p": 0.4991385085969938,
-        "home_no_vig_p": 0.5008614914030062,
+        "away_break_even": 0.696,
+        "home_break_even": 0.3497,
+        "away_no_vig_p": 0.6656,
+        "home_no_vig_p": 0.3344,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "On watch for MIL@PIT (climate).\nAway SP: Jacob Misiorowski ((14-5, 1.95)) — probable.\nHome SP: Lake Bachar ((1-3, 3.52)) — probable.\nWeather: Clear; 80F; wind 6 mph S; PoP 1% | ESPN: Mostly sunny, 83F.\nClinch/elim: MIL clinched playoff berth (ESPN clincher=z, 93-57, seed 1).\nScheduled start: 2026-09-15T22:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
     },
     {
       "event": {
@@ -703,32 +1179,137 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.47115440355410043,
+        "home_p": 0.5288455964458996,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -0.3736,
+            "w": 0.12,
+            "logit_contribution": -0.044832,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate",
+          "diagnostic_lean",
+          "fragile_rd_soft",
+          "lean_WSH"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "HOME",
+        "best_side": "HOME",
+        "divergence_pp": 18.4,
+        "executable_edge_pp": 16.8,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
-        "classification": null,
+        "fair_odds": -112.2,
+        "fair_odds_away": 112.2,
+        "fair_odds_home": -112.2,
+        "classification": "DIAGNOSTIC_LEAN",
         "grade": null,
         "price_trigger": null,
         "decision": "WAIT_PRICE_DEPENDENT",
@@ -737,7 +1318,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "EXTREME",
+        "diagnostic_lean": true,
+        "diagnostic_lean_side": "WSH",
+        "diagnostic_lean_note": "DIAGNOSTIC LEAN WSH — live_DK_browser; buy_locked; not BUY; fragile soft RD/rest",
+        "most_likely_team": "WSH",
+        "fundamental_pct": 52.9,
+        "value_side_team": "WSH",
+        "divergence_ml_pp": 18.4,
+        "flash": true,
+        "flash_reason": "DIVERGENCE",
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -745,10 +1337,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "Cleared for price diagnostics for PHI@WSH.\nAway SP: Cristopher Sanchez ((17-5, 2.79)) — probable.\nHome SP: Jackson Kent ((1-4, 6.59)) — probable.\nWeather: Mostly Clear; 78F; wind 6 mph SE; PoP 0% | ESPN: Mostly sunny, 79F.\nClinch/elim: WSH eliminated (ESPN clincher=e, 70-81).\nScheduled start: 2026-09-15T22:45Z UTC.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -856,16 +1452,18 @@
         "book": "DraftKings",
         "away_odds": -217,
         "home_odds": 177,
-        "away_break_even": 0.6845425867507886,
-        "home_break_even": 0.36101083032490977,
-        "away_no_vig_p": 0.49919537699061983,
-        "home_no_vig_p": 0.5008046230093801,
+        "away_break_even": 0.6845,
+        "home_break_even": 0.361,
+        "away_no_vig_p": 0.6547,
+        "home_no_vig_p": 0.3453,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "Cleared for price diagnostics for PHI@WSH.\nAway SP: Cristopher Sanchez ((17-5, 2.79)) — probable.\nHome SP: Jackson Kent ((1-4, 6.59)) — probable.\nWeather: Mostly Clear; 78F; wind 6 mph SE; PoP 0% | ESPN: Mostly sunny, 79F.\nClinch/elim: WSH eliminated (ESPN clincher=e, 70-81).\nScheduled start: 2026-09-15T22:45Z UTC.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -879,31 +1477,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5005043373101633,
+        "home_p": 0.4994956626898367,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -1.353,
+            "w": 0.12,
+            "logit_contribution": -0.16236,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "AWAY",
+        "best_side": "AWAY",
+        "divergence_pp": 6.4,
+        "executable_edge_pp": 4.4,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -100.2,
+        "fair_odds_away": -100.2,
+        "fair_odds_home": 100.2,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -913,7 +1613,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "INTERESTING",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "DET",
+        "fundamental_pct": 50.1,
+        "value_side_team": "DET",
+        "divergence_ml_pp": -6.4,
+        "flash": true,
+        "flash_reason": "DIVERGENCE",
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -921,10 +1632,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "On watch for DET@TOR (injury).\nAway SP: Drew Anderson ((4-6, 3.80)) — probable.\nHome SP: Braydon Fisher ((3-4, 3.22)) — probable.\nWeather: Indoor venue: Rogers Centre.\nInjury watch: Colt Keith Day-To-Day — Colt Keith (Thumb/Soreness): Keith was scratched from Monday's lineup against Toronto due to left thumb soreness.\nScheduled start: 2026-09-15T23:07Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -1008,16 +1723,18 @@
         "book": "DraftKings",
         "away_odds": 119,
         "home_odds": -144,
-        "away_break_even": 0.45662100456621,
-        "home_break_even": 0.5901639344262295,
-        "away_no_vig_p": 0.5003321190386122,
-        "home_no_vig_p": 0.4996678809613878,
+        "away_break_even": 0.4566,
+        "home_break_even": 0.5902,
+        "away_no_vig_p": 0.4362,
+        "home_no_vig_p": 0.5638,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "On watch for DET@TOR (injury).\nAway SP: Drew Anderson ((4-6, 3.80)) — probable.\nHome SP: Braydon Fisher ((3-4, 3.22)) — probable.\nWeather: Indoor venue: Rogers Centre.\nInjury watch: Colt Keith Day-To-Day — Colt Keith (Thumb/Soreness): Keith was scratched from Monday's lineup against Toronto due to left thumb soreness.\nScheduled start: 2026-09-15T23:07Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
     },
     {
       "event": {
@@ -1031,31 +1748,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.4596959733231032,
+        "home_p": 0.5403040266768968,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": 0.010200000000000042,
+            "w": 0.12,
+            "logit_contribution": 0.001224000000000005,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "HOME",
+        "best_side": "AWAY",
+        "divergence_pp": 1.1,
+        "executable_edge_pp": -1.0,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -117.5,
+        "fair_odds_away": 117.5,
+        "fair_odds_home": -117.5,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -1065,7 +1884,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "NOISE",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "NYM",
+        "fundamental_pct": 54.0,
+        "value_side_team": "BAL",
+        "divergence_ml_pp": -1.1,
+        "flash": null,
+        "flash_reason": null,
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -1073,10 +1903,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "Cleared for price diagnostics for BAL@NYM.\nAway SP: Shane Baz ((6-15, 4.05)) — probable.\nHome SP: Sean Manaea ((5-7, 4.79)) — probable.\nWeather: Mostly Clear; 67F; wind 7 mph SE; PoP 0% | ESPN: Intermittent clouds, 69F.\nClinch/elim: NYM eliminated (ESPN clincher=e, 69-81).\nScheduled start: 2026-09-15T23:10Z UTC.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -1160,16 +1994,18 @@
         "book": "DraftKings",
         "away_odds": 113,
         "home_odds": -136,
-        "away_break_even": 0.4694835680751174,
-        "home_break_even": 0.576271186440678,
-        "away_no_vig_p": 0.5002655803861562,
-        "home_no_vig_p": 0.49973441961384374,
+        "away_break_even": 0.4695,
+        "home_break_even": 0.5763,
+        "away_no_vig_p": 0.4489,
+        "home_no_vig_p": 0.5511,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "Cleared for price diagnostics for BAL@NYM.\nAway SP: Shane Baz ((6-15, 4.05)) — probable.\nHome SP: Sean Manaea ((5-7, 4.79)) — probable.\nWeather: Mostly Clear; 67F; wind 7 mph SE; PoP 0% | ESPN: Intermittent clouds, 69F.\nClinch/elim: NYM eliminated (ESPN clincher=e, 69-81).\nScheduled start: 2026-09-15T23:10Z UTC.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -1183,31 +2019,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.45126753295557276,
+        "home_p": 0.5487324670444272,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": 0.2934000000000001,
+            "w": 0.12,
+            "logit_contribution": 0.03520800000000001,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "HOME",
+        "best_side": "AWAY",
+        "divergence_pp": 1.4,
+        "executable_edge_pp": -0.5,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -121.6,
+        "fair_odds_away": 121.6,
+        "fair_odds_home": -121.6,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -1217,7 +2155,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "NOISE",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "CHC",
+        "fundamental_pct": 54.9,
+        "value_side_team": "ATL",
+        "divergence_ml_pp": -1.4,
+        "flash": null,
+        "flash_reason": null,
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -1225,10 +2174,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "On watch for ATL@CHC (weather).\nAway SP: Martin Perez ((8-9, 3.08)) — probable.\nHome SP: Kevin Gausman ((9-12, 4.60)) — probable.\nWeather: Chance Showers And Thunderstorms; 78F; wind 10 mph NW; PoP 32% | ESPN: Showers, 77F.\nScheduled start: 2026-09-15T23:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -1312,16 +2265,18 @@
         "book": "DraftKings",
         "away_odds": 119,
         "home_odds": -143,
-        "away_break_even": 0.45662100456621,
-        "home_break_even": 0.588477366255144,
-        "away_no_vig_p": 0.500327927322669,
-        "home_no_vig_p": 0.49967207267733105,
+        "away_break_even": 0.4566,
+        "home_break_even": 0.5885,
+        "away_no_vig_p": 0.4369,
+        "home_no_vig_p": 0.5631,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "On watch for ATL@CHC (weather).\nAway SP: Martin Perez ((8-9, 3.08)) — probable.\nHome SP: Kevin Gausman ((9-12, 4.60)) — probable.\nWeather: Chance Showers And Thunderstorms; 78F; wind 10 mph NW; PoP 32% | ESPN: Showers, 77F.\nScheduled start: 2026-09-15T23:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
     },
     {
       "event": {
@@ -1335,31 +2290,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5199038139657901,
+        "home_p": 0.48009618603420984,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -2.0,
+            "w": 0.12,
+            "logit_contribution": -0.24,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "AWAY",
+        "best_side": "HOME",
+        "divergence_pp": 9.5,
+        "executable_edge_pp": 7.7,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -108.3,
+        "fair_odds_away": -108.3,
+        "fair_odds_home": 108.3,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -1369,7 +2426,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "STRONG",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "NYY",
+        "fundamental_pct": 52.0,
+        "value_side_team": "MIN",
+        "divergence_ml_pp": 9.5,
+        "flash": true,
+        "flash_reason": "DIVERGENCE",
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -1377,10 +2445,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "On watch for NYY@MIN (climate, injury).\nAway SP: Max Fried ((4-4, 2.73)) — probable.\nHome SP: Bailey Ober ((7-5, 4.28)) — probable.\nWeather: Mostly Clear; 69F; wind 5 mph WNW; PoP 0% | ESPN: Intermittent clouds, 69F.\nInjury watch: Trevor Larnach Day-To-Day — Trevor Larnach (Wrist/Soreness): Larnach is dealing with left wrist soreness and will undergo an MRI to determine the se\nInjury watch: Royce Lewis Day-To-Day — Royce Lewis (Shoulder/Soreness): Lewis (shoulder) is not in the lineup for Monday's game against the Yankees.\nInjury watch: Kaelen Culpepper Day-To-Day — Kaelen Culpepper (Shoulder/Bruise): Culpepper (shoulder) is not in the lineup for Monday's game against the Yankees.\nClinch/elim: NYY clinched playoff berth (ESPN clincher=z, 87-63, seed 4).\nScheduled start: 2026-09-15T23:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -1500,16 +2572,18 @@
         "book": "DraftKings",
         "away_odds": -180,
         "home_odds": 148,
-        "away_break_even": 0.6428571428571429,
-        "home_break_even": 0.4032258064516129,
-        "away_no_vig_p": 0.4994040387833223,
-        "home_no_vig_p": 0.5005959612166777,
+        "away_break_even": 0.6429,
+        "home_break_even": 0.4032,
+        "away_no_vig_p": 0.6145,
+        "home_no_vig_p": 0.3855,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "On watch for NYY@MIN (climate, injury).\nAway SP: Max Fried ((4-4, 2.73)) — probable.\nHome SP: Bailey Ober ((7-5, 4.28)) — probable.\nWeather: Mostly Clear; 69F; wind 5 mph WNW; PoP 0% | ESPN: Intermittent clouds, 69F.\nInjury watch: Trevor Larnach Day-To-Day — Trevor Larnach (Wrist/Soreness): Larnach is dealing with left wrist soreness and will undergo an MRI to determine the se\nInjury watch: Royce Lewis Day-To-Day — Royce Lewis (Shoulder/Soreness): Lewis (shoulder) is not in the lineup for Monday's game against the Yankees.\nInjury watch: Kaelen Culpepper Day-To-Day — Kaelen Culpepper (Shoulder/Bruise): Culpepper (shoulder) is not in the lineup for Monday's game against the Yankees.\nClinch/elim: NYY clinched playoff berth (ESPN clincher=z, 87-63, seed 4).\nScheduled start: 2026-09-15T23:40Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
     },
     {
       "event": {
@@ -1523,31 +2597,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.43233599524038824,
+        "home_p": 0.5676640047596118,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": 0.9331999999999999,
+            "w": 0.12,
+            "logit_contribution": 0.11198399999999999,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "HOME",
+        "best_side": "AWAY",
+        "divergence_pp": 3.1,
+        "executable_edge_pp": 1.2,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -131.3,
+        "fair_odds_away": 131.3,
+        "fair_odds_home": -131.3,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -1557,7 +2733,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "WATCH",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "STL",
+        "fundamental_pct": 56.8,
+        "value_side_team": "SF",
+        "divergence_ml_pp": -3.1,
+        "flash": null,
+        "flash_reason": null,
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -1565,10 +2752,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "On watch for SF@STL (injury, weather).\nAway SP: Blade Tidwell ((0-2, 4.82)) — probable.\nHome SP: Andre Pallante ((12-6, 3.45)) — probable.\nWeather: Chance Showers And Thunderstorms; 96F; wind 7 mph S; PoP 28% | ESPN: Partly sunny w/ t-storms, 94F.\nInjury watch: Jose Fermin Day-To-Day — Jose Fermin (Undisclosed): Fermin was scratched from the lineup for Sunday's game against the White Sox for unspecified \nClinch/elim: SF eliminated (ESPN clincher=e, 62-89).\nScheduled start: 2026-09-15T23:45Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -1664,16 +2855,18 @@
         "book": "DraftKings",
         "away_odds": 138,
         "home_odds": -168,
-        "away_break_even": 0.42016806722689076,
-        "home_break_even": 0.6268656716417911,
-        "away_no_vig_p": 0.5005140528576099,
-        "home_no_vig_p": 0.49948594714239014,
+        "away_break_even": 0.4202,
+        "home_break_even": 0.6269,
+        "away_no_vig_p": 0.4013,
+        "home_no_vig_p": 0.5987,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "On watch for SF@STL (injury, weather).\nAway SP: Blade Tidwell ((0-2, 4.82)) — probable.\nHome SP: Andre Pallante ((12-6, 3.45)) — probable.\nWeather: Chance Showers And Thunderstorms; 96F; wind 7 mph S; PoP 28% | ESPN: Partly sunny w/ t-storms, 94F.\nInjury watch: Jose Fermin Day-To-Day — Jose Fermin (Undisclosed): Fermin was scratched from the lineup for Sunday's game against the White Sox for unspecified \nClinch/elim: SF eliminated (ESPN clincher=e, 62-89).\nScheduled start: 2026-09-15T23:45Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
     },
     {
       "event": {
@@ -1687,31 +2880,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5127115977520764,
+        "home_p": 0.4872884022479236,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -1.76,
+            "w": 0.12,
+            "logit_contribution": -0.2112,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_watch",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "AWAY",
+        "best_side": "HOME",
+        "divergence_pp": 3.0,
+        "executable_edge_pp": 0.9,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -105.2,
+        "fair_odds_away": -105.2,
+        "fair_odds_home": 105.2,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -1721,7 +3016,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "WATCH",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "BOS",
+        "fundamental_pct": 51.3,
+        "value_side_team": "TEX",
+        "divergence_ml_pp": 3.0,
+        "flash": null,
+        "flash_reason": null,
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -1729,10 +3035,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "On watch for BOS@TEX (injury).\nAway SP: Patrick Sandoval ((1-5, 4.58)) — probable.\nHome SP: Cody Bradford ((0-5, 4.72)) — probable.\nWeather: Indoor venue: Globe Life Field; outdoor ref Sunny, 82F.\nInjury watch: Joc Pederson Day-To-Day — Joc Pederson (Hand): Pederson had X-rays on his hand come back negative after being hit by a pitch during Saturday's gam\nScheduled start: 2026-09-16T00:05Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -1828,16 +3138,18 @@
         "book": "DraftKings",
         "away_odds": -131,
         "home_odds": 109,
-        "away_break_even": 0.5670995670995671,
-        "home_break_even": 0.4784688995215311,
-        "away_no_vig_p": 0.4997795756746741,
-        "home_no_vig_p": 0.5002204243253259,
+        "away_break_even": 0.5671,
+        "home_break_even": 0.4785,
+        "away_no_vig_p": 0.5424,
+        "home_no_vig_p": 0.4576,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "On watch for BOS@TEX (injury).\nAway SP: Patrick Sandoval ((1-5, 4.58)) — probable.\nHome SP: Cody Bradford ((0-5, 4.72)) — probable.\nWeather: Indoor venue: Globe Life Field; outdoor ref Sunny, 82F.\nInjury watch: Joc Pederson Day-To-Day — Joc Pederson (Hand): Pederson had X-rays on his hand come back negative after being hit by a pitch during Saturday's gam\nScheduled start: 2026-09-16T00:05Z UTC.\nOn watch — re-check before first pitch. Cleared only for monitoring, not a ticket."
     },
     {
       "event": {
@@ -1851,31 +3163,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.4437494674800747,
+        "home_p": 0.5562505325199253,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": 0.5468000000000001,
+            "w": 0.12,
+            "logit_contribution": 0.06561600000000001,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "HOME",
+        "best_side": "AWAY",
+        "divergence_pp": 4.3,
+        "executable_edge_pp": 2.5,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -125.4,
+        "fair_odds_away": 125.4,
+        "fair_odds_home": -125.4,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -1885,7 +3299,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "WATCH",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "HOU",
+        "fundamental_pct": 55.6,
+        "value_side_team": "KC",
+        "divergence_ml_pp": -4.3,
+        "flash": null,
+        "flash_reason": null,
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -1893,10 +3318,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "Cleared for price diagnostics for KC@HOU.\nAway SP: Michael Wacha ((9-8, 3.25)) — probable.\nHome SP: Hunter Brown ((5-3, 3.52)) — probable.\nWeather: Indoor venue: Daikin Park; outdoor ref n/a indoor (Intermittent clouds, 89F outdoor ref).\nScheduled start: 2026-09-16T00:10Z UTC.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -1968,16 +3397,18 @@
         "book": "DraftKings",
         "away_odds": 139,
         "home_odds": -168,
-        "away_break_even": 0.41841004184100417,
-        "home_break_even": 0.6268656716417911,
-        "away_no_vig_p": 0.500518429565333,
-        "home_no_vig_p": 0.49948157043466695,
+        "away_break_even": 0.4184,
+        "home_break_even": 0.6269,
+        "away_no_vig_p": 0.4003,
+        "home_no_vig_p": 0.5997,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "Cleared for price diagnostics for KC@HOU.\nAway SP: Michael Wacha ((9-8, 3.25)) — probable.\nHome SP: Hunter Brown ((5-3, 3.52)) — probable.\nWeather: Indoor venue: Daikin Park; outdoor ref n/a indoor (Intermittent clouds, 89F outdoor ref).\nScheduled start: 2026-09-16T00:10Z UTC.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -1991,32 +3422,137 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.5199038139657901,
+        "home_p": 0.48009618603420984,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -2.0,
+            "w": 0.12,
+            "logit_contribution": -0.24,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate",
+          "diagnostic_lean",
+          "fragile_rd_soft",
+          "lean_COL"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "AWAY",
+        "best_side": "HOME",
+        "divergence_pp": 11.7,
+        "executable_edge_pp": 10.0,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
-        "classification": null,
+        "fair_odds": -108.3,
+        "fair_odds_away": -108.3,
+        "fair_odds_home": 108.3,
+        "classification": "DIAGNOSTIC_LEAN",
         "grade": null,
         "price_trigger": null,
         "decision": "WAIT_PRICE_DEPENDENT",
@@ -2025,7 +3561,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "STRONG",
+        "diagnostic_lean": true,
+        "diagnostic_lean_side": "COL",
+        "diagnostic_lean_note": "DIAGNOSTIC LEAN COL — live_DK_browser; buy_locked; not BUY; fragile soft RD/rest",
+        "most_likely_team": "SD",
+        "fundamental_pct": 52.0,
+        "value_side_team": "COL",
+        "divergence_ml_pp": 11.7,
+        "flash": true,
+        "flash_reason": "DIVERGENCE",
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -2033,10 +3580,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "Cleared for price diagnostics for SD@COL.\nAway SP: Walker Buehler ((8-6, 4.61)) — probable.\nHome SP: Ryan Feltner ((5-10, 5.88)) — probable.\nWeather: Slight Chance Rain Showers; 71F; wind 8 mph SE; PoP 18% | ESPN: Mostly cloudy, 75F.\nClinch/elim: COL eliminated (ESPN clincher=e, 55-95).\nScheduled start: 2026-09-16T00:40Z UTC.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -2120,16 +3671,18 @@
         "book": "DraftKings",
         "away_odds": -199,
         "home_odds": 163,
-        "away_break_even": 0.6655518394648829,
-        "home_break_even": 0.38022813688212925,
-        "away_no_vig_p": 0.4992904011648085,
-        "home_no_vig_p": 0.5007095988351914,
+        "away_break_even": 0.6656,
+        "home_break_even": 0.3802,
+        "away_no_vig_p": 0.6364,
+        "home_no_vig_p": 0.3636,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "Cleared for price diagnostics for SD@COL.\nAway SP: Walker Buehler ((8-6, 4.61)) — probable.\nHome SP: Ryan Feltner ((5-10, 5.88)) — probable.\nWeather: Slight Chance Rain Showers; 71F; wind 8 mph SE; PoP 18% | ESPN: Mostly cloudy, 75F.\nClinch/elim: COL eliminated (ESPN clincher=e, 55-95).\nScheduled start: 2026-09-16T00:40Z UTC.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -2143,32 +3696,137 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.46736480073527575,
+        "home_p": 0.5326351992647242,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -0.24680000000000002,
+            "w": 0.12,
+            "logit_contribution": -0.029616,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate",
+          "diagnostic_lean",
+          "fragile_rd_soft",
+          "lean_LAA"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "HOME",
+        "best_side": "HOME",
+        "divergence_pp": 14.0,
+        "executable_edge_pp": 12.3,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
-        "classification": null,
+        "fair_odds": -114.0,
+        "fair_odds_away": 114.0,
+        "fair_odds_home": -114.0,
+        "classification": "DIAGNOSTIC_LEAN",
         "grade": null,
         "price_trigger": null,
         "decision": "WAIT_PRICE_DEPENDENT",
@@ -2177,7 +3835,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "EXTREME",
+        "diagnostic_lean": true,
+        "diagnostic_lean_side": "LAA",
+        "diagnostic_lean_note": "DIAGNOSTIC LEAN LAA — live_DK_browser; buy_locked; not BUY; fragile soft RD/rest",
+        "most_likely_team": "LAA",
+        "fundamental_pct": 53.3,
+        "value_side_team": "LAA",
+        "divergence_ml_pp": 14.0,
+        "flash": true,
+        "flash_reason": "DIVERGENCE",
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -2185,10 +3854,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "Cleared for price diagnostics for SEA@LAA.\nAway SP: Logan Gilbert ((12-9, 3.72)) — probable.\nHome SP: Ryan Johnson ((4-8, 5.12)) — probable.\nWeather: Mostly Clear; 76F; wind 10 mph S; PoP 1% | ESPN: Cloudy, 69F.\nClinch/elim: LAA eliminated (ESPN clincher=e, 57-93).\nScheduled start: 2026-09-16T01:38Z UTC.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -2272,16 +3945,18 @@
         "book": "DraftKings",
         "away_odds": -174,
         "home_odds": 144,
-        "away_break_even": 0.635036496350365,
-        "home_break_even": 0.4098360655737705,
-        "away_no_vig_p": 0.49943992495827716,
-        "home_no_vig_p": 0.500560075041723,
+        "away_break_even": 0.635,
+        "home_break_even": 0.4098,
+        "away_no_vig_p": 0.6078,
+        "home_no_vig_p": 0.3922,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "Cleared for price diagnostics for SEA@LAA.\nAway SP: Logan Gilbert ((12-9, 3.72)) — probable.\nHome SP: Ryan Johnson ((4-8, 5.12)) — probable.\nWeather: Mostly Clear; 76F; wind 10 mph S; PoP 1% | ESPN: Cloudy, 69F.\nClinch/elim: LAA eliminated (ESPN clincher=e, 57-93).\nScheduled start: 2026-09-16T01:38Z UTC.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -2295,31 +3970,133 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": null,
-        "home_p": null,
+        "away_p": 0.4615921498517207,
+        "home_p": 0.5384078501482793,
         "consensus": null,
         "range": null,
-        "model_version": null,
+        "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
         "stop_fields": [],
-        "status": "INSUFFICIENT",
-        "p0": null,
-        "decision_cutoff": null,
-        "tags": [
-          "si_verify_shell",
-          "no_prices"
+        "status": "OK",
+        "p0": 0.54,
+        "decision_cutoff": "2026-09-15T14:08:53Z",
+        "filters": [
+          {
+            "id": "F01",
+            "label": "sp_quality",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "SP metrics incomplete",
+            "evidence_grade": "B",
+            "as_of": "2026-09-15T14:03:05Z"
+          },
+          {
+            "id": "F02",
+            "label": "bullpen_rest",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing bp_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F03",
+            "label": "lineup_platoon",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing lineup_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          },
+          {
+            "id": "F04",
+            "label": "park_run_env",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "park_factor missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F05",
+            "label": "rest_travel",
+            "active": true,
+            "z": 0.0,
+            "w": 0.08,
+            "logit_contribution": 0.0,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F06",
+            "label": "rd_climate",
+            "active": true,
+            "z": -0.0534,
+            "w": 0.12,
+            "logit_contribution": -0.0064080000000000005,
+            "unverified_reason": null,
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F07",
+            "label": "ops_edge",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "ops missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F08",
+            "label": "kbb_pitch",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "team_k_bb missing",
+            "evidence_grade": null,
+            "as_of": "2026-09-15T14:08:53Z"
+          },
+          {
+            "id": "F09",
+            "label": "injury_delta",
+            "active": false,
+            "z": null,
+            "w": null,
+            "logit_contribution": null,
+            "unverified_reason": "missing injury_as_of / timestamp",
+            "evidence_grade": null,
+            "as_of": null
+          }
         ],
-        "filters": []
+        "tags": [
+          "si_clear",
+          "p0_fallback_054",
+          "experimental",
+          "soft_team_level_prior_slate"
+        ]
       },
       "value": {
-        "most_likely_winner": null,
-        "best_side": null,
-        "divergence_pp": null,
-        "executable_edge_pp": null,
+        "most_likely_winner": "HOME",
+        "best_side": "AWAY",
+        "divergence_pp": 4.4,
+        "executable_edge_pp": 2.5,
         "ev": null,
-        "fair_odds": null,
-        "fair_odds_away": null,
-        "fair_odds_home": null,
+        "fair_odds": -116.6,
+        "fair_odds_away": 116.6,
+        "fair_odds_home": -116.6,
         "classification": null,
         "grade": null,
         "price_trigger": null,
@@ -2329,7 +4106,18 @@
         "board_source": "live_DK_browser",
         "is_dk_direct": true,
         "quote_source": "live_DK_browser",
-        "buy_locked": true
+        "buy_locked": true,
+        "divergence_band": "WATCH",
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
+        "most_likely_team": "ARI",
+        "fundamental_pct": 53.8,
+        "value_side_team": "MIA",
+        "divergence_ml_pp": -4.4,
+        "flash": null,
+        "flash_reason": null,
+        "live_or_extreme_ml": false
       },
       "explanation": {
         "positive": [],
@@ -2337,10 +4125,14 @@
         "invalidators": [],
         "data_quality_flags": [
           "SI_VERIFY_LIVE",
-          "NO_MARKET_PRICES",
-          "EXPERIMENTAL"
+          "EXPERIMENTAL",
+          "NO_TICKETS",
+          "DK_DIRECT_QUOTES",
+          "BUY_LOCKED_PENDING_ADRIAN",
+          "SOFT_TEAM_LEVEL_PRIOR_SLATE"
         ],
-        "market_hypotheses": []
+        "market_hypotheses": [],
+        "si_narrative": "Cleared for price diagnostics for MIA@ARI.\nAway SP: Janson Junk ((6-9, 4.54)) — probable.\nHome SP: Michael Soroka ((8-5, 3.53)) — probable.\nWeather: Indoor venue: Chase Field; outdoor ref n/a indoor (Intermittent clouds, 95F outdoor ref).\nScheduled start: 2026-09-16T01:40Z UTC.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -2424,16 +4216,18 @@
         "book": "DraftKings",
         "away_odds": 129,
         "home_odds": -156,
-        "away_break_even": 0.4366812227074236,
-        "home_break_even": 0.609375,
-        "away_no_vig_p": 0.5004294880997349,
-        "home_no_vig_p": 0.4995705119002651,
+        "away_break_even": 0.4367,
+        "home_break_even": 0.6094,
+        "away_no_vig_p": 0.4175,
+        "home_no_vig_p": 0.5825,
         "fetched_at": "2026-09-15T13:47:37Z",
         "is_dk_direct": true,
         "quote_source_label": "live_DK_browser",
         "display_note": "DK browser scrape — BUY locked",
-        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
-      }
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z",
+        "live_or_extreme_ml": false
+      },
+      "si_narrative": "Cleared for price diagnostics for MIA@ARI.\nAway SP: Janson Junk ((6-9, 4.54)) — probable.\nHome SP: Michael Soroka ((8-5, 3.53)) — probable.\nWeather: Indoor venue: Chase Field; outdoor ref n/a indoor (Intermittent clouds, 95F outdoor ref).\nScheduled start: 2026-09-16T01:40Z UTC.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -4477,5 +6271,26 @@
       "mlb-20260915-mia-ari"
     ],
     "quotes_generated_at": "2026-09-15T14:11:45Z"
+  },
+  "diagnostic_leans": {
+    "generated_at": "2026-09-15T14:13:19Z",
+    "rule": "SI CLEAR + |div|>=5 + Daniel challenge; DK-direct display; never BUY",
+    "rows": [
+      {
+        "matchup": "PHI@WSH",
+        "side": "WSH",
+        "div_pp": 18.4
+      },
+      {
+        "matchup": "SD@COL",
+        "side": "COL",
+        "div_pp": 11.7
+      },
+      {
+        "matchup": "SEA@LAA",
+        "side": "LAA",
+        "div_pp": 14.0
+      }
+    ]
   }
 }
