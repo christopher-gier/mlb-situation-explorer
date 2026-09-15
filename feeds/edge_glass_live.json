@@ -5200,23 +5200,28 @@
   },
   "ux_pass": "chatgpt_nfl_pass1_columns",
   "diagnostic_leans": {
-    "generated_at": "2026-09-14T23:50:04Z",
-    "rule": "SI CLEAR + |div|>=5 + Daniel challenge; AN_mirror display only; never BUY",
+    "generated_at": "2026-09-15T00:18:20Z",
+    "rule": "SI CLEAR + |div|>=5 + Daniel challenge; DK-direct display; never BUY",
     "rows": [
       {
         "matchup": "LAD@CIN",
         "side": "CIN",
-        "div_pp": 13.8
-      },
-      {
-        "matchup": "CHW@CLE",
-        "side": "CHW",
-        "div_pp": 6.9
+        "div_pp": 39.5
       },
       {
         "matchup": "DET@TOR",
         "side": "DET",
-        "div_pp": 6.5
+        "div_pp": 36.3
+      },
+      {
+        "matchup": "BAL@NYM",
+        "side": "NYM",
+        "div_pp": 9.1
+      },
+      {
+        "matchup": "SF@STL",
+        "side": "SF",
+        "div_pp": 6.6
       }
     ]
   }
