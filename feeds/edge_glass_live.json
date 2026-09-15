@@ -1,8 +1,8 @@
 {
   "_example": false,
   "_live_si": true,
-  "_warning": "Experimental PRICE DIAGNOSTICS — Marcus Tue SI verify (2026-09-15) + NFL shells. No Tuesday DraftKings quotes on board yet; p_model null; BUY locked; not validated edge.",
-  "generated_at": "2026-09-15T14:11:03Z",
+  "_warning": "Experimental PRICE DIAGNOSTICS — Marcus Tue SI + Adrian live_DK_browser quotes. Fundamental p not re-emitted for Tue yet; BUY locked; not validated edge.",
+  "generated_at": "2026-09-15T14:12:25Z",
   "model_version": "si-verify-shell-v0",
   "slate_dates": [
     "2026-09-15",
@@ -15,7 +15,7 @@
     "MLB",
     "NFL"
   ],
-  "feed_status": "si_shells_no_tue_quotes",
+  "feed_status": "si_plus_dk_quotes",
   "si_sources": [
     {
       "path": "/workspace/mlb-price-first/edge_glass/feeds/si_verify_20260915.json",
@@ -87,7 +87,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "board_ml_away": 193,
+        "board_ml_home": -238,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -189,7 +195,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 193,
+        "home_odds": -238,
+        "away_break_even": 0.3412969283276451,
+        "home_break_even": 0.7041420118343196,
+        "away_no_vig_p": 0.5009023957106897,
+        "home_no_vig_p": 0.4990976042893102,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -231,7 +251,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "board_ml_away": 125,
+        "board_ml_home": -151,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -321,7 +347,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 125,
+        "home_odds": -151,
+        "away_break_even": 0.4444444444444444,
+        "home_break_even": 0.601593625498008,
+        "away_no_vig_p": 0.5003908288433888,
+        "home_no_vig_p": 0.49960917115661113,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -363,7 +403,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "board_ml_away": -245,
+        "board_ml_home": 198,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -477,7 +523,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": -245,
+        "home_odds": 198,
+        "away_break_even": 0.7101449275362319,
+        "home_break_even": 0.33557046979865773,
+        "away_no_vig_p": 0.49906843461697925,
+        "home_no_vig_p": 0.5009315653830206,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -519,7 +579,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "board_ml_away": -229,
+        "board_ml_home": 186,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -609,7 +675,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": -229,
+        "home_odds": 186,
+        "away_break_even": 0.6960486322188449,
+        "home_break_even": 0.34965034965034963,
+        "away_no_vig_p": 0.4991385085969938,
+        "home_no_vig_p": 0.5008614914030062,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -651,7 +731,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "WAIT_PRICE_DEPENDENT",
+        "board_ml_away": -217,
+        "board_ml_home": 177,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -765,7 +851,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": -217,
+        "home_odds": 177,
+        "away_break_even": 0.6845425867507886,
+        "home_break_even": 0.36101083032490977,
+        "away_no_vig_p": 0.49919537699061983,
+        "home_no_vig_p": 0.5008046230093801,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -807,7 +907,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "board_ml_away": 119,
+        "board_ml_home": -144,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -897,7 +1003,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 119,
+        "home_odds": -144,
+        "away_break_even": 0.45662100456621,
+        "home_break_even": 0.5901639344262295,
+        "away_no_vig_p": 0.5003321190386122,
+        "home_no_vig_p": 0.4996678809613878,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -939,7 +1059,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "WAIT_PRICE_DEPENDENT",
+        "board_ml_away": 113,
+        "board_ml_home": -136,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -1029,7 +1155,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 113,
+        "home_odds": -136,
+        "away_break_even": 0.4694835680751174,
+        "home_break_even": 0.576271186440678,
+        "away_no_vig_p": 0.5002655803861562,
+        "home_no_vig_p": 0.49973441961384374,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -1071,7 +1211,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "board_ml_away": 119,
+        "board_ml_home": -143,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -1161,7 +1307,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 119,
+        "home_odds": -143,
+        "away_break_even": 0.45662100456621,
+        "home_break_even": 0.588477366255144,
+        "away_no_vig_p": 0.500327927322669,
+        "home_no_vig_p": 0.49967207267733105,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -1203,7 +1363,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "board_ml_away": -180,
+        "board_ml_home": 148,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -1329,7 +1495,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": -180,
+        "home_odds": 148,
+        "away_break_even": 0.6428571428571429,
+        "home_break_even": 0.4032258064516129,
+        "away_no_vig_p": 0.4994040387833223,
+        "home_no_vig_p": 0.5005959612166777,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -1371,7 +1551,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "board_ml_away": 138,
+        "board_ml_home": -168,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -1473,7 +1659,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 138,
+        "home_odds": -168,
+        "away_break_even": 0.42016806722689076,
+        "home_break_even": 0.6268656716417911,
+        "away_no_vig_p": 0.5005140528576099,
+        "home_no_vig_p": 0.49948594714239014,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -1515,7 +1715,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "PASS_THE_BOARD",
+        "board_ml_away": -131,
+        "board_ml_home": 109,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -1617,7 +1823,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": -131,
+        "home_odds": 109,
+        "away_break_even": 0.5670995670995671,
+        "home_break_even": 0.4784688995215311,
+        "away_no_vig_p": 0.4997795756746741,
+        "home_no_vig_p": 0.5002204243253259,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -1659,7 +1879,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "WAIT_PRICE_DEPENDENT",
+        "board_ml_away": 139,
+        "board_ml_home": -168,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -1737,7 +1963,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 139,
+        "home_odds": -168,
+        "away_break_even": 0.41841004184100417,
+        "home_break_even": 0.6268656716417911,
+        "away_no_vig_p": 0.500518429565333,
+        "home_no_vig_p": 0.49948157043466695,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -1779,7 +2019,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "WAIT_PRICE_DEPENDENT",
+        "board_ml_away": -199,
+        "board_ml_home": 163,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -1869,7 +2115,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": -199,
+        "home_odds": 163,
+        "away_break_even": 0.6655518394648829,
+        "home_break_even": 0.38022813688212925,
+        "away_no_vig_p": 0.4992904011648085,
+        "home_no_vig_p": 0.5007095988351914,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -1911,7 +2171,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "WAIT_PRICE_DEPENDENT",
+        "board_ml_away": -174,
+        "board_ml_home": 144,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -2001,7 +2267,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": -174,
+        "home_odds": 144,
+        "away_break_even": 0.635036496350365,
+        "home_break_even": 0.4098360655737705,
+        "away_no_vig_p": 0.49943992495827716,
+        "home_no_vig_p": 0.500560075041723,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -2043,7 +2323,13 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD"
+        "decision": "WAIT_PRICE_DEPENDENT",
+        "board_ml_away": 129,
+        "board_ml_home": -156,
+        "board_source": "live_DK_browser",
+        "is_dk_direct": true,
+        "quote_source": "live_DK_browser",
+        "buy_locked": true
       },
       "explanation": {
         "positive": [],
@@ -2133,7 +2419,21 @@
       "fractional_kelly_factor": null,
       "clv_at_close": null,
       "accepted_vs_recommended_price": null,
-      "investigation_note": null
+      "investigation_note": null,
+      "market": {
+        "book": "DraftKings",
+        "away_odds": 129,
+        "home_odds": -156,
+        "away_break_even": 0.4366812227074236,
+        "home_break_even": 0.609375,
+        "away_no_vig_p": 0.5004294880997349,
+        "home_no_vig_p": 0.4995705119002651,
+        "fetched_at": "2026-09-15T13:47:37Z",
+        "is_dk_direct": true,
+        "quote_source_label": "live_DK_browser",
+        "display_note": "DK browser scrape — BUY locked",
+        "refresh_note": "merged from glass_quotes_20260915 @ 2026-09-15T14:11:45Z"
+      }
     },
     {
       "event": {
@@ -4153,11 +4453,29 @@
     }
   ],
   "price_display": {
-    "is_dk_direct": false,
-    "quote_source_label": null,
+    "is_dk_direct": true,
+    "quote_source_label": "live_DK_browser",
     "buy_lean_locked": true,
-    "ui_note": "Tuesday SI loaded; BUY locked. Waiting on DK quotes for 2026-09-15.",
-    "refreshed_at": null,
-    "n_refreshed": 0
+    "ui_note": "DK browser scrape merged for Tue MLB; BUY locked. refreshed=15",
+    "refreshed_at": "2026-09-15T13:47:37Z",
+    "n_refreshed": 15,
+    "refreshed_event_ids": [
+      "mlb-20260915-ath-tb",
+      "mlb-20260915-chw-cle",
+      "mlb-20260915-lad-cin",
+      "mlb-20260915-mil-pit",
+      "mlb-20260915-phi-wsh",
+      "mlb-20260915-det-tor",
+      "mlb-20260915-bal-nym",
+      "mlb-20260915-atl-chc",
+      "mlb-20260915-nyy-min",
+      "mlb-20260915-sf-stl",
+      "mlb-20260915-bos-tex",
+      "mlb-20260915-kc-hou",
+      "mlb-20260915-sd-col",
+      "mlb-20260915-sea-laa",
+      "mlb-20260915-mia-ari"
+    ],
+    "quotes_generated_at": "2026-09-15T14:11:45Z"
   }
 }
