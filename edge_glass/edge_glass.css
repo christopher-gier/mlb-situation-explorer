@@ -1472,3 +1472,77 @@ body.eg-standalone {
   color: var(--eg-muted);
   font-weight: 400;
 }
+
+
+/* Narrative drawer — readable sections */
+.eg-code-soft {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.72em;
+  opacity: 0.55;
+  font-weight: 500;
+}
+.eg-filter-name {
+  font-weight: 600;
+}
+.eg-filter-detail {
+  margin-top: 0.2rem;
+  font-size: 0.88em;
+  color: var(--eg-muted, #5b6472);
+  line-height: 1.35;
+}
+.eg-filter-subhead {
+  margin: 0 0 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--eg-muted, #5b6472);
+}
+.eg-filter-details {
+  margin-top: 0.85rem;
+}
+.eg-filter-details > summary {
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--eg-muted, #5b6472);
+  list-style: none;
+}
+.eg-filter-details > summary::-webkit-details-marker { display: none; }
+.eg-filter-details > summary::before {
+  content: "▸ ";
+  opacity: 0.7;
+}
+.eg-filter-details[open] > summary::before { content: "▾ "; }
+.eg-filter-details .eg-filter-list {
+  margin-top: 0.5rem;
+}
+.eg-pill-mini {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.08rem 0.4rem;
+  border-radius: 999px;
+  vertical-align: 0.05em;
+}
+.eg-pill-mini.on {
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+}
+.eg-pill-mini.off {
+  background: rgba(100, 116, 139, 0.12);
+  color: #64748b;
+}
+.eg-fact-kind {
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+.eg-drawer-section > h3 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin: 0 0 0.65rem;
+}

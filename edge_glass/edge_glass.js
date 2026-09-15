@@ -1101,6 +1101,116 @@
   }
 
 
+  /** Plain-English labels — never put raw enums in headlines. */
+  const FILTER_HUMAN = {
+    F01: "Starting pitcher",
+    F02: "Bullpen rest",
+    F03: "Lineup / platoon",
+    F04: "Park factors",
+    F05: "Rest & travel",
+    F06: "Climate / run environment",
+    F07: "OPS edge",
+    F08: "K/BB pitching",
+    F09: "Injury impact",
+  };
+
+  const FIELD_HUMAN = {
+    sp_away: "Away starter",
+    sp_home: "Home starter",
+    starter_away: "Away starter",
+    starter_home: "Home starter",
+    forecast_near_first_pitch: "Weather near first pitch",
+    weather: "Weather",
+    start_time: "Start / game clock",
+    injury: "Injury",
+    lineup: "Lineup",
+    sp_quality: "Starting pitcher",
+    bullpen_rest: "Bullpen rest",
+    lineup_platoon: "Lineup / platoon",
+    park_run_env: "Park factors",
+    rest_travel: "Rest & travel",
+    rd_climate: "Climate / run environment",
+    ops_edge: "OPS edge",
+    kbb_pitch: "K/BB pitching",
+    injury_delta: "Injury impact",
+  };
+
+  function humanDecision(code) {
+    const c = String(code || "").trim();
+    const map = {
+      WAIT_PRICE_DEPENDENT: "Waiting on price",
+      PASS_THE_BOARD: "Pass the board",
+      BAD_PRICE: "Bad price",
+      UNVERIFIED: "Not verified yet",
+      BUY_CANDIDATE: "Buy candidate (locked)",
+      LEAN_CANDIDATE: "Lean candidate (locked)",
+      STOP: "Stop",
+    };
+    return map[c] || (c ? c.replace(/_/g, " ").toLowerCase() : "—");
+  }
+
+  function humanSiAction(code) {
+    const c = String(code || "").trim();
+    const map = {
+      CLEAR_FOR_PRICE: "Clear for price check",
+      WATCH: "Watch",
+      STOP: "Stop — do not price",
+    };
+    return map[c] || (c ? c.replace(/_/g, " ") : "—");
+  }
+
+  function humanFundStatus(code) {
+    const c = String(code || "").trim();
+    const map = {
+      OK: "Model ok",
+      STOPPED: "Stopped",
+      INSUFFICIENT: "Not enough inputs",
+    };
+    return map[c] || (c || "—");
+  }
+
+  function humanFilterName(f) {
+    if (!f) return "Filter";
+    const id = f.id || "";
+    if (FILTER_HUMAN[id]) return FILTER_HUMAN[id];
+    const lab = String(f.label || "").trim();
+    if (lab && FIELD_HUMAN[lab]) return FIELD_HUMAN[lab];
+    if (lab) return lab.replace(/_/g, " ");
+    return id || "Filter";
+  }
+
+  function humanFieldName(kind) {
+    const k = String(kind || "").trim();
+    if (!k) return "Fact";
+    if (FIELD_HUMAN[k]) return FIELD_HUMAN[k];
+    if (FILTER_HUMAN[k]) return FILTER_HUMAN[k];
+    return k.replace(/_/g, " ");
+  }
+
+  function humanReason(raw) {
+    const s = String(raw || "").trim();
+    if (!s) return "Not available for this slate";
+    const map = {
+      "SP metrics incomplete": "Pitcher quality metrics incomplete",
+      "missing bp_as_of / timestamp": "Bullpen timestamp missing",
+      "missing lineup_as_of / timestamp": "Lineup timestamp missing",
+      "park_factor missing": "Park factor not loaded",
+      "ops missing": "OPS inputs missing",
+      "team_k_bb missing": "Team K/BB inputs missing",
+      "missing injury_as_of / timestamp": "Injury timestamp missing",
+      "inactive / unverified": "Not active on this row",
+    };
+    if (map[s]) return map[s];
+    if (s.startsWith("STOP:")) return "Blocked by SI stop (" + s.slice(5) + ")";
+    return s.replace(/_/g, " ");
+  }
+
+  function humanEvidenceGrade(g) {
+    const c = String(g || "").trim().toUpperCase();
+    const map = { A: "Strong", B: "Solid", C: "Thin", D: "Weak" };
+    return map[c] || (c || "—");
+  }
+
   /** Lead narrative — never invent. Prefer Marcus narrative fields, then facts. */
   function leadNarrative(row) {
     if (!row) return "";
@@ -1186,35 +1296,37 @@
     const home = ev.home || "Home";
     const filters = (row.fundamental && row.fundamental.filters) || [];
     if (!filters.length) {
-      return `<div class="eg-dots-empty eg-muted">No Daniel filters on this row.</div>`;
+      return `<div class="eg-dots-empty eg-muted">No model filters on this row.</div>`;
     }
     const rows = filters
       .map((f) => {
-        const label = f.label || f.id || "filter";
+        const label = humanFilterName(f);
         const pos = filterAxisPos(f);
         const active = !!f.active && pos != null;
         let pct = 50;
         let cls = "eg-dot-inactive";
-        let title = f.unverified_reason
-          ? `inactive / unverified — ${f.unverified_reason}`
-          : "inactive / unverified";
-        let side = "inactive / unverified";
-        let meta = f.unverified_reason
-          ? esc(f.unverified_reason)
-          : "no signed z";
+        let title = active ? label : `${label} — not active`;
+        let side = "Not active";
+        let meta = humanReason(f.unverified_reason || "inactive / unverified");
         if (active) {
           pct = 50 + pos.unit * 50;
           cls = pos.unit > 0.02 ? "eg-dot-home" : pos.unit < -0.02 ? "eg-dot-away" : "eg-dot-neutral";
           side = filterFavoredText(pos.unit, away, home);
-          title = `${label}: ${pos.source}=${pos.raw} (clipped ${pos.clipped}) · ${side}`;
-          meta = `${pos.source}=${esc(String(pos.raw))}${
-            f.logit_contribution != null
-              ? ` · logit=${esc(String(f.logit_contribution))}`
-              : ""
-          }`;
+          title = `${label}: ${side}`;
+          const strength = Math.abs(pos.raw);
+          meta =
+            strength < 0.15
+              ? "Near even"
+              : strength < 0.5
+                ? "Mild lean"
+                : strength < 1
+                  ? "Clear lean"
+                  : "Strong lean";
         }
         return `<div class="eg-dot-row" title="${esc(title)}">
-          <div class="eg-dot-label"><code>${esc(f.id || "")}</code> ${esc(label)}</div>
+          <div class="eg-dot-label">${esc(label)}${
+            f.id ? ` <span class="eg-muted eg-code-soft">${esc(f.id)}</span>` : ""
+          }</div>
           <div class="eg-dot-track" aria-hidden="true">
             <span class="eg-dot-axis-end left">${esc(away)}</span>
             <span class="eg-dot-center-line"></span>
@@ -1222,18 +1334,18 @@
             <span class="eg-dot-axis-end right">${esc(home)}</span>
           </div>
           <div class="eg-dot-side">${esc(side)}</div>
-          <div class="eg-dot-meta">${meta}</div>
+          <div class="eg-dot-meta">${esc(meta)}</div>
         </div>`;
       })
       .join("");
     return `
-      <div class="eg-dots" role="img" aria-label="Matchup filter contributions. Positive z favors home (right).">
+      <div class="eg-dots" role="img" aria-label="Filter leans. Right favors home.">
         <div class="eg-dots-legend">
           <span><b>${esc(away)}</b> away ←</span>
-          <span>center</span>
+          <span>even</span>
           <span>→ home <b>${esc(home)}</b></span>
         </div>
-        <p class="eg-dots-convention eg-hint">Dot convention: signed <code>z</code> (prefer) or <code>logit_contribution</code>; + = home-favoring (right). Mapped from clipped [-2, 2] → axis. Inactive filters stay hollow at center — not zero evidence.</p>
+        <p class="eg-dots-convention eg-hint">Each row is one model filter. Active dots lean toward the favored side; hollow dots mean that filter is off for this game.</p>
         ${rows}
       </div>`;
   }
@@ -1242,8 +1354,16 @@
     const val = row.value || {};
     const mkt = row.market || {};
     const decision = gate.decision || val.decision || "UNVERIFIED";
-    const quote =
-      mkt.quote_source_label || val.quote_source || view.quoteLabel || "—";
+    const quoteRaw =
+      mkt.quote_source_label || val.quote_source || view.quoteLabel || "";
+    const quoteHuman =
+      quoteRaw === "live_DK_browser"
+        ? "DraftKings (browser)"
+        : quoteRaw === "ESPN_DK_board"
+          ? "DraftKings via ESPN board"
+          : quoteRaw === "AN_mirror"
+            ? "Action Network mirror (stale risk)"
+            : quoteRaw || "—";
     const isDk = !!(mkt.is_dk_direct || val.is_dk_direct || view.isDkDirect);
     const div =
       view.divLabel != null
@@ -1253,48 +1373,37 @@
           : "—";
     const reasons = [];
     if (gate.gated && gate.reasons && gate.reasons.length) {
-      reasons.push(`Hard gate: ${gate.reasons.join("; ")}`);
+      reasons.push(gate.reasons.join("; "));
     }
-    if (val.flash_reason) reasons.push(`Flash: ${val.flash_reason}`);
-    if (row.investigation_note) reasons.push(`Note: ${row.investigation_note}`);
+    if (val.flash_reason && val.flash_reason !== "STOP") {
+      reasons.push(String(val.flash_reason).replace(/_/g, " "));
+    }
+    if (row.investigation_note) reasons.push(row.investigation_note);
     if (decision === "WAIT_PRICE_DEPENDENT") {
-      reasons.push("WAIT — price-dependent; no ticket until quote + edge align.");
+      reasons.push("Waiting on price — no ticket until quote and edge line up.");
     } else if (decision === "PASS_THE_BOARD") {
-      reasons.push("PASS the board — not a candidate at this price/research state.");
+      reasons.push("Pass — not a candidate at this price or research state.");
     } else if (decision === "BAD_PRICE") {
-      reasons.push("BAD_PRICE — market does not support the research side.");
+      reasons.push("Market price does not support the research side.");
     } else if (decision === "UNVERIFIED") {
-      reasons.push("UNVERIFIED — SI / fundamentals not clear for pricing.");
+      reasons.push("Situation or model inputs are not clear enough to price.");
     }
-    // BUY locked — never surface as actionable (classification DIAGNOSTIC_LEAN ≠ BUY)
     const classif = val.classification || view.classification || null;
-    const buyLockedFlag =
-      val.buy_locked === true ||
-      val.buy_locked === "true" ||
-      view.buyLocked ||
-      view.diagnosticLean ||
-      decision === "BUY_CANDIDATE" ||
-      decision === "LEAN_CANDIDATE";
-    const buyLocked = buyLockedFlag
-      ? `<div class="eg-buy-lock">BUY locked${
-          classif === "DIAGNOSTIC_LEAN" || view.diagnosticLean
-            ? " — classification DIAGNOSTIC_LEAN is display-only (not BUY/LEAN)"
-            : " — research desk only"
-        }. No tickets.</div>`
-      : `<div class="eg-buy-lock">BUY locked — research desk only.</div>`;
+    const buyLocked = `<div class="eg-buy-lock">BUY stays locked — research desk only${
+      classif === "DIAGNOSTIC_LEAN" || view.diagnosticLean
+        ? ". Diagnostic lean is display-only, not a ticket."
+        : ". No tickets."
+    }</div>`;
 
     return `
       <ul class="eg-kv">
-        <li><span>Decision</span><b><span class="eg-decision ${decisionClass(
+        <li><span>Desk stance</span><b><span class="eg-decision ${decisionClass(
           decision
-        )}">${esc(decision)}</span></b></li>
-        <li><span>Quote source</span><b>${esc(quote)} · dk_direct=${esc(
-      String(!!isDk)
-    )}</b></li>
-        <li><span>Divergence</span><b class="mono">${esc(div)}</b></li>
-        <li><span>Raw / gated</span><b>${esc(gate.raw || "—")} → ${esc(
-      decision
-    )}${gate.gated ? " (hard-gated)" : ""}</b></li>
+        )}">${esc(humanDecision(decision))}</span></b></li>
+        <li><span>Quote</span><b>${esc(quoteHuman)}${
+      isDk ? " · live DK" : ""
+    }</b></li>
+        <li><span>Gap vs model</span><b class="mono">${esc(div)}</b></li>
       </ul>
       ${
         reasons.length
@@ -1309,58 +1418,83 @@
   function danielFiltersBlock(row) {
     const filters = (row.fundamental && row.fundamental.filters) || [];
     if (!filters.length) {
-      return `<p class="eg-muted">No filters listed.</p>`;
+      return `<p class="eg-muted">No model filters listed.</p>`;
     }
-    return `<ul class="eg-filter-list eg-filter-narrative">
-      ${filters
-        .map((f) => {
-          if (f.active) {
-            const z = f.z != null ? `z=${esc(String(f.z))}` : "z=—";
-            const lg =
-              f.logit_contribution != null
-                ? `logit_contribution=${esc(String(f.logit_contribution))}`
-                : "logit_contribution=—";
-            return `<li class="on"><code>${esc(f.id)}</code> ${esc(
-              f.label || ""
-            )} · <strong>active</strong> · ${z} · ${lg} · grade ${esc(
-              f.evidence_grade || "—"
-            )}</li>`;
-          }
-          const why = f.unverified_reason
-            ? esc(f.unverified_reason)
-            : "inactive / unverified";
-          return `<li class="off"><code>${esc(f.id)}</code> ${esc(
-            f.label || ""
-          )} · <em>inactive / unverified</em> — ${why}</li>`;
-        })
-        .join("")}
-    </ul>`;
+    const active = filters.filter((f) => f && f.active);
+    const inactive = filters.filter((f) => f && !f.active);
+    const renderOn = (f) => {
+      const name = humanFilterName(f);
+      const grade = f.evidence_grade
+        ? ` · ${humanEvidenceGrade(f.evidence_grade)} evidence`
+        : "";
+      return `<li class="on"><span class="eg-filter-name">${esc(
+        name
+      )}</span> <span class="eg-pill-mini on">On</span>${
+        f.id ? ` <span class="eg-muted eg-code-soft">${esc(f.id)}</span>` : ""
+      }<div class="eg-filter-detail">In the model${grade}.</div></li>`;
+    };
+    const renderOff = (f) => {
+      const name = humanFilterName(f);
+      return `<li class="off"><span class="eg-filter-name">${esc(
+        name
+      )}</span> <span class="eg-pill-mini off">Off</span>${
+        f.id ? ` <span class="eg-muted eg-code-soft">${esc(f.id)}</span>` : ""
+      }<div class="eg-filter-detail">${esc(
+        humanReason(f.unverified_reason || "inactive / unverified")
+      )}</div></li>`;
+    };
+    return `<div class="eg-filter-narrative-wrap">
+      ${
+        active.length
+          ? `<p class="eg-filter-subhead">In play (${active.length})</p><ul class="eg-filter-list eg-filter-narrative">${active
+              .map(renderOn)
+              .join("")}</ul>`
+          : `<p class="eg-muted">No filters active on this game.</p>`
+      }
+      ${
+        inactive.length
+          ? `<details class="eg-filter-details"><summary>Not used (${inactive.length})</summary><ul class="eg-filter-list eg-filter-narrative">${inactive
+              .map(renderOff)
+              .join("")}</ul></details>`
+          : ""
+      }
+    </div>`;
   }
 
   function siStoryBlock(row) {
     const prov = row.provenance || {};
     const lines = siFactLines(row);
-    const siAction = prov.si_action || "—";
-    const overall = prov.overall || "—";
-    const stops = (prov.stops || []).join(", ") || "none";
+    const siAction = humanSiAction(prov.si_action);
+    const overall = humanEvidenceGrade(prov.overall);
+    const stops = (prov.stops || []).map((s) => String(s).replace(/_/g, " "));
     const factLis = lines
       .map((f) => {
         const bits = [
-          f.evidence_grade ? `grade ${f.evidence_grade}` : null,
-          f.freshness || null,
+          f.evidence_grade ? humanEvidenceGrade(f.evidence_grade) + " evidence" : null,
+          f.freshness === "fresh" ? "fresh" : f.freshness || null,
         ].filter(Boolean);
-        return `<li><code>${esc(f.kind)}</code> ${esc(f.notes)}${
-          bits.length ? ` <span class="eg-muted">(${esc(bits.join(", "))})</span>` : ""
+        return `<li><span class="eg-fact-kind">${esc(
+          humanFieldName(f.kind)
+        )}</span> ${esc(f.notes)}${
+          bits.length
+            ? ` <span class="eg-muted">(${esc(bits.join(", "))})</span>`
+            : ""
         }</li>`;
       })
       .join("");
     return `
       <ul class="eg-kv">
-        <li><span>SI action</span><b>${esc(siAction)}</b></li>
+        <li><span>SI stance</span><b>${esc(siAction)}</b></li>
         <li><span>Evidence</span><b>${esc(overall)}</b></li>
-        <li><span>Stops</span><b>${esc(stops)}</b></li>
+        <li><span>Stops</span><b>${esc(
+          stops.length ? stops.join(", ") : "None"
+        )}</b></li>
       </ul>
-      ${factLis ? `<ul class="eg-fact-list">${factLis}</ul>` : `<p class="eg-muted">No provenance facts.</p>`}`;
+      ${
+        factLis
+          ? `<ul class="eg-fact-list">${factLis}</ul>`
+          : `<p class="eg-muted">No graded SI facts on this row.</p>`
+      }`;
   }
 
   function openDetail(id) {
@@ -1410,21 +1544,27 @@
           .filter(Boolean)
           .map((p) => `<p class="eg-narr-p">${esc(p)}</p>`)
           .join("")
-      : `<p class="eg-muted">No SI narrative text on this feed row.</p>`;
+      : `<p class="eg-muted">No situation write-up on this feed row yet.</p>`;
+
+    const stanceLabel = isStop
+      ? "Stopped"
+      : view.diagnosticLean
+        ? `Diagnostic lean · ${view.diagnosticLeanSide || "—"}`
+        : humanDecision(gate.decision);
 
     inner.innerHTML = `
       <div class="eg-drawer-head">
         <div>
-          <div class="eg-drawer-kicker">${esc(ev.sport || "")} · ${esc(
-      ev.date || ""
-    )} · ${esc(ev.event_id || "")}</div>
+          <div class="eg-drawer-kicker">${esc(ev.sport || "")}${
+      ev.date ? ` · ${esc(ev.date)}` : ""
+    }</div>
           <h2 class="eg-drawer-title" id="eg-drawer-title">${esc(ev.away)} @ ${esc(
       ev.home
     )}</h2>
           <div class="eg-drawer-pills">
             ${statusPill(view)}
             <span class="eg-decision ${decisionClass(gate.decision)}">${esc(
-      gate.decision
+      stanceLabel
     )}</span>
             <span class="eg-exp">experimental</span>
           </div>
@@ -1432,36 +1572,33 @@
         <button type="button" class="eg-drawer-close" id="eg-drawer-close" aria-label="Close detail">×</button>
       </div>
       <div class="eg-drawer-banner" role="status">
-        Experimental model — wagering action disabled. BUY locked. Spectrum remains on the desk below.
+        Experimental price diagnostics — BUY locked. Read the story; do not treat this as a ticket.
       </div>
       <section class="eg-drawer-section ${isStop ? "eg-story-stop" : ""}">
-        <h3>${isStop ? "STOP story (leads)" : "How we got here"}</h3>
+        <h3>${isStop ? "Why this is stopped" : "Situation"}</h3>
         <div class="eg-narr-lead">${leadHtml}</div>
       </section>
       <section class="eg-drawer-section">
-        <h3>SI story</h3>
+        <h3>Evidence checklist</h3>
         ${siStoryBlock(row)}
       </section>
       <section class="eg-drawer-section">
-        <h3>Daniel filters</h3>
+        <h3>Model filters</h3>
         ${danielFiltersBlock(row)}
       </section>
       <section class="eg-drawer-section">
-        <h3>Matchup dots</h3>
+        <h3>Filter leans</h3>
         ${matchupDotChart(row)}
       </section>
       <section class="eg-drawer-section">
-        <h3>Adrian / gates</h3>
+        <h3>Price check</h3>
         ${adrianGateBlock(row, view, gate)}
         ${
           view.diagnosticLean
-            ? `<div class="eg-diag-callout"><strong>DIAGNOSTIC LEAN · ${esc(
+            ? `<div class="eg-diag-callout"><strong>Diagnostic lean · ${esc(
                 view.diagnosticLeanSide || "—"
               )}</strong>
-                <div class="eg-diag-tags">${(view.diagnosticTags || [])
-                  .map((t) => `<span class="eg-diag-tag">${esc(t)}</span>`)
-                  .join("")}</div>
-                <p class="eg-challenge-note">${esc(DANIEL_CHALLENGE_FOOTNOTE)}</p>
+                <p class="eg-challenge-note">Display only — not BUY. Prefer pregame DraftKings if the moneyline looks live or extreme.</p>
               </div>`
             : ""
         }
