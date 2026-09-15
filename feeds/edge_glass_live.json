@@ -1,8 +1,8 @@
 {
   "_example": false,
   "_live_si": true,
-  "_warning": "Experimental PRICE DIAGNOSTICS \u2014 Daniel fundamentals v1.1 (MLB heuristic). Market not in p; DK-direct quotes preserved; buy_locked / no tickets; not validated edge. SI verify packs re-merged from Marcus 00:16Z feeds.",
-  "generated_at": "2026-09-15T00:23:13Z",
+  "_warning": "Experimental PRICE DIAGNOSTICS \u2014 Daniel fundamentals v1.1 (MLB heuristic). Market not in p; DK-direct quotes preserved; buy_locked / no tickets; not validated edge.",
+  "generated_at": "2026-09-15T00:29:21Z",
   "model_version": "mlb-heuristic-v1.1",
   "slate_dates": [
     "2026-09-14",
@@ -24,7 +24,7 @@
       "sport_filter": [
         "MLB"
       ],
-      "generated_at": "2026-09-15T00:16:59Z"
+      "generated_at": "2026-09-15T00:29:21Z"
     },
     {
       "path": "/workspace/mlb-price-first/edge_glass/feeds/si_verify_20260917.json",
@@ -33,7 +33,7 @@
       "sport_filter": [
         "NFL"
       ],
-      "generated_at": "2026-09-15T00:16:19Z"
+      "generated_at": "2026-09-15T00:29:21Z"
     },
     {
       "path": "/workspace/mlb-price-first/edge_glass/feeds/si_verify_20260920.json",
@@ -42,7 +42,7 @@
       "sport_filter": [
         "NFL"
       ],
-      "generated_at": "2026-09-15T00:16:19Z"
+      "generated_at": "2026-09-15T00:29:21Z"
     }
   ],
   "si_missing_primary": [],
@@ -68,7 +68,7 @@
         "stop_fields": [],
         "status": "OK",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -112,7 +112,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -123,7 +123,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -134,7 +134,7 @@
             "logit_contribution": -0.06597599999999999,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -145,7 +145,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -156,7 +156,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -218,7 +218,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 6th.\nstarter_away: Sean Newcomb [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 6th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Gavin Williams [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 6th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Progressive Field Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Cleared for price diagnostics for CHW@CLE.\nAway SP: Sean Newcomb (2-4, 2.77) \u2014 confirmed; Home SP: Gavin Williams (13-7, 3.78) \u2014 confirmed.\nWeather: Partly Cloudy; 56F; wind 2 to 10 mph E; PoP 0% (Progressive Field Tonight).\nScheduled start: 2026-09-14T22:40Z UTC (game may be in progress \u2014 live score not part of this SI story).\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -234,7 +234,12 @@
             "field_name": "sp_away",
             "raw_value": "Sean Newcomb ((2-4, 2.77))",
             "normalized_value": "Sean Newcomb",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "ESPN listed SP; game in (Top 6th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Sean Newcomb",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-probable",
@@ -246,7 +251,12 @@
             "field_name": "sp_home",
             "raw_value": "Gavin Williams ((13-7, 3.78))",
             "normalized_value": "Gavin Williams",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "ESPN listed SP; game in (Top 6th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Gavin Williams",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -258,7 +268,12 @@
             "field_name": "forecast_near_first_pitch",
             "raw_value": "Partly Cloudy; 56F; wind 2 to 10 mph E; PoP 0%",
             "normalized_value": "Partly Cloudy",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Progressive Field Tonight",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -270,7 +285,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-14T22:40Z; Top 6th; score 0-0",
             "normalized_value": "2026-09-14T22:40Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Live ESPN status Top 6th. Slate CT 2026-09-14.",
+            "status": "IN_PROGRESS",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "CLEAR_FOR_PRICE"
@@ -300,7 +320,7 @@
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates",
         "refresh_note": "stale_kept_prior_quote; not on ESPN board at refresh"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 6th.\nstarter_away: Sean Newcomb [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 6th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Gavin Williams [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 6th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Progressive Field Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Cleared for price diagnostics for CHW@CLE.\nAway SP: Sean Newcomb (2-4, 2.77) \u2014 confirmed; Home SP: Gavin Williams (13-7, 3.78) \u2014 confirmed.\nWeather: Partly Cloudy; 56F; wind 2 to 10 mph E; PoP 0% (Progressive Field Tonight).\nScheduled start: 2026-09-14T22:40Z UTC (game may be in progress \u2014 live score not part of this SI story).\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -314,16 +334,18 @@
         "status": "scheduled"
       },
       "fundamental": {
-        "away_p": 0.5199038139657901,
-        "home_p": 0.48009618603420984,
+        "away_p": null,
+        "home_p": null,
         "consensus": null,
         "range": null,
         "model_version": "mlb-heuristic-v1.1",
         "experimental": true,
-        "stop_fields": [],
-        "status": "OK",
+        "stop_fields": [
+          "starter"
+        ],
+        "status": "STOPPED",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -332,8 +354,8 @@
             "z": null,
             "w": null,
             "logit_contribution": null,
-            "unverified_reason": "SP metrics incomplete",
-            "evidence_grade": "A",
+            "unverified_reason": "STOP:starter",
+            "evidence_grade": "D",
             "as_of": "2026-09-15T00:16:59Z"
           },
           {
@@ -367,7 +389,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -378,7 +400,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -389,7 +411,7 @@
             "logit_contribution": -0.24,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -400,7 +422,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -411,7 +433,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -426,42 +448,39 @@
           }
         ],
         "tags": [
-          "si_clear",
           "p0_fallback_054",
           "experimental",
-          "diagnostic_lean",
-          "fragile_rd_soft",
-          "lean_CIN"
+          "si_stop"
         ]
       },
       "value": {
-        "most_likely_winner": "AWAY",
-        "best_side": "HOME",
-        "divergence_pp": 39.5,
-        "executable_edge_pp": 38.9,
+        "most_likely_winner": null,
+        "best_side": null,
+        "divergence_pp": null,
+        "executable_edge_pp": null,
         "ev": null,
-        "fair_odds": -108.3,
-        "fair_odds_away": -108.3,
-        "fair_odds_home": 108.3,
-        "classification": "DIAGNOSTIC_LEAN",
+        "fair_odds": null,
+        "fair_odds_away": null,
+        "fair_odds_home": null,
+        "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "WAIT_PRICE_DEPENDENT",
+        "decision": "UNVERIFIED",
         "quote_source": "live_DK_browser",
         "is_dk_direct": true,
-        "divergence_band": "EXTREME",
+        "divergence_band": null,
         "board_ml_away": -3800,
         "board_ml_home": 1000,
         "board_source": "live_DK_browser",
-        "flash": true,
-        "most_likely_team": "LAD",
-        "fundamental_pct": 52.0,
-        "value_side_team": "CIN",
-        "divergence_ml_pp": 39.5,
-        "flash_reason": "DIVERGENCE",
-        "diagnostic_lean": true,
-        "diagnostic_lean_side": "CIN",
-        "diagnostic_lean_note": "DIAGNOSTIC LEAN CIN \u2014 live_DK_browser; buy_locked; not BUY",
+        "flash": null,
+        "most_likely_team": null,
+        "fundamental_pct": null,
+        "value_side_team": null,
+        "divergence_ml_pp": null,
+        "flash_reason": null,
+        "diagnostic_lean": null,
+        "diagnostic_lean_side": null,
+        "diagnostic_lean_note": null,
         "buy_locked": true
       },
       "explanation": {
@@ -476,11 +495,13 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 7th.\nstarter_away: Tarik Skubal [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 7th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Nick Lodolo [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 7th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Great American Ball Park Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Stopped for LAD@CIN because of starter.\nAway SP: Tarik Skubal (9-7, 2.84) \u2014 unverified (blocked); Home SP: Nick Lodolo (3-4, 5.12) \u2014 confirmed.\nWeather: Mostly Clear; 59F; wind 5 mph E; PoP 0% (Great American Ball Park Tonight).\nScheduled start: 2026-09-14T22:40Z UTC (game may be in progress \u2014 live score not part of this SI story).\nStarter identity conflict: Tarik Skubal is mapped to LAD but desk identity expects DET \u2014 do not CLEAR on this SP join.\nNot cleared \u2014 STOP on starter. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
-        "overall": "B",
-        "stops": [],
+        "overall": "D",
+        "stops": [
+          "starter"
+        ],
         "facts": [
           {
             "source_id": "espn-mlb-probable",
@@ -488,11 +509,16 @@
             "fetched_at": "2026-09-15T00:16:59Z",
             "effective_at": "2026-09-15T00:16:59Z",
             "event_id": "mlb-20260914-lad-cin",
-            "evidence_grade": "A",
+            "evidence_grade": "D",
             "field_name": "sp_away",
             "raw_value": "Tarik Skubal ((9-7, 2.84))",
             "normalized_value": "Tarik Skubal",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "Starter identity conflict: Tarik Skubal is mapped to LAD but desk identity expects DET \u2014 do not CLEAR on this SP join.",
+            "status": "UNVERIFIED",
+            "player_name": "Tarik Skubal",
+            "stop": true
           },
           {
             "source_id": "espn-mlb-probable",
@@ -504,7 +530,12 @@
             "field_name": "sp_home",
             "raw_value": "Nick Lodolo ((3-4, 5.12))",
             "normalized_value": "Nick Lodolo",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "ESPN listed SP; game in (Top 7th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Nick Lodolo",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -516,7 +547,12 @@
             "field_name": "forecast_near_first_pitch",
             "raw_value": "Mostly Clear; 59F; wind 5 mph E; PoP 0%",
             "normalized_value": "Mostly Clear",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Great American Ball Park Tonight",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -528,10 +564,15 @@
             "field_name": "start_time",
             "raw_value": "2026-09-14T22:40Z; Top 7th; score 4-0",
             "normalized_value": "2026-09-14T22:40Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Live ESPN status Top 7th. Slate CT 2026-09-14.",
+            "status": "IN_PROGRESS",
+            "player_name": null,
+            "stop": false
           }
         ],
-        "si_action": "CLEAR_FOR_PRICE"
+        "si_action": "STOP"
       },
       "bankroll_id": null,
       "open_exposure_total": null,
@@ -559,7 +600,7 @@
         "refresh_note": "stale_kept_prior_quote; not on ESPN board at refresh",
         "live_or_extreme_ml": true
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 7th.\nstarter_away: Tarik Skubal [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 7th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Nick Lodolo [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 7th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Great American Ball Park Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Stopped for LAD@CIN because of starter.\nAway SP: Tarik Skubal (9-7, 2.84) \u2014 unverified (blocked); Home SP: Nick Lodolo (3-4, 5.12) \u2014 confirmed.\nWeather: Mostly Clear; 59F; wind 5 mph E; PoP 0% (Great American Ball Park Tonight).\nScheduled start: 2026-09-14T22:40Z UTC (game may be in progress \u2014 live score not part of this SI story).\nStarter identity conflict: Tarik Skubal is mapped to LAD but desk identity expects DET \u2014 do not CLEAR on this SP join.\nNot cleared \u2014 STOP on starter. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -582,7 +623,7 @@
         "stop_fields": [],
         "status": "OK",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -626,7 +667,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -637,7 +678,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -648,7 +689,7 @@
             "logit_contribution": -0.16236,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -659,7 +700,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -670,7 +711,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -735,7 +776,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: A.\nGame status: IN_PROGRESS \u2014 Bot 4th.\nstarter_away: Troy Melton [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Bot 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Jose Soriano [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Bot 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nclimate: [INDOOR] grade A, fresh. Indoor/retractable listed indoor by ESPN \u2014 outdoor weather non-load for pitch environment.\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Cleared for price diagnostics for DET@TOR.\nAway SP: Troy Melton (8-4, 2.42) \u2014 confirmed; Home SP: Jose Soriano (12-7, 3.48) \u2014 confirmed.\nWeather: Rogers Centre indoor=true (ESPN).\nScheduled start: 2026-09-14T23:07Z UTC (game may be in progress \u2014 live score not part of this SI story).\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "A",
@@ -751,7 +792,12 @@
             "field_name": "sp_away",
             "raw_value": "Troy Melton ((8-4, 2.42))",
             "normalized_value": "Troy Melton",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "ESPN listed SP; game in (Bot 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Troy Melton",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-probable",
@@ -763,7 +809,12 @@
             "field_name": "sp_home",
             "raw_value": "Jose Soriano ((12-7, 3.48))",
             "normalized_value": "Jose Soriano",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "ESPN listed SP; game in (Bot 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Jose Soriano",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-venue",
@@ -775,7 +826,12 @@
             "field_name": "venue_roof",
             "raw_value": "Rogers Centre indoor=true (ESPN)",
             "normalized_value": "indoor",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "climate",
+            "notes": "Indoor/retractable listed indoor by ESPN \u2014 outdoor weather non-load for pitch environment.",
+            "status": "INDOOR",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -787,7 +843,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-14T23:07Z; Bot 4th; score 0-2",
             "normalized_value": "2026-09-14T23:07Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Live ESPN status Bot 4th. Slate CT 2026-09-14.",
+            "status": "IN_PROGRESS",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "CLEAR_FOR_PRICE"
@@ -818,7 +879,7 @@
         "refresh_note": "stale_kept_prior_quote; not on ESPN board at refresh",
         "live_or_extreme_ml": true
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: A.\nGame status: IN_PROGRESS \u2014 Bot 4th.\nstarter_away: Troy Melton [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Bot 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Jose Soriano [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Bot 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nclimate: [INDOOR] grade A, fresh. Indoor/retractable listed indoor by ESPN \u2014 outdoor weather non-load for pitch environment.\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Cleared for price diagnostics for DET@TOR.\nAway SP: Troy Melton (8-4, 2.42) \u2014 confirmed; Home SP: Jose Soriano (12-7, 3.48) \u2014 confirmed.\nWeather: Rogers Centre indoor=true (ESPN).\nScheduled start: 2026-09-14T23:07Z UTC (game may be in progress \u2014 live score not part of this SI story).\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -841,7 +902,7 @@
         "stop_fields": [],
         "status": "OK",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -885,7 +946,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -896,7 +957,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -907,7 +968,7 @@
             "logit_contribution": 0.001224000000000005,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -918,7 +979,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -929,7 +990,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -994,7 +1055,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 4th.\nstarter_away: Brandon Young [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Jonah Tong [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Citi Field Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Cleared for price diagnostics for BAL@NYM.\nAway SP: Brandon Young (9-4, 3.71) \u2014 confirmed; Home SP: Jonah Tong (2-1, 4.80) \u2014 confirmed.\nWeather: Mostly Clear; 60F; wind 8 to 14 mph N; PoP 0% (Citi Field Tonight).\nScheduled start: 2026-09-14T23:10Z UTC (game may be in progress \u2014 live score not part of this SI story).\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -1010,7 +1071,12 @@
             "field_name": "sp_away",
             "raw_value": "Brandon Young ((9-4, 3.71))",
             "normalized_value": "Brandon Young",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "ESPN listed SP; game in (Top 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Brandon Young",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-probable",
@@ -1022,7 +1088,12 @@
             "field_name": "sp_home",
             "raw_value": "Jonah Tong ((2-1, 4.80))",
             "normalized_value": "Jonah Tong",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "ESPN listed SP; game in (Top 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Jonah Tong",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -1034,7 +1105,12 @@
             "field_name": "forecast_near_first_pitch",
             "raw_value": "Mostly Clear; 60F; wind 8 to 14 mph N; PoP 0%",
             "normalized_value": "Mostly Clear",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Citi Field Tonight",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -1046,7 +1122,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-14T23:10Z; Top 4th; score 1-0",
             "normalized_value": "2026-09-14T23:10Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Live ESPN status Top 4th. Slate CT 2026-09-14.",
+            "status": "IN_PROGRESS",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "CLEAR_FOR_PRICE"
@@ -1076,7 +1157,7 @@
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates",
         "refresh_note": "stale_kept_prior_quote; not on ESPN board at refresh"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 4th.\nstarter_away: Brandon Young [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Jonah Tong [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 4th) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Citi Field Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Cleared for price diagnostics for BAL@NYM.\nAway SP: Brandon Young (9-4, 3.71) \u2014 confirmed; Home SP: Jonah Tong (2-1, 4.80) \u2014 confirmed.\nWeather: Mostly Clear; 60F; wind 8 to 14 mph N; PoP 0% (Citi Field Tonight).\nScheduled start: 2026-09-14T23:10Z UTC (game may be in progress \u2014 live score not part of this SI story).\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -1099,7 +1180,7 @@
         "stop_fields": [],
         "status": "OK",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -1143,7 +1224,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -1154,7 +1235,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -1165,7 +1246,7 @@
             "logit_contribution": 0.03520800000000001,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -1176,7 +1257,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -1187,7 +1268,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -1249,7 +1330,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 3rd.\nstarter_away: Reynaldo Lopez [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: David Peterson [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Wrigley Field Tonight\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for ATL@CHC (weather / climate).\nAway SP: Reynaldo Lopez (4-4, 4.13) \u2014 confirmed; Home SP: David Peterson (7-8, 5.28) \u2014 confirmed.\nWeather: Mostly Cloudy then Chance Showers And Thunderstorms; 67F; wind 15 to 20 mph S; PoP 47% (Wrigley Field Tonight).\nScheduled start: 2026-09-14T23:40Z UTC (game may be in progress \u2014 live score not part of this SI story).\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -1265,7 +1346,12 @@
             "field_name": "sp_away",
             "raw_value": "Reynaldo Lopez ((4-4, 4.13))",
             "normalized_value": "Reynaldo Lopez",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Reynaldo Lopez",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-probable",
@@ -1277,7 +1363,12 @@
             "field_name": "sp_home",
             "raw_value": "David Peterson ((7-8, 5.28))",
             "normalized_value": "David Peterson",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "David Peterson",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -1289,7 +1380,12 @@
             "field_name": "forecast_near_first_pitch",
             "raw_value": "Mostly Cloudy then Chance Showers And Thunderstorms; 67F; wind 15 to 20 mph S; PoP 47%",
             "normalized_value": "Mostly Cloudy then Chance Showers And Thunderstorms",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Wrigley Field Tonight",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -1301,7 +1397,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-14T23:40Z; Top 3rd; score 0-3",
             "normalized_value": "2026-09-14T23:40Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Live ESPN status Top 3rd. Slate CT 2026-09-14.",
+            "status": "IN_PROGRESS",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -1331,7 +1432,7 @@
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates",
         "refresh_note": "stale_kept_prior_quote; not on ESPN board at refresh"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 3rd.\nstarter_away: Reynaldo Lopez [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: David Peterson [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Wrigley Field Tonight\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for ATL@CHC (weather / climate).\nAway SP: Reynaldo Lopez (4-4, 4.13) \u2014 confirmed; Home SP: David Peterson (7-8, 5.28) \u2014 confirmed.\nWeather: Mostly Cloudy then Chance Showers And Thunderstorms; 67F; wind 15 to 20 mph S; PoP 47% (Wrigley Field Tonight).\nScheduled start: 2026-09-14T23:40Z UTC (game may be in progress \u2014 live score not part of this SI story).\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -1354,7 +1455,7 @@
         "stop_fields": [],
         "status": "OK",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -1398,7 +1499,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -1409,7 +1510,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -1420,7 +1521,7 @@
             "logit_contribution": -0.24,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -1431,7 +1532,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -1442,7 +1543,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -1504,7 +1605,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 3rd.\nstarter_away: Will Warren [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Dean Kremer [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Target Field Tonight\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for NYY@MIN (weather / climate).\nAway SP: Will Warren (10-6, 4.05) \u2014 confirmed; Home SP: Dean Kremer (3-5, 5.65) \u2014 confirmed.\nWeather: Showers And Thunderstorms Likely then Slight Chance Showers And Thunderstorms; 57F; wind 5 to 15 mph SSW; PoP 56% (Target Field Tonight).\nScheduled start: 2026-09-14T23:40Z UTC (game may be in progress \u2014 live score not part of this SI story).\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -1520,7 +1621,12 @@
             "field_name": "sp_away",
             "raw_value": "Will Warren ((10-6, 4.05))",
             "normalized_value": "Will Warren",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Will Warren",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-probable",
@@ -1532,7 +1638,12 @@
             "field_name": "sp_home",
             "raw_value": "Dean Kremer ((3-5, 5.65))",
             "normalized_value": "Dean Kremer",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Dean Kremer",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -1544,7 +1655,12 @@
             "field_name": "forecast_near_first_pitch",
             "raw_value": "Showers And Thunderstorms Likely then Slight Chance Showers And Thunderstorms; 57F; wind 5 to 15 mph SSW; PoP 56%",
             "normalized_value": "Showers And Thunderstorms Likely then Slight Chance Showers And Thunderstorms",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Target Field Tonight",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -1556,7 +1672,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-14T23:40Z; Top 3rd; score 0-0",
             "normalized_value": "2026-09-14T23:40Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Live ESPN status Top 3rd. Slate CT 2026-09-14.",
+            "status": "IN_PROGRESS",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -1586,7 +1707,7 @@
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates",
         "refresh_note": "stale_kept_prior_quote; not on ESPN board at refresh"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 Top 3rd.\nstarter_away: Will Warren [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Dean Kremer [CONFIRMED] grade A, fresh. ESPN listed SP; game in (Top 3rd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Target Field Tonight\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for NYY@MIN (weather / climate).\nAway SP: Will Warren (10-6, 4.05) \u2014 confirmed; Home SP: Dean Kremer (3-5, 5.65) \u2014 confirmed.\nWeather: Showers And Thunderstorms Likely then Slight Chance Showers And Thunderstorms; 57F; wind 5 to 15 mph SSW; PoP 56% (Target Field Tonight).\nScheduled start: 2026-09-14T23:40Z UTC (game may be in progress \u2014 live score not part of this SI story).\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -1609,7 +1730,7 @@
         "stop_fields": [],
         "status": "OK",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -1653,7 +1774,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -1664,7 +1785,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -1675,7 +1796,7 @@
             "logit_contribution": 0.11198399999999999,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -1686,7 +1807,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -1697,7 +1818,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -1762,7 +1883,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 End 2nd.\nstarter_away: Landen Roupp [CONFIRMED] grade A, fresh. ESPN listed SP; game in (End 2nd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Quinn Mathews [CONFIRMED] grade A, fresh. ESPN listed SP; game in (End 2nd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Busch Stadium Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Cleared for price diagnostics for SF@STL.\nAway SP: Landen Roupp (9-13, 4.00) \u2014 confirmed; Home SP: Quinn Mathews (1-3, 4.11) \u2014 confirmed.\nWeather: Mostly Clear; 74F; wind 7 to 10 mph SE; PoP 0% (Busch Stadium Tonight).\nScheduled start: 2026-09-14T23:45Z UTC (game may be in progress \u2014 live score not part of this SI story).\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -1778,7 +1899,12 @@
             "field_name": "sp_away",
             "raw_value": "Landen Roupp ((9-13, 4.00))",
             "normalized_value": "Landen Roupp",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "ESPN listed SP; game in (End 2nd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Landen Roupp",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-probable",
@@ -1790,7 +1916,12 @@
             "field_name": "sp_home",
             "raw_value": "Quinn Mathews ((1-3, 4.11))",
             "normalized_value": "Quinn Mathews",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "ESPN listed SP; game in (End 2nd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).",
+            "status": "CONFIRMED",
+            "player_name": "Quinn Mathews",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -1802,7 +1933,12 @@
             "field_name": "forecast_near_first_pitch",
             "raw_value": "Mostly Clear; 74F; wind 7 to 10 mph SE; PoP 0%",
             "normalized_value": "Mostly Clear",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Busch Stadium Tonight",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -1814,7 +1950,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-14T23:45Z; End 2nd; score 0-0",
             "normalized_value": "2026-09-14T23:45Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Live ESPN status End 2nd. Slate CT 2026-09-14.",
+            "status": "IN_PROGRESS",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "CLEAR_FOR_PRICE"
@@ -1844,7 +1985,7 @@
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates",
         "refresh_note": "stale_kept_prior_quote; not on ESPN board at refresh"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: IN_PROGRESS \u2014 End 2nd.\nstarter_away: Landen Roupp [CONFIRMED] grade A, fresh. ESPN listed SP; game in (End 2nd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nstarter_home: Quinn Mathews [CONFIRMED] grade A, fresh. ESPN listed SP; game in (End 2nd) \u2014 treated CONFIRMED grade A (may move Fundamental Line).\nweather: [FORECAST] grade B, fresh. NWS Busch Stadium Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Cleared for price diagnostics for SF@STL.\nAway SP: Landen Roupp (9-13, 4.00) \u2014 confirmed; Home SP: Quinn Mathews (1-3, 4.11) \u2014 confirmed.\nWeather: Mostly Clear; 74F; wind 7 to 10 mph SE; PoP 0% (Busch Stadium Tonight).\nScheduled start: 2026-09-14T23:45Z UTC (game may be in progress \u2014 live score not part of this SI story).\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -1867,7 +2008,7 @@
         "stop_fields": [],
         "status": "OK",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -1911,7 +2052,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -1922,7 +2063,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -1933,7 +2074,7 @@
             "logit_contribution": -0.24,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -1944,7 +2085,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -1955,7 +2096,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -2017,7 +2158,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\nGame status: SCHEDULED \u2014 9/14 - 8:40 PM EDT.\nstarter_away: Casey Mize [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Tomoyuki Sugano [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nweather: [FORECAST] grade B, fresh. NWS Coors Field Tonight\nclimate: [KNOWN] grade A, fresh. Known park climate factor\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for SD@COL (weather / climate).\nAway SP: Casey Mize (5-9, 3.70) \u2014 probable; Home SP: Tomoyuki Sugano (12-9, 5.30) \u2014 probable.\nWeather: Chance Rain Showers; 56F; wind 6 to 12 mph NW; PoP 25% (Coors Field Tonight).\nScheduled start: 2026-09-15T00:40Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -2033,7 +2174,12 @@
             "field_name": "sp_away",
             "raw_value": "Casey Mize ((5-9, 3.70))",
             "normalized_value": "Casey Mize",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed",
+            "status": "PROBABLE",
+            "player_name": "Casey Mize",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-probable",
@@ -2045,7 +2191,12 @@
             "field_name": "sp_home",
             "raw_value": "Tomoyuki Sugano ((12-9, 5.30))",
             "normalized_value": "Tomoyuki Sugano",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed",
+            "status": "PROBABLE",
+            "player_name": "Tomoyuki Sugano",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -2057,7 +2208,12 @@
             "field_name": "forecast_near_first_pitch",
             "raw_value": "Chance Rain Showers; 56F; wind 6 to 12 mph NW; PoP 25%",
             "normalized_value": "Chance Rain Showers",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Coors Field Tonight",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "venue-climate",
@@ -2069,7 +2225,12 @@
             "field_name": "altitude_coors",
             "raw_value": "Coors Field elevation ~5280 ft \u2014 run environment material",
             "normalized_value": "coors_altitude",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "climate",
+            "notes": "Known park climate factor",
+            "status": "KNOWN",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -2081,7 +2242,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-15T00:40Z",
             "normalized_value": "2026-09-15T00:40Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-14; late PT starts still same CT date",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -2110,7 +2276,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\nGame status: SCHEDULED \u2014 9/14 - 8:40 PM EDT.\nstarter_away: Casey Mize [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Tomoyuki Sugano [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nweather: [FORECAST] grade B, fresh. NWS Coors Field Tonight\nclimate: [KNOWN] grade A, fresh. Known park climate factor\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for SD@COL (weather / climate).\nAway SP: Casey Mize (5-9, 3.70) \u2014 probable; Home SP: Tomoyuki Sugano (12-9, 5.30) \u2014 probable.\nWeather: Chance Rain Showers; 56F; wind 6 to 12 mph NW; PoP 25% (Coors Field Tonight).\nScheduled start: 2026-09-15T00:40Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -2133,7 +2299,7 @@
         "stop_fields": [],
         "status": "OK",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -2177,7 +2343,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -2188,7 +2354,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -2199,7 +2365,7 @@
             "logit_contribution": -0.029616,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -2210,7 +2376,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -2221,7 +2387,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -2282,7 +2448,7 @@
           "NO_TICKETS"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: SCHEDULED \u2014 9/14 - 9:38 PM EDT.\nstarter_away: Kade Anderson [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Reid Detmers [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nweather: [FORECAST] grade B, fresh. NWS Angel Stadium Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Cleared for price diagnostics for SEA@LAA.\nAway SP: Kade Anderson (1-1, 4.29) \u2014 probable; Home SP: Reid Detmers (5-8, 3.32) \u2014 probable.\nWeather: Mostly Cloudy; 65F; wind 5 to 10 mph S; PoP 1% (Angel Stadium Tonight).\nScheduled start: 2026-09-15T01:38Z.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -2298,7 +2464,12 @@
             "field_name": "sp_away",
             "raw_value": "Kade Anderson ((1-1, 4.29))",
             "normalized_value": "Kade Anderson",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed",
+            "status": "PROBABLE",
+            "player_name": "Kade Anderson",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-probable",
@@ -2310,7 +2481,12 @@
             "field_name": "sp_home",
             "raw_value": "Reid Detmers ((5-8, 3.32))",
             "normalized_value": "Reid Detmers",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed",
+            "status": "PROBABLE",
+            "player_name": "Reid Detmers",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -2322,7 +2498,12 @@
             "field_name": "forecast_near_first_pitch",
             "raw_value": "Mostly Cloudy; 65F; wind 5 to 10 mph S; PoP 1%",
             "normalized_value": "Mostly Cloudy",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Angel Stadium Tonight",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -2334,7 +2515,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-15T01:38Z",
             "normalized_value": "2026-09-15T01:38Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-14; late PT starts still same CT date",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "CLEAR_FOR_PRICE"
@@ -2364,7 +2550,7 @@
         "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked",
         "refresh_note": "stale_kept_prior_quote; not on ESPN board at refresh"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: SCHEDULED \u2014 9/14 - 9:38 PM EDT.\nstarter_away: Kade Anderson [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Reid Detmers [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nweather: [FORECAST] grade B, fresh. NWS Angel Stadium Tonight\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Cleared for price diagnostics for SEA@LAA.\nAway SP: Kade Anderson (1-1, 4.29) \u2014 probable; Home SP: Reid Detmers (5-8, 3.32) \u2014 probable.\nWeather: Mostly Cloudy; 65F; wind 5 to 10 mph S; PoP 1% (Angel Stadium Tonight).\nScheduled start: 2026-09-15T01:38Z.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -2387,7 +2573,7 @@
         "stop_fields": [],
         "status": "OK",
         "p0": 0.54,
-        "decision_cutoff": "2026-09-15T00:16:59Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "filters": [
           {
             "id": "F01",
@@ -2431,7 +2617,7 @@
             "logit_contribution": null,
             "unverified_reason": "park_factor missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F05",
@@ -2442,7 +2628,7 @@
             "logit_contribution": 0.0,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F06",
@@ -2453,7 +2639,7 @@
             "logit_contribution": -0.0064080000000000005,
             "unverified_reason": null,
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F07",
@@ -2464,7 +2650,7 @@
             "logit_contribution": null,
             "unverified_reason": "ops missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F08",
@@ -2475,7 +2661,7 @@
             "logit_contribution": null,
             "unverified_reason": "team_k_bb missing",
             "evidence_grade": null,
-            "as_of": "2026-09-15T00:16:59Z"
+            "as_of": "2026-09-15T00:28:52Z"
           },
           {
             "id": "F09",
@@ -2536,7 +2722,7 @@
           "NO_TICKETS"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: SCHEDULED \u2014 9/14 - 9:40 PM EDT.\nstarter_away: Sandy Alcantara [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Corbin Burnes [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nclimate: [INDOOR] grade A, fresh. Indoor/retractable listed indoor by ESPN \u2014 outdoor weather non-load for pitch environment.\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Cleared for price diagnostics for MIA@ARI.\nAway SP: Sandy Alcantara (13-10, 3.78) \u2014 probable; Home SP: Corbin Burnes (0-0, 0.00) \u2014 probable.\nWeather: Chase Field indoor=true (ESPN).\nScheduled start: 2026-09-15T01:40Z.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -2552,7 +2738,12 @@
             "field_name": "sp_away",
             "raw_value": "Sandy Alcantara ((13-10, 3.78))",
             "normalized_value": "Sandy Alcantara",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_away",
+            "notes": "Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed",
+            "status": "PROBABLE",
+            "player_name": "Sandy Alcantara",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-probable",
@@ -2564,7 +2755,12 @@
             "field_name": "sp_home",
             "raw_value": "Corbin Burnes ((0-0, 0.00))",
             "normalized_value": "Corbin Burnes",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "starter_home",
+            "notes": "Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed",
+            "status": "PROBABLE",
+            "player_name": "Corbin Burnes",
+            "stop": false
           },
           {
             "source_id": "espn-mlb-venue",
@@ -2576,7 +2772,12 @@
             "field_name": "venue_roof",
             "raw_value": "Chase Field indoor=true (ESPN)",
             "normalized_value": "indoor",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "climate",
+            "notes": "Indoor/retractable listed indoor by ESPN \u2014 outdoor weather non-load for pitch environment.",
+            "status": "INDOOR",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-mlb-scoreboard",
@@ -2588,7 +2789,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-15T01:40Z",
             "normalized_value": "2026-09-15T01:40Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-14; late PT starts still same CT date",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "CLEAR_FOR_PRICE"
@@ -2617,7 +2823,7 @@
         "quote_source_label": "AN_mirror",
         "display_note": "Board prices for PRICE DIAGNOSTICS display only \u2014 not DK-direct; BUY/LEAN locked"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\nGame status: SCHEDULED \u2014 9/14 - 9:40 PM EDT.\nstarter_away: Sandy Alcantara [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nstarter_home: Corbin Burnes [PROBABLE] grade B, fresh. Official ESPN probable SP (grade B may move Fundamental Line); not A until confirmed\nclimate: [INDOOR] grade A, fresh. Indoor/retractable listed indoor by ESPN \u2014 outdoor weather non-load for pitch environment.\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Cleared for price diagnostics for MIA@ARI.\nAway SP: Sandy Alcantara (13-10, 3.78) \u2014 probable; Home SP: Corbin Burnes (0-0, 0.00) \u2014 probable.\nWeather: Chase Field indoor=true (ESPN).\nScheduled start: 2026-09-15T01:40Z.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -2640,7 +2846,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -2691,7 +2897,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Jared Goff [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Goff completed 26 of 39 passes for 206 yards and two touchdowns in Sunday's 31-30 overtime win over the Saints. He added two yards on two carries.\ninjury: Josh Allen [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Allen completed 20 of 29 passes for 334 yards and two touchdowns while rushing six times for 23 yards and two touchdowns in Sunday's 36-31 win over the Texans.\ninjury: Ty Johnson [OUT] grade B, stale. The Bills listed Johnson (hamstring) as a limited participant on Monday's estimated practice report.\ninjury: Tyrell Shavers [OUT] grade B, stale. out\nweather: [FORECAST] grade B, fresh. NWS Highmark Stadium Thursday \u2014 TNF weather risk\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for DET@BUF (weather / climate).\nKey availability: Jared Goff is Active (Depth-chart QB Active on ESPN injury feed.); Josh Allen is Active (Depth-chart QB Active on ESPN injury feed.); Ty Johnson is Out (The Bills listed Johnson (hamstring) as a limited participant on Monday's estimated practice report.).\nWeather: Showers And Thunderstorms Likely; 78F day / 61F night; wind 2 to 6 mph SW then NW; PoP 66% (Highmark Stadium Thursday \u2014 TNF weather risk).\nScheduled start: 2026-09-18T00:15Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -2707,7 +2913,12 @@
             "field_name": "qb_away",
             "raw_value": "Jared Goff depth#1; ESPN injury status=Active",
             "normalized_value": "Jared Goff",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Goff completed 26 of 39 passes for 206 yards and two touchdowns in Sunday's 31-30 overtime win over the Saints. He added two yards on two carries.",
+            "status": "ACTIVE",
+            "player_name": "Jared Goff",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -2719,7 +2930,12 @@
             "field_name": "qb_home",
             "raw_value": "Josh Allen depth#1; ESPN injury status=Active",
             "normalized_value": "Josh Allen",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Allen completed 20 of 29 passes for 334 yards and two touchdowns while rushing six times for 23 yards and two touchdowns in Sunday's 36-31 win over the Texans.",
+            "status": "ACTIVE",
+            "player_name": "Josh Allen",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -2731,7 +2947,12 @@
             "field_name": "rb_home_ty_johnson",
             "raw_value": "RB Ty Johnson: Out",
             "normalized_value": "Ty Johnson",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "The Bills listed Johnson (hamstring) as a limited participant on Monday's estimated practice report.",
+            "status": "OUT",
+            "player_name": "Ty Johnson",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -2743,7 +2964,12 @@
             "field_name": "wr_home_tyrell_shavers",
             "raw_value": "WR Tyrell Shavers: Out",
             "normalized_value": "Tyrell Shavers",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "out",
+            "status": "OUT",
+            "player_name": "Tyrell Shavers",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -2755,7 +2981,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Showers And Thunderstorms Likely; 78F day / 61F night; wind 2 to 6 mph SW then NW; PoP 66%",
             "normalized_value": "Showers And Thunderstorms Likely",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Highmark Stadium Thursday \u2014 TNF weather risk",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -2767,7 +2998,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-18T00:15Z",
             "normalized_value": "2026-09-18T00:15Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-17",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -2796,7 +3032,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Jared Goff [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Goff completed 26 of 39 passes for 206 yards and two touchdowns in Sunday's 31-30 overtime win over the Saints. He added two yards on two carries.\ninjury: Josh Allen [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Allen completed 20 of 29 passes for 334 yards and two touchdowns while rushing six times for 23 yards and two touchdowns in Sunday's 36-31 win over the Texans.\ninjury: Ty Johnson [OUT] grade B, stale. The Bills listed Johnson (hamstring) as a limited participant on Monday's estimated practice report.\ninjury: Tyrell Shavers [OUT] grade B, stale. out\nweather: [FORECAST] grade B, fresh. NWS Highmark Stadium Thursday \u2014 TNF weather risk\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for DET@BUF (weather / climate).\nKey availability: Jared Goff is Active (Depth-chart QB Active on ESPN injury feed.); Josh Allen is Active (Depth-chart QB Active on ESPN injury feed.); Ty Johnson is Out (The Bills listed Johnson (hamstring) as a limited participant on Monday's estimated practice report.).\nWeather: Showers And Thunderstorms Likely; 78F day / 61F night; wind 2 to 6 mph SW then NW; PoP 66% (Highmark Stadium Thursday \u2014 TNF weather risk).\nScheduled start: 2026-09-18T00:15Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -2819,7 +3055,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -2870,7 +3106,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Bryce Young [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Young completed 23 of 37 passes for 361 yards and three touchdowns with one interception in Sunday's 59-37 loss to the Bears. He added 10 yards and a TD on two \ninjury: Jalen Coker [QUESTIONABLE] grade B, stale. Coker is in a walking boot Monday after sustaining an ankle injury in Sunday's loss to the Bears, Mike Kaye of ESPN.com reports.\ninjury: Cooper Rush [ACTIVE_EXPECTED] grade B, stale. Both depth QBs Out; Rush Active per ESPN \u2014 WATCH confirmation / inactives. Not inventing odds.\nclimate: [INDOOR] grade A, fresh. Indoor venue \u2014 outdoor weather non-load.\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for CAR@ATL (availability).\nKey availability: Bryce Young is Active (Depth-chart QB Active on ESPN injury feed.); Jalen Coker is Questionable (Coker is in a walking boot Monday after sustaining an ankle injury in Sunday's loss to the Bears, Mike Kaye of ESPN.); Cooper Rush is Active Expected (Both depth QBs Out; Rush Active per ESPN \u2014 WATCH confirmation / inactives. Not inventing odds.).\nWeather: Mercedes-Benz Stadium indoor=true (ESPN).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -2886,7 +3122,12 @@
             "field_name": "qb_away",
             "raw_value": "Bryce Young depth#1; ESPN injury status=Active",
             "normalized_value": "Bryce Young",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Young completed 23 of 37 passes for 361 yards and three touchdowns with one interception in Sunday's 59-37 loss to the Bears. He added 10 yards and a TD on two ",
+            "status": "ACTIVE",
+            "player_name": "Bryce Young",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -2898,7 +3139,12 @@
             "field_name": "wr_away_jalen_coker",
             "raw_value": "WR Jalen Coker: Questionable",
             "normalized_value": "Jalen Coker",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Coker is in a walking boot Monday after sustaining an ankle injury in Sunday's loss to the Bears, Mike Kaye of ESPN.com reports.",
+            "status": "QUESTIONABLE",
+            "player_name": "Jalen Coker",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -2910,7 +3156,12 @@
             "field_name": "qb_home",
             "raw_value": "Michael Penix Jr., Tua Tagovailoa Out; Cooper Rush Active (ESPN injuries). Depth chart still lists Michael Penix Jr. #1.",
             "normalized_value": "Cooper Rush",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Both depth QBs Out; Rush Active per ESPN \u2014 WATCH confirmation / inactives. Not inventing odds.",
+            "status": "ACTIVE_EXPECTED",
+            "player_name": "Cooper Rush",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-venue",
@@ -2922,7 +3173,12 @@
             "field_name": "venue_roof",
             "raw_value": "Mercedes-Benz Stadium indoor=true (ESPN)",
             "normalized_value": "indoor",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "climate",
+            "notes": "Indoor venue \u2014 outdoor weather non-load.",
+            "status": "INDOOR",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -2934,7 +3190,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -2963,7 +3224,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Bryce Young [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Young completed 23 of 37 passes for 361 yards and three touchdowns with one interception in Sunday's 59-37 loss to the Bears. He added 10 yards and a TD on two \ninjury: Jalen Coker [QUESTIONABLE] grade B, stale. Coker is in a walking boot Monday after sustaining an ankle injury in Sunday's loss to the Bears, Mike Kaye of ESPN.com reports.\ninjury: Cooper Rush [ACTIVE_EXPECTED] grade B, stale. Both depth QBs Out; Rush Active per ESPN \u2014 WATCH confirmation / inactives. Not inventing odds.\nclimate: [INDOOR] grade A, fresh. Indoor venue \u2014 outdoor weather non-load.\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for CAR@ATL (availability).\nKey availability: Bryce Young is Active (Depth-chart QB Active on ESPN injury feed.); Jalen Coker is Questionable (Coker is in a walking boot Monday after sustaining an ankle injury in Sunday's loss to the Bears, Mike Kaye of ESPN.); Cooper Rush is Active Expected (Both depth QBs Out; Rush Active per ESPN \u2014 WATCH confirmation / inactives. Not inventing odds.).\nWeather: Mercedes-Benz Stadium indoor=true (ESPN).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -2988,10 +3249,11 @@
         ],
         "status": "STOPPED",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
-          "experimental"
+          "experimental",
+          "si_stop"
         ],
         "filters": []
       },
@@ -3007,7 +3269,7 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD",
+        "decision": "UNVERIFIED",
         "quote_source": "live_DK_browser",
         "is_dk_direct": true,
         "board_ml_away": 180,
@@ -3040,7 +3302,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: STOP. Overall evidence: B.\nSTOP fields: injury \u2014 no single actionable probability until resolved.\ninjury: Kyler Murray [QUESTIONABLE] grade B, stale. Kyler Murray QUESTIONABLE; Carson Wentz Active per ESPN. Depth still Kyler Murray #1. Vikings head coach Kevin O'Connell said Monday that Murray is in concussion protocol and will be evaluated day by day leading up Sunday's road game in Chicago, Alec Lewis of The At\ninjury: Jordan Mason [QUESTIONABLE] grade B, stale. Vikings head coach Kevin O'Connell said Monday that Mason is being further evaluated after experiencing thumb soreness coming out of Sunday's 39-22 win over the Packers, Alec Lewis\ninjury: Caleb Williams [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Williams completed 21 of 29 passes for 269 yards and two touchdowns while carrying the ball 10 times for 65 yards and two more TDs in Sunday's 59-37 win over th\nweather: [FORECAST] grade B, fresh. NWS Soldier Field Sunday\nSTOP: do not emit single actionable Fundamental until STOP fields resolve."
+        "si_narrative": "Stopped for MIN@CHI because of injury.\nKey availability: Kyler Murray is Questionable (Kyler Murray QUESTIONABLE; Carson Wentz Active per ESPN.); Jordan Mason is Questionable (Vikings head coach Kevin O'Connell said Monday that Mason is being further evaluated after experiencing thumb soreness coming out of Sunday's 39-22 win over the Packers, Alec Lewis.); Caleb Williams is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Chance Showers And Thunderstorms; 77F; wind 5 to 10 mph NE; PoP 44% (Soldier Field Sunday).\nScheduled start: 2026-09-20T17:00Z.\nKyler Murray QUESTIONABLE; Carson Wentz Active per ESPN. Depth still Kyler Murray #1. Vikings head coach Kevin O'Connell said Monday that Murray is in concussion protocol and will be evaluated day by day leading up Sunday's road game in Chicago, Alec Lewis of The At.\nNot cleared \u2014 STOP on injury. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -3058,7 +3320,12 @@
             "field_name": "qb_away",
             "raw_value": "Kyler Murray QUESTIONABLE; Carson Wentz Active. Depth still Kyler Murray #1.",
             "normalized_value": "Kyler Murray",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Kyler Murray QUESTIONABLE; Carson Wentz Active per ESPN. Depth still Kyler Murray #1. Vikings head coach Kevin O'Connell said Monday that Murray is in concussion protocol and will be evaluated day by day leading up Sunday's road game in Chicago, Alec Lewis of The At",
+            "status": "QUESTIONABLE",
+            "player_name": "Kyler Murray",
+            "stop": true
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -3070,7 +3337,12 @@
             "field_name": "rb_away_jordan_mason",
             "raw_value": "RB Jordan Mason: Questionable",
             "normalized_value": "Jordan Mason",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Vikings head coach Kevin O'Connell said Monday that Mason is being further evaluated after experiencing thumb soreness coming out of Sunday's 39-22 win over the Packers, Alec Lewis",
+            "status": "QUESTIONABLE",
+            "player_name": "Jordan Mason",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -3082,7 +3354,12 @@
             "field_name": "qb_home",
             "raw_value": "Caleb Williams depth#1; ESPN injury status=Active",
             "normalized_value": "Caleb Williams",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Williams completed 21 of 29 passes for 269 yards and two touchdowns while carrying the ball 10 times for 65 yards and two more TDs in Sunday's 59-37 win over th",
+            "status": "ACTIVE",
+            "player_name": "Caleb Williams",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -3094,7 +3371,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Chance Showers And Thunderstorms; 77F; wind 5 to 10 mph NE; PoP 44%",
             "normalized_value": "Chance Showers And Thunderstorms",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Soldier Field Sunday",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -3106,7 +3388,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "STOP"
@@ -3135,7 +3422,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: STOP. Overall evidence: B.\nSTOP fields: injury \u2014 no single actionable probability until resolved.\ninjury: Kyler Murray [QUESTIONABLE] grade B, stale. Kyler Murray QUESTIONABLE; Carson Wentz Active per ESPN. Depth still Kyler Murray #1. Vikings head coach Kevin O'Connell said Monday that Murray is in concussion protocol and will be evaluated day by day leading up Sunday's road game in Chicago, Alec Lewis of The At\ninjury: Jordan Mason [QUESTIONABLE] grade B, stale. Vikings head coach Kevin O'Connell said Monday that Mason is being further evaluated after experiencing thumb soreness coming out of Sunday's 39-22 win over the Packers, Alec Lewis\ninjury: Caleb Williams [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Williams completed 21 of 29 passes for 269 yards and two touchdowns while carrying the ball 10 times for 65 yards and two more TDs in Sunday's 59-37 win over th\nweather: [FORECAST] grade B, fresh. NWS Soldier Field Sunday\nSTOP: do not emit single actionable Fundamental until STOP fields resolve."
+      "si_narrative": "Stopped for MIN@CHI because of injury.\nKey availability: Kyler Murray is Questionable (Kyler Murray QUESTIONABLE; Carson Wentz Active per ESPN.); Jordan Mason is Questionable (Vikings head coach Kevin O'Connell said Monday that Mason is being further evaluated after experiencing thumb soreness coming out of Sunday's 39-22 win over the Packers, Alec Lewis.); Caleb Williams is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Chance Showers And Thunderstorms; 77F; wind 5 to 10 mph NE; PoP 44% (Soldier Field Sunday).\nScheduled start: 2026-09-20T17:00Z.\nKyler Murray QUESTIONABLE; Carson Wentz Active per ESPN. Depth still Kyler Murray #1. Vikings head coach Kevin O'Connell said Monday that Murray is in concussion protocol and will be evaluated day by day leading up Sunday's road game in Chicago, Alec Lewis of The At.\nNot cleared \u2014 STOP on injury. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -3158,7 +3445,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -3209,7 +3496,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Jalen Hurts [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Hurts completed 14 of 25 pass attempts for 203 yards with three touchdowns and no interceptions in Sunday's 24-22 win against the Commanders. He added seven car\ninjury: Cam Ward [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Ward completed 19 of 32 passes for 140 yards and a touchdown while rushing four times for 21 yards in Sunday's 23-10 loss to the Jets.\nweather: [FORECAST] grade B, fresh. NWS Nissan Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for PHI@TEN (weather / climate).\nKey availability: Jalen Hurts is Active (Depth-chart QB Active on ESPN injury feed.); Cam Ward is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Mostly Sunny then Slight Chance Showers And Thunderstorms; 96F; wind 5 mph SSW; PoP 21% (Nissan Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -3225,7 +3512,12 @@
             "field_name": "qb_away",
             "raw_value": "Jalen Hurts depth#1; ESPN injury status=Active",
             "normalized_value": "Jalen Hurts",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Hurts completed 14 of 25 pass attempts for 203 yards with three touchdowns and no interceptions in Sunday's 24-22 win against the Commanders. He added seven car",
+            "status": "ACTIVE",
+            "player_name": "Jalen Hurts",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -3237,7 +3529,12 @@
             "field_name": "qb_home",
             "raw_value": "Cam Ward depth#1; ESPN injury status=Active",
             "normalized_value": "Cam Ward",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Ward completed 19 of 32 passes for 140 yards and a touchdown while rushing four times for 21 yards in Sunday's 23-10 loss to the Jets.",
+            "status": "ACTIVE",
+            "player_name": "Cam Ward",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -3249,7 +3546,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Mostly Sunny then Slight Chance Showers And Thunderstorms; 96F; wind 5 mph SSW; PoP 21%",
             "normalized_value": "Mostly Sunny then Slight Chance Showers And Thunderstorms",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Nissan Stadium Sunday",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -3261,7 +3563,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -3290,7 +3597,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Jalen Hurts [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Hurts completed 14 of 25 pass attempts for 203 yards with three touchdowns and no interceptions in Sunday's 24-22 win against the Commanders. He added seven car\ninjury: Cam Ward [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Ward completed 19 of 32 passes for 140 yards and a touchdown while rushing four times for 21 yards in Sunday's 23-10 loss to the Jets.\nweather: [FORECAST] grade B, fresh. NWS Nissan Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for PHI@TEN (weather / climate).\nKey availability: Jalen Hurts is Active (Depth-chart QB Active on ESPN injury feed.); Cam Ward is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Mostly Sunny then Slight Chance Showers And Thunderstorms; 96F; wind 5 mph SSW; PoP 21% (Nissan Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -3313,7 +3620,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -3364,7 +3671,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Aaron Rodgers [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Rodgers completed 24 of 40 passes for 221 yards with one touchdown and no interceptions and added three carries for minus-3 yards in the Steelers' 20-13 win ove\ninjury: Drake Maye [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Maye completed 23 of 33 passes for 178 yards with one touchdown and three interceptions while rushing seven times for 47 yards in the Patriots' 13-10 loss to th\ninjury: TreVeyon Henderson [OUT] grade B, stale. Coach Mike Vrabel said Henderson (ankle) will practice Monday, Mike Reiss of ESPN.com reports.\nweather: [FORECAST] grade B, fresh. NWS Gillette Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for PIT@NE (weather / climate).\nKey availability: Aaron Rodgers is Active (Depth-chart QB Active on ESPN injury feed.); Drake Maye is Active (Depth-chart QB Active on ESPN injury feed.); TreVeyon Henderson is Out (Coach Mike Vrabel said Henderson (ankle) will practice Monday, Mike Reiss of ESPN.com reports.).\nWeather: Chance Rain Showers; 71F; wind 6 to 9 mph NW; PoP 45% (Gillette Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -3380,7 +3687,12 @@
             "field_name": "qb_away",
             "raw_value": "Aaron Rodgers depth#1; ESPN injury status=Active",
             "normalized_value": "Aaron Rodgers",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Rodgers completed 24 of 40 passes for 221 yards with one touchdown and no interceptions and added three carries for minus-3 yards in the Steelers' 20-13 win ove",
+            "status": "ACTIVE",
+            "player_name": "Aaron Rodgers",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -3392,7 +3704,12 @@
             "field_name": "qb_home",
             "raw_value": "Drake Maye depth#1; ESPN injury status=Active",
             "normalized_value": "Drake Maye",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Maye completed 23 of 33 passes for 178 yards with one touchdown and three interceptions while rushing seven times for 47 yards in the Patriots' 13-10 loss to th",
+            "status": "ACTIVE",
+            "player_name": "Drake Maye",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -3404,7 +3721,12 @@
             "field_name": "rb_home_treveyon_henderson",
             "raw_value": "RB TreVeyon Henderson: Out",
             "normalized_value": "TreVeyon Henderson",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Coach Mike Vrabel said Henderson (ankle) will practice Monday, Mike Reiss of ESPN.com reports.",
+            "status": "OUT",
+            "player_name": "TreVeyon Henderson",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -3416,7 +3738,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Chance Rain Showers; 71F; wind 6 to 9 mph NW; PoP 45%",
             "normalized_value": "Chance Rain Showers",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Gillette Stadium Sunday",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -3428,7 +3755,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -3457,7 +3789,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Aaron Rodgers [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Rodgers completed 24 of 40 passes for 221 yards with one touchdown and no interceptions and added three carries for minus-3 yards in the Steelers' 20-13 win ove\ninjury: Drake Maye [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Maye completed 23 of 33 passes for 178 yards with one touchdown and three interceptions while rushing seven times for 47 yards in the Patriots' 13-10 loss to th\ninjury: TreVeyon Henderson [OUT] grade B, stale. Coach Mike Vrabel said Henderson (ankle) will practice Monday, Mike Reiss of ESPN.com reports.\nweather: [FORECAST] grade B, fresh. NWS Gillette Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for PIT@NE (weather / climate).\nKey availability: Aaron Rodgers is Active (Depth-chart QB Active on ESPN injury feed.); Drake Maye is Active (Depth-chart QB Active on ESPN injury feed.); TreVeyon Henderson is Out (Coach Mike Vrabel said Henderson (ankle) will practice Monday, Mike Reiss of ESPN.com reports.).\nWeather: Chance Rain Showers; 71F; wind 6 to 9 mph NW; PoP 45% (Gillette Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -3480,7 +3812,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -3531,7 +3863,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Jordan Love [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Love completed 21 of 42 passes for 387 yards, two touchdowns and one interception in Sunday's 39-22 loss to the Vikings. He also rushed once for no gain and fum\ninjury: Josh Jacobs [OUT] grade B, stale. Jacobs (personal) remains on the Commissioner's Exempt List, but the NFL may count time on the list as time served if it eventually issues a suspension to the running back, Adam Sc\ninjury: Geno Smith [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Smith completed 19 of 24 passes for 215 yards while rushing six times for seven yards in Sunday's 23-10 win over the Titans.\nweather: [FORECAST] grade B, fresh. NWS MetLife Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for GB@NYJ (weather / climate).\nKey availability: Jordan Love is Active (Depth-chart QB Active on ESPN injury feed.); Josh Jacobs is Out (Jacobs (personal) remains on the Commissioner's Exempt List, but the NFL may count time on the list as time served if it eventually issues a suspension to the running back, Adam Sc.); Geno Smith is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Chance Rain Showers; 79F; wind 8 to 12 mph W; PoP 38% (MetLife Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -3547,7 +3879,12 @@
             "field_name": "qb_away",
             "raw_value": "Jordan Love depth#1; ESPN injury status=Active",
             "normalized_value": "Jordan Love",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Love completed 21 of 42 passes for 387 yards, two touchdowns and one interception in Sunday's 39-22 loss to the Vikings. He also rushed once for no gain and fum",
+            "status": "ACTIVE",
+            "player_name": "Jordan Love",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -3559,7 +3896,12 @@
             "field_name": "rb_away_josh_jacobs",
             "raw_value": "RB Josh Jacobs: Out",
             "normalized_value": "Josh Jacobs",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Jacobs (personal) remains on the Commissioner's Exempt List, but the NFL may count time on the list as time served if it eventually issues a suspension to the running back, Adam Sc",
+            "status": "OUT",
+            "player_name": "Josh Jacobs",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -3571,7 +3913,12 @@
             "field_name": "qb_home",
             "raw_value": "Geno Smith depth#1; ESPN injury status=Active",
             "normalized_value": "Geno Smith",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Smith completed 19 of 24 passes for 215 yards while rushing six times for seven yards in Sunday's 23-10 win over the Titans.",
+            "status": "ACTIVE",
+            "player_name": "Geno Smith",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -3583,7 +3930,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Chance Rain Showers; 79F; wind 8 to 12 mph W; PoP 38%",
             "normalized_value": "Chance Rain Showers",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS MetLife Stadium Sunday",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -3595,7 +3947,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -3624,7 +3981,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Jordan Love [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Love completed 21 of 42 passes for 387 yards, two touchdowns and one interception in Sunday's 39-22 loss to the Vikings. He also rushed once for no gain and fum\ninjury: Josh Jacobs [OUT] grade B, stale. Jacobs (personal) remains on the Commissioner's Exempt List, but the NFL may count time on the list as time served if it eventually issues a suspension to the running back, Adam Sc\ninjury: Geno Smith [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Smith completed 19 of 24 passes for 215 yards while rushing six times for seven yards in Sunday's 23-10 win over the Titans.\nweather: [FORECAST] grade B, fresh. NWS MetLife Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for GB@NYJ (weather / climate).\nKey availability: Jordan Love is Active (Depth-chart QB Active on ESPN injury feed.); Josh Jacobs is Out (Jacobs (personal) remains on the Commissioner's Exempt List, but the NFL may count time on the list as time served if it eventually issues a suspension to the running back, Adam Sc.); Geno Smith is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Chance Rain Showers; 79F; wind 8 to 12 mph W; PoP 38% (MetLife Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -3647,7 +4004,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -3698,7 +4055,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Deshaun Watson [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Head coach Todd Monken said Monday that he anticipates sticking with Watson as the Browns' starting quarterback for Week 2 against the Buccaneers, Chris Easterl\ninjury: Dylan Sampson [QUESTIONABLE] grade B, stale. Coach Todd Monken said Monday the team is still evaluating the severity of Sampson's knee injury, Daniel Oyefusi of ESPN.com reports.\ninjury: Baker Mayfield [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Mayfield completed 23 of 28 passes for 216 yards with no touchdowns or interceptions while adding five rushes for 30 yards and a touchdown in the Buccaneers' 33\ninjury: Sean Tucker [OUT] grade B, stale. out\ninjury: Jalen McMillan [OUT] grade B, stale. out\nweather: [FORECAST] grade B, fresh. NWS Raymond James Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for CLE@TB (weather / climate).\nKey availability: Deshaun Watson is Active (Depth-chart QB Active on ESPN injury feed.); Dylan Sampson is Questionable (Coach Todd Monken said Monday the team is still evaluating the severity of Sampson's knee injury, Daniel Oyefusi of ESPN.); Baker Mayfield is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Chance Showers And Thunderstorms; 90F; wind 6 mph SE; PoP 73% (Raymond James Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -3714,7 +4071,12 @@
             "field_name": "qb_away",
             "raw_value": "Deshaun Watson depth#1; ESPN injury status=Active",
             "normalized_value": "Deshaun Watson",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Head coach Todd Monken said Monday that he anticipates sticking with Watson as the Browns' starting quarterback for Week 2 against the Buccaneers, Chris Easterl",
+            "status": "ACTIVE",
+            "player_name": "Deshaun Watson",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -3726,7 +4088,12 @@
             "field_name": "rb_away_dylan_sampson",
             "raw_value": "RB Dylan Sampson: Questionable",
             "normalized_value": "Dylan Sampson",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Coach Todd Monken said Monday the team is still evaluating the severity of Sampson's knee injury, Daniel Oyefusi of ESPN.com reports.",
+            "status": "QUESTIONABLE",
+            "player_name": "Dylan Sampson",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -3738,7 +4105,12 @@
             "field_name": "qb_home",
             "raw_value": "Baker Mayfield depth#1; ESPN injury status=Active",
             "normalized_value": "Baker Mayfield",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Mayfield completed 23 of 28 passes for 216 yards with no touchdowns or interceptions while adding five rushes for 30 yards and a touchdown in the Buccaneers' 33",
+            "status": "ACTIVE",
+            "player_name": "Baker Mayfield",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -3750,7 +4122,12 @@
             "field_name": "rb_home_sean_tucker",
             "raw_value": "RB Sean Tucker: Out",
             "normalized_value": "Sean Tucker",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "out",
+            "status": "OUT",
+            "player_name": "Sean Tucker",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -3762,7 +4139,12 @@
             "field_name": "wr_home_jalen_mcmillan",
             "raw_value": "WR Jalen McMillan: Out",
             "normalized_value": "Jalen McMillan",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "out",
+            "status": "OUT",
+            "player_name": "Jalen McMillan",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -3774,7 +4156,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Chance Showers And Thunderstorms; 90F; wind 6 mph SE; PoP 73%",
             "normalized_value": "Chance Showers And Thunderstorms",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Raymond James Stadium Sunday",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -3786,7 +4173,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -3815,7 +4207,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Deshaun Watson [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Head coach Todd Monken said Monday that he anticipates sticking with Watson as the Browns' starting quarterback for Week 2 against the Buccaneers, Chris Easterl\ninjury: Dylan Sampson [QUESTIONABLE] grade B, stale. Coach Todd Monken said Monday the team is still evaluating the severity of Sampson's knee injury, Daniel Oyefusi of ESPN.com reports.\ninjury: Baker Mayfield [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Mayfield completed 23 of 28 passes for 216 yards with no touchdowns or interceptions while adding five rushes for 30 yards and a touchdown in the Buccaneers' 33\ninjury: Sean Tucker [OUT] grade B, stale. out\ninjury: Jalen McMillan [OUT] grade B, stale. out\nweather: [FORECAST] grade B, fresh. NWS Raymond James Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for CLE@TB (weather / climate).\nKey availability: Deshaun Watson is Active (Depth-chart QB Active on ESPN injury feed.); Dylan Sampson is Questionable (Coach Todd Monken said Monday the team is still evaluating the severity of Sampson's knee injury, Daniel Oyefusi of ESPN.); Baker Mayfield is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Chance Showers And Thunderstorms; 90F; wind 6 mph SE; PoP 73% (Raymond James Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -3838,7 +4230,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -3889,7 +4281,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Tyler Shough [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Shough completed 35 of 56 passes for 410 yards and three touchdowns with two interceptions in Sunday's 31-30 overtime loss to the Lions. He added eight yards on\ninjury: Alvin Kamara [OUT] grade B, stale. out\ninjury: Lamar Jackson [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Jackson completed 17 of 25 passes for 324 yards with one touchdown and no interceptions while adding seven rushes for 40 yards and another score in Sunday's 41-\ninjury: Zay Flowers [QUESTIONABLE] grade B, stale. Ravens head coach Jesse Minter said Monday that Flowers (hamstring) is considered day-to-day, Sam Cohn of The Baltimore Sun reports.\nweather: [FORECAST] grade B, fresh. NWS M&T Bank Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for NO@BAL (weather / climate).\nKey availability: Tyler Shough is Active (Depth-chart QB Active on ESPN injury feed.); Alvin Kamara is Out; Lamar Jackson is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Mostly Sunny then Chance Showers And Thunderstorms; 87F; wind 3 to 10 mph W; PoP 32% (M&T Bank Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -3905,7 +4297,12 @@
             "field_name": "qb_away",
             "raw_value": "Tyler Shough depth#1; ESPN injury status=Active",
             "normalized_value": "Tyler Shough",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Shough completed 35 of 56 passes for 410 yards and three touchdowns with two interceptions in Sunday's 31-30 overtime loss to the Lions. He added eight yards on",
+            "status": "ACTIVE",
+            "player_name": "Tyler Shough",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -3917,7 +4314,12 @@
             "field_name": "rb_away_alvin_kamara",
             "raw_value": "RB Alvin Kamara: Out",
             "normalized_value": "Alvin Kamara",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "out",
+            "status": "OUT",
+            "player_name": "Alvin Kamara",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -3929,7 +4331,12 @@
             "field_name": "qb_home",
             "raw_value": "Lamar Jackson depth#1; ESPN injury status=Active",
             "normalized_value": "Lamar Jackson",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Jackson completed 17 of 25 passes for 324 yards with one touchdown and no interceptions while adding seven rushes for 40 yards and another score in Sunday's 41-",
+            "status": "ACTIVE",
+            "player_name": "Lamar Jackson",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -3941,7 +4348,12 @@
             "field_name": "wr_home_zay_flowers",
             "raw_value": "WR Zay Flowers: Questionable",
             "normalized_value": "Zay Flowers",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Ravens head coach Jesse Minter said Monday that Flowers (hamstring) is considered day-to-day, Sam Cohn of The Baltimore Sun reports.",
+            "status": "QUESTIONABLE",
+            "player_name": "Zay Flowers",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -3953,7 +4365,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Mostly Sunny then Chance Showers And Thunderstorms; 87F; wind 3 to 10 mph W; PoP 32%",
             "normalized_value": "Mostly Sunny then Chance Showers And Thunderstorms",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS M&T Bank Stadium Sunday",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -3965,7 +4382,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -3994,7 +4416,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Tyler Shough [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Shough completed 35 of 56 passes for 410 yards and three touchdowns with two interceptions in Sunday's 31-30 overtime loss to the Lions. He added eight yards on\ninjury: Alvin Kamara [OUT] grade B, stale. out\ninjury: Lamar Jackson [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Jackson completed 17 of 25 passes for 324 yards with one touchdown and no interceptions while adding seven rushes for 40 yards and another score in Sunday's 41-\ninjury: Zay Flowers [QUESTIONABLE] grade B, stale. Ravens head coach Jesse Minter said Monday that Flowers (hamstring) is considered day-to-day, Sam Cohn of The Baltimore Sun reports.\nweather: [FORECAST] grade B, fresh. NWS M&T Bank Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for NO@BAL (weather / climate).\nKey availability: Tyler Shough is Active (Depth-chart QB Active on ESPN injury feed.); Alvin Kamara is Out; Lamar Jackson is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Mostly Sunny then Chance Showers And Thunderstorms; 87F; wind 3 to 10 mph W; PoP 32% (M&T Bank Stadium Sunday).\nScheduled start: 2026-09-20T17:00Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -4017,7 +4439,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -4068,7 +4490,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\ninjury: Joe Burrow [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Burrow completed 25 of 35 passes for 254 yards with one touchdown and one interception and rushed five times for 20 yards in the Bengals' 33-27 win over the Buc\ninjury: C.J. Stroud [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Stroud completed 26 of 38 passes for 274 yards and two touchdowns in Sunday's 36-31 loss to the Bills. He also rushed twice for 15 yards and fumbled twice, losi\nclimate: [INDOOR] grade A, fresh. Indoor venue \u2014 outdoor weather non-load.\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Cleared for price diagnostics for CIN@HOU.\nKey availability: Joe Burrow is Active (Depth-chart QB Active on ESPN injury feed.); C.J. Stroud is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Reliant Stadium indoor=true (ESPN).\nScheduled start: 2026-09-20T17:00Z.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -4084,7 +4506,12 @@
             "field_name": "qb_away",
             "raw_value": "Joe Burrow depth#1; ESPN injury status=Active",
             "normalized_value": "Joe Burrow",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Burrow completed 25 of 35 passes for 254 yards with one touchdown and one interception and rushed five times for 20 yards in the Bengals' 33-27 win over the Buc",
+            "status": "ACTIVE",
+            "player_name": "Joe Burrow",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -4096,7 +4523,12 @@
             "field_name": "qb_home",
             "raw_value": "C.J. Stroud depth#1; ESPN injury status=Active",
             "normalized_value": "C.J. Stroud",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Stroud completed 26 of 38 passes for 274 yards and two touchdowns in Sunday's 36-31 loss to the Bills. He also rushed twice for 15 yards and fumbled twice, losi",
+            "status": "ACTIVE",
+            "player_name": "C.J. Stroud",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-venue",
@@ -4108,7 +4540,12 @@
             "field_name": "venue_roof",
             "raw_value": "Reliant Stadium indoor=true (ESPN)",
             "normalized_value": "indoor",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "climate",
+            "notes": "Indoor venue \u2014 outdoor weather non-load.",
+            "status": "INDOOR",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -4120,7 +4557,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T17:00Z",
             "normalized_value": "2026-09-20T17:00Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "CLEAR_FOR_PRICE"
@@ -4149,7 +4591,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\ninjury: Joe Burrow [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Burrow completed 25 of 35 passes for 254 yards with one touchdown and one interception and rushed five times for 20 yards in the Bengals' 33-27 win over the Buc\ninjury: C.J. Stroud [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Stroud completed 26 of 38 passes for 274 yards and two touchdowns in Sunday's 36-31 loss to the Bills. He also rushed twice for 15 yards and fumbled twice, losi\nclimate: [INDOOR] grade A, fresh. Indoor venue \u2014 outdoor weather non-load.\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Cleared for price diagnostics for CIN@HOU.\nKey availability: Joe Burrow is Active (Depth-chart QB Active on ESPN injury feed.); C.J. Stroud is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Reliant Stadium indoor=true (ESPN).\nScheduled start: 2026-09-20T17:00Z.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -4172,7 +4614,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -4223,7 +4665,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Trevor Lawrence [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Lawrence completed 18 of 23 passes for 245 yards with four touchdowns and no interceptions while rushing twice for two yards in the Jaguars' 34-10 win over the \ninjury: Brian Thomas Jr. [QUESTIONABLE] grade B, stale. Coach Liam Coen said Monday that Thomas (shoulder) will be limited in practice this week, Michael DiRocco of ESPN.com reports.\ninjury: Bo Nix [DEPTH_CHART] grade B, fresh. Depth-chart QB; not on injuries list this pull.\nweather: [FORECAST] grade B, fresh. NWS Empower Field at Mile High Sunday\nclimate: [KNOWN] grade A, fresh. Mile High climate factor\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for JAX@DEN (weather / climate).\nKey availability: Trevor Lawrence is Active (Depth-chart QB Active on ESPN injury feed.); Brian Thomas Jr. is Questionable (Coach Liam Coen said Monday that Thomas (shoulder) will be limited in practice this week, Michael DiRocco of ESPN.); Bo Nix is Depth Chart (Depth-chart QB; not on injuries list this pull.).\nWeather: Mostly Sunny then Chance Showers And Thunderstorms; 77F; wind 2 to 7 mph NNE; PoP 27% (Empower Field at Mile High Sunday).\nScheduled start: 2026-09-20T20:05Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -4239,7 +4681,12 @@
             "field_name": "qb_away",
             "raw_value": "Trevor Lawrence depth#1; ESPN injury status=Active",
             "normalized_value": "Trevor Lawrence",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Lawrence completed 18 of 23 passes for 245 yards with four touchdowns and no interceptions while rushing twice for two yards in the Jaguars' 34-10 win over the ",
+            "status": "ACTIVE",
+            "player_name": "Trevor Lawrence",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -4251,7 +4698,12 @@
             "field_name": "wr_away_brian_thomas_jr",
             "raw_value": "WR Brian Thomas Jr.: Questionable",
             "normalized_value": "Brian Thomas Jr.",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Coach Liam Coen said Monday that Thomas (shoulder) will be limited in practice this week, Michael DiRocco of ESPN.com reports.",
+            "status": "QUESTIONABLE",
+            "player_name": "Brian Thomas Jr.",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -4263,7 +4715,12 @@
             "field_name": "qb_home",
             "raw_value": "Bo Nix depth#1; not listed on ESPN injuries pull",
             "normalized_value": "Bo Nix",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "injury",
+            "notes": "Depth-chart QB; not on injuries list this pull.",
+            "status": "DEPTH_CHART",
+            "player_name": "Bo Nix",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -4275,7 +4732,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Mostly Sunny then Chance Showers And Thunderstorms; 77F; wind 2 to 7 mph NNE; PoP 27%",
             "normalized_value": "Mostly Sunny then Chance Showers And Thunderstorms",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Empower Field at Mile High Sunday",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "venue-climate",
@@ -4287,7 +4749,12 @@
             "field_name": "altitude_mile_high",
             "raw_value": "Empower Field at Mile High elevation ~5280 ft",
             "normalized_value": "mile_high",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "climate",
+            "notes": "Mile High climate factor",
+            "status": "KNOWN",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -4299,7 +4766,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T20:05Z",
             "normalized_value": "2026-09-20T20:05Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -4328,7 +4800,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Trevor Lawrence [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Lawrence completed 18 of 23 passes for 245 yards with four touchdowns and no interceptions while rushing twice for two yards in the Jaguars' 34-10 win over the \ninjury: Brian Thomas Jr. [QUESTIONABLE] grade B, stale. Coach Liam Coen said Monday that Thomas (shoulder) will be limited in practice this week, Michael DiRocco of ESPN.com reports.\ninjury: Bo Nix [DEPTH_CHART] grade B, fresh. Depth-chart QB; not on injuries list this pull.\nweather: [FORECAST] grade B, fresh. NWS Empower Field at Mile High Sunday\nclimate: [KNOWN] grade A, fresh. Mile High climate factor\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for JAX@DEN (weather / climate).\nKey availability: Trevor Lawrence is Active (Depth-chart QB Active on ESPN injury feed.); Brian Thomas Jr. is Questionable (Coach Liam Coen said Monday that Thomas (shoulder) will be limited in practice this week, Michael DiRocco of ESPN.); Bo Nix is Depth Chart (Depth-chart QB; not on injuries list this pull.).\nWeather: Mostly Sunny then Chance Showers And Thunderstorms; 77F; wind 2 to 7 mph NNE; PoP 27% (Empower Field at Mile High Sunday).\nScheduled start: 2026-09-20T20:05Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -4351,7 +4823,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -4402,7 +4874,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Kirk Cousins [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Cousins completed 21 of 30 passes for 160 yards with three touchdowns and two interceptions and rushed five times for minus-6 yards in the Raiders' 27-13 win ov\ninjury: Brock Bowers [OUT] grade B, stale. Raiders head coach Klint Kubiak labeled Bowers (knee) as day-to-day Monday, Sam Warren of The Athletic reports.\ninjury: Justin Herbert [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Herbert completed 17 of 27 passes for 209 yards with one touchdown and one interception while adding five rushes for 29 yards in the Chargers' 26-14 loss to the\ninjury: Ladd McConkey [QUESTIONABLE] grade B, stale. Chargers head coach Jim Harbaugh labeled McConkey (rib) as day-to-day Monday, Adam Schefter of ESPN reports. Harbaugh added that the Chargers will see how McConkey progresses throu\nclimate: [UNVERIFIED_ROOF] grade C, fresh. SoFi ESPN indoor=false \u2014 weather fact omitted/non-load pending roof verification; no fabricated forecast.\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for LV@LAC (availability).\nKey availability: Kirk Cousins is Active (Depth-chart QB Active on ESPN injury feed.); Brock Bowers is Out (Raiders head coach Klint Kubiak labeled Bowers (knee) as day-to-day Monday, Sam Warren of The Athletic reports.); Justin Herbert is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: SoFi Stadium ESPN indoor=false \u2014 roof/open status unverified; weather non-load (no fabricated forecast).\nScheduled start: 2026-09-20T20:05Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -4418,7 +4890,12 @@
             "field_name": "qb_away",
             "raw_value": "Kirk Cousins depth#1; ESPN injury status=Active",
             "normalized_value": "Kirk Cousins",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Cousins completed 21 of 30 passes for 160 yards with three touchdowns and two interceptions and rushed five times for minus-6 yards in the Raiders' 27-13 win ov",
+            "status": "ACTIVE",
+            "player_name": "Kirk Cousins",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -4430,7 +4907,12 @@
             "field_name": "te_away_brock_bowers",
             "raw_value": "TE Brock Bowers: Out",
             "normalized_value": "Brock Bowers",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Raiders head coach Klint Kubiak labeled Bowers (knee) as day-to-day Monday, Sam Warren of The Athletic reports.",
+            "status": "OUT",
+            "player_name": "Brock Bowers",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -4442,7 +4924,12 @@
             "field_name": "qb_home",
             "raw_value": "Justin Herbert depth#1; ESPN injury status=Active",
             "normalized_value": "Justin Herbert",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Herbert completed 17 of 27 passes for 209 yards with one touchdown and one interception while adding five rushes for 29 yards in the Chargers' 26-14 loss to the",
+            "status": "ACTIVE",
+            "player_name": "Justin Herbert",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -4454,7 +4941,12 @@
             "field_name": "wr_home_ladd_mcconkey",
             "raw_value": "WR Ladd McConkey: Questionable",
             "normalized_value": "Ladd McConkey",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Chargers head coach Jim Harbaugh labeled McConkey (rib) as day-to-day Monday, Adam Schefter of ESPN reports. Harbaugh added that the Chargers will see how McConkey progresses throu",
+            "status": "QUESTIONABLE",
+            "player_name": "Ladd McConkey",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-venue",
@@ -4466,7 +4958,12 @@
             "field_name": "venue_roof",
             "raw_value": "SoFi Stadium ESPN indoor=false \u2014 roof/open status unverified; weather non-load (no fabricated forecast)",
             "normalized_value": "sofi_roof_unverified",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "climate",
+            "notes": "SoFi ESPN indoor=false \u2014 weather fact omitted/non-load pending roof verification; no fabricated forecast.",
+            "status": "UNVERIFIED_ROOF",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -4478,7 +4975,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T20:05Z",
             "normalized_value": "2026-09-20T20:05Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -4507,7 +5009,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Kirk Cousins [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Cousins completed 21 of 30 passes for 160 yards with three touchdowns and two interceptions and rushed five times for minus-6 yards in the Raiders' 27-13 win ov\ninjury: Brock Bowers [OUT] grade B, stale. Raiders head coach Klint Kubiak labeled Bowers (knee) as day-to-day Monday, Sam Warren of The Athletic reports.\ninjury: Justin Herbert [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Herbert completed 17 of 27 passes for 209 yards with one touchdown and one interception while adding five rushes for 29 yards in the Chargers' 26-14 loss to the\ninjury: Ladd McConkey [QUESTIONABLE] grade B, stale. Chargers head coach Jim Harbaugh labeled McConkey (rib) as day-to-day Monday, Adam Schefter of ESPN reports. Harbaugh added that the Chargers will see how McConkey progresses throu\nclimate: [UNVERIFIED_ROOF] grade C, fresh. SoFi ESPN indoor=false \u2014 weather fact omitted/non-load pending roof verification; no fabricated forecast.\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for LV@LAC (availability).\nKey availability: Kirk Cousins is Active (Depth-chart QB Active on ESPN injury feed.); Brock Bowers is Out (Raiders head coach Klint Kubiak labeled Bowers (knee) as day-to-day Monday, Sam Warren of The Athletic reports.); Justin Herbert is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: SoFi Stadium ESPN indoor=false \u2014 roof/open status unverified; weather non-load (no fabricated forecast).\nScheduled start: 2026-09-20T20:05Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -4530,7 +5032,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -4581,7 +5083,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\ninjury: Jayden Daniels [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Daniels completed 18 of 34 pass attempts for 164 yards and two touchdowns while rushing five times for 31 yards Sunday in a loss to Philadelphia.\ninjury: Dak Prescott [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Prescott completed 22 of 34 passes for 175 yards, two touchdowns and one interception in Sunday's 28-20 loss to the Giants. He also rushed twice for 14 yards.\nclimate: [INDOOR] grade A, fresh. Indoor venue \u2014 outdoor weather non-load.\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Cleared for price diagnostics for WSH@DAL.\nKey availability: Jayden Daniels is Active (Depth-chart QB Active on ESPN injury feed.); Dak Prescott is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: AT&T Stadium indoor=true (ESPN).\nScheduled start: 2026-09-20T20:25Z.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -4597,7 +5099,12 @@
             "field_name": "qb_away",
             "raw_value": "Jayden Daniels depth#1; ESPN injury status=Active",
             "normalized_value": "Jayden Daniels",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Daniels completed 18 of 34 pass attempts for 164 yards and two touchdowns while rushing five times for 31 yards Sunday in a loss to Philadelphia.",
+            "status": "ACTIVE",
+            "player_name": "Jayden Daniels",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -4609,7 +5116,12 @@
             "field_name": "qb_home",
             "raw_value": "Dak Prescott depth#1; ESPN injury status=Active",
             "normalized_value": "Dak Prescott",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Prescott completed 22 of 34 passes for 175 yards, two touchdowns and one interception in Sunday's 28-20 loss to the Giants. He also rushed twice for 14 yards.",
+            "status": "ACTIVE",
+            "player_name": "Dak Prescott",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-venue",
@@ -4621,7 +5133,12 @@
             "field_name": "venue_roof",
             "raw_value": "AT&T Stadium indoor=true (ESPN)",
             "normalized_value": "indoor",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "climate",
+            "notes": "Indoor venue \u2014 outdoor weather non-load.",
+            "status": "INDOOR",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -4633,7 +5150,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T20:25Z",
             "normalized_value": "2026-09-20T20:25Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "CLEAR_FOR_PRICE"
@@ -4662,7 +5184,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\ninjury: Jayden Daniels [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Daniels completed 18 of 34 pass attempts for 164 yards and two touchdowns while rushing five times for 31 yards Sunday in a loss to Philadelphia.\ninjury: Dak Prescott [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Prescott completed 22 of 34 passes for 175 yards, two touchdowns and one interception in Sunday's 28-20 loss to the Giants. He also rushed twice for 14 yards.\nclimate: [INDOOR] grade A, fresh. Indoor venue \u2014 outdoor weather non-load.\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Cleared for price diagnostics for WSH@DAL.\nKey availability: Jayden Daniels is Active (Depth-chart QB Active on ESPN injury feed.); Dak Prescott is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: AT&T Stadium indoor=true (ESPN).\nScheduled start: 2026-09-20T20:25Z.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -4687,10 +5209,11 @@
         ],
         "status": "STOPPED",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
-          "experimental"
+          "experimental",
+          "si_stop"
         ],
         "filters": []
       },
@@ -4706,7 +5229,7 @@
         "classification": null,
         "grade": null,
         "price_trigger": null,
-        "decision": "PASS_THE_BOARD",
+        "decision": "UNVERIFIED",
         "quote_source": "live_DK_browser",
         "is_dk_direct": true,
         "board_ml_away": -225,
@@ -4739,7 +5262,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: STOP. Overall evidence: B.\nSTOP fields: injury \u2014 no single actionable probability until resolved.\ninjury: Sam Darnold [DOUBTFUL] grade B, fresh. Sam Darnold DOUBTFUL; Drew Lock Active per ESPN. Depth still Sam Darnold #1. Darnold (glute) is dealing with a \"very unique\" soft-tissue injury, but his hip joint is unaffected and the issue is considered short term, Brady Henderson of ESPN.com reports.\ninjury: Tory Horton [OUT] grade B, stale. out\ninjury: Jacoby Brissett [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Brissett completed 27 of 37 passes for 277 yards with a touchdown and no interceptions while rushing six times for 14 yards in the Cardinals' 26-14 win over the\nclimate: [INDOOR] grade A, fresh. Indoor venue \u2014 outdoor weather non-load.\nSTOP: do not emit single actionable Fundamental until STOP fields resolve."
+        "si_narrative": "Stopped for SEA@ARI because of injury.\nKey availability: Sam Darnold is Doubtful (Sam Darnold DOUBTFUL; Drew Lock Active per ESPN.); Tory Horton is Out; Jacoby Brissett is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: State Farm Stadium indoor=true (ESPN).\nScheduled start: 2026-09-20T20:25Z.\nSam Darnold DOUBTFUL; Drew Lock Active per ESPN. Depth still Sam Darnold #1. Darnold (glute) is dealing with a \"very unique\" soft-tissue injury, but his hip joint is unaffected and the issue is considered short term, Brady Henderson of ESPN.com reports.\nNot cleared \u2014 STOP on injury. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -4757,7 +5280,12 @@
             "field_name": "qb_away",
             "raw_value": "Sam Darnold DOUBTFUL; Drew Lock Active. Depth still Sam Darnold #1.",
             "normalized_value": "Sam Darnold",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "injury",
+            "notes": "Sam Darnold DOUBTFUL; Drew Lock Active per ESPN. Depth still Sam Darnold #1. Darnold (glute) is dealing with a \"very unique\" soft-tissue injury, but his hip joint is unaffected and the issue is considered short term, Brady Henderson of ESPN.com reports.",
+            "status": "DOUBTFUL",
+            "player_name": "Sam Darnold",
+            "stop": true
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -4769,7 +5297,12 @@
             "field_name": "wr_away_tory_horton",
             "raw_value": "WR Tory Horton: Out",
             "normalized_value": "Tory Horton",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "out",
+            "status": "OUT",
+            "player_name": "Tory Horton",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -4781,7 +5314,12 @@
             "field_name": "qb_home",
             "raw_value": "Jacoby Brissett depth#1; ESPN injury status=Active",
             "normalized_value": "Jacoby Brissett",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Brissett completed 27 of 37 passes for 277 yards with a touchdown and no interceptions while rushing six times for 14 yards in the Cardinals' 26-14 win over the",
+            "status": "ACTIVE",
+            "player_name": "Jacoby Brissett",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-venue",
@@ -4793,7 +5331,12 @@
             "field_name": "venue_roof",
             "raw_value": "State Farm Stadium indoor=true (ESPN)",
             "normalized_value": "indoor",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "climate",
+            "notes": "Indoor venue \u2014 outdoor weather non-load.",
+            "status": "INDOOR",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -4805,7 +5348,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T20:25Z",
             "normalized_value": "2026-09-20T20:25Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "STOP"
@@ -4834,7 +5382,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: STOP. Overall evidence: B.\nSTOP fields: injury \u2014 no single actionable probability until resolved.\ninjury: Sam Darnold [DOUBTFUL] grade B, fresh. Sam Darnold DOUBTFUL; Drew Lock Active per ESPN. Depth still Sam Darnold #1. Darnold (glute) is dealing with a \"very unique\" soft-tissue injury, but his hip joint is unaffected and the issue is considered short term, Brady Henderson of ESPN.com reports.\ninjury: Tory Horton [OUT] grade B, stale. out\ninjury: Jacoby Brissett [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Brissett completed 27 of 37 passes for 277 yards with a touchdown and no interceptions while rushing six times for 14 yards in the Cardinals' 26-14 win over the\nclimate: [INDOOR] grade A, fresh. Indoor venue \u2014 outdoor weather non-load.\nSTOP: do not emit single actionable Fundamental until STOP fields resolve."
+      "si_narrative": "Stopped for SEA@ARI because of injury.\nKey availability: Sam Darnold is Doubtful (Sam Darnold DOUBTFUL; Drew Lock Active per ESPN.); Tory Horton is Out; Jacoby Brissett is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: State Farm Stadium indoor=true (ESPN).\nScheduled start: 2026-09-20T20:25Z.\nSam Darnold DOUBTFUL; Drew Lock Active per ESPN. Depth still Sam Darnold #1. Darnold (glute) is dealing with a \"very unique\" soft-tissue injury, but his hip joint is unaffected and the issue is considered short term, Brady Henderson of ESPN.com reports.\nNot cleared \u2014 STOP on injury. Not a ticket \u2014 price diagnostics only."
     },
     {
       "event": {
@@ -4857,7 +5405,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -4908,7 +5456,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\ninjury: Malik Willis [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Willis completed 15 of 27 passes for 200 yards with no touchdowns and one interception while adding six carries for 39 yards and a touchdown in the Dolphins' 27\ninjury: Brock Purdy [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Purdy completed 25 of 34 passes for 205 yards with three touchdowns and one interception while adding five rushes for 29 yards during the 49ers' 27-7 Week 1 win\nweather: [FORECAST] grade B, fresh. NWS Levi's Stadium Sunday\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+        "si_narrative": "Cleared for price diagnostics for MIA@SF.\nKey availability: Malik Willis is Active (Depth-chart QB Active on ESPN injury feed.); Brock Purdy is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Mostly Sunny; 78F; wind 2 to 12 mph WNW; PoP 0% (Levi's Stadium Sunday).\nScheduled start: 2026-09-20T20:25Z.\nCleared for price diagnostics only. Not a ticket."
       },
       "provenance": {
         "overall": "B",
@@ -4924,7 +5472,12 @@
             "field_name": "qb_away",
             "raw_value": "Malik Willis depth#1; ESPN injury status=Active",
             "normalized_value": "Malik Willis",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Willis completed 15 of 27 passes for 200 yards with no touchdowns and one interception while adding six carries for 39 yards and a touchdown in the Dolphins' 27",
+            "status": "ACTIVE",
+            "player_name": "Malik Willis",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -4936,7 +5489,12 @@
             "field_name": "qb_home",
             "raw_value": "Brock Purdy depth#1; ESPN injury status=Active",
             "normalized_value": "Brock Purdy",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Purdy completed 25 of 34 passes for 205 yards with three touchdowns and one interception while adding five rushes for 29 yards during the 49ers' 27-7 Week 1 win",
+            "status": "ACTIVE",
+            "player_name": "Brock Purdy",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -4948,7 +5506,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Mostly Sunny; 78F; wind 2 to 12 mph WNW; PoP 0%",
             "normalized_value": "Mostly Sunny",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Levi's Stadium Sunday",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -4960,7 +5523,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-20T20:25Z",
             "normalized_value": "2026-09-20T20:25Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "CLEAR_FOR_PRICE"
@@ -4990,7 +5558,7 @@
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates",
         "live_or_extreme_ml": true
       },
-      "si_narrative": "SI action: CLEAR_FOR_PRICE. Overall evidence: B.\ninjury: Malik Willis [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Willis completed 15 of 27 passes for 200 yards with no touchdowns and one interception while adding six carries for 39 yards and a touchdown in the Dolphins' 27\ninjury: Brock Purdy [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Purdy completed 25 of 34 passes for 205 yards with three touchdowns and one interception while adding five rushes for 29 yards during the 49ers' 27-7 Week 1 win\nweather: [FORECAST] grade B, fresh. NWS Levi's Stadium Sunday\nCLEAR for price: load-bearing SI inputs graded A/B with no unresolved STOP."
+      "si_narrative": "Cleared for price diagnostics for MIA@SF.\nKey availability: Malik Willis is Active (Depth-chart QB Active on ESPN injury feed.); Brock Purdy is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Mostly Sunny; 78F; wind 2 to 12 mph WNW; PoP 0% (Levi's Stadium Sunday).\nScheduled start: 2026-09-20T20:25Z.\nCleared for price diagnostics only. Not a ticket."
     },
     {
       "event": {
@@ -5013,7 +5581,7 @@
         "stop_fields": [],
         "status": "INSUFFICIENT",
         "p0": null,
-        "decision_cutoff": "2026-09-15T00:16:19Z",
+        "decision_cutoff": "2026-09-15T00:28:52Z",
         "tags": [
           "nfl_adapter_pending",
           "experimental",
@@ -5064,7 +5632,7 @@
           "BUY_LOCKED_PENDING_ADRIAN"
         ],
         "market_hypotheses": [],
-        "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Daniel Jones [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Jones completed 19 of 31 passes for 166 yards with one touchdown and one interception while adding one rush for four yards in the Colts' 41-23 loss to the Raven\ninjury: Alec Pierce [QUESTIONABLE] grade B, stale. Colts head coach Shane Steichen said that Pierce is \"good right now\" after banging up his wrist in Sunday's 41-23 loss to the Ravens, James Boyd of The Athletic reports.\ninjury: Patrick Mahomes [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Mahomes (knee) does not have an injury designation for Monday's game against the Broncos.\nweather: [FORECAST] grade B, fresh. NWS Arrowhead Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+        "si_narrative": "On watch for IND@KC (weather / climate).\nKey availability: Daniel Jones is Active (Depth-chart QB Active on ESPN injury feed.); Alec Pierce is Questionable (Colts head coach Shane Steichen said that Pierce is \"good right now\" after banging up his wrist in Sunday's 41-23 loss to the Ravens, James Boyd of The Athletic reports.); Patrick Mahomes is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Chance Showers And Thunderstorms; 80F; wind 5 to 8 mph WNW; PoP 43% (Arrowhead Stadium Sunday).\nScheduled start: 2026-09-21T00:20Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
       },
       "provenance": {
         "overall": "B",
@@ -5080,7 +5648,12 @@
             "field_name": "qb_away",
             "raw_value": "Daniel Jones depth#1; ESPN injury status=Active",
             "normalized_value": "Daniel Jones",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Jones completed 19 of 31 passes for 166 yards with one touchdown and one interception while adding one rush for four yards in the Colts' 41-23 loss to the Raven",
+            "status": "ACTIVE",
+            "player_name": "Daniel Jones",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries",
@@ -5092,7 +5665,12 @@
             "field_name": "wr_away_alec_pierce",
             "raw_value": "WR Alec Pierce: Questionable",
             "normalized_value": "Alec Pierce",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Colts head coach Shane Steichen said that Pierce is \"good right now\" after banging up his wrist in Sunday's 41-23 loss to the Ravens, James Boyd of The Athletic reports.",
+            "status": "QUESTIONABLE",
+            "player_name": "Alec Pierce",
+            "stop": false
           },
           {
             "source_id": "espn-nfl-injuries+depthchart",
@@ -5104,7 +5682,12 @@
             "field_name": "qb_home",
             "raw_value": "Patrick Mahomes depth#1; ESPN injury status=Active",
             "normalized_value": "Patrick Mahomes",
-            "freshness_status": "stale"
+            "freshness_status": "stale",
+            "kind": "injury",
+            "notes": "Depth-chart QB Active on ESPN injury feed. Mahomes (knee) does not have an injury designation for Monday's game against the Broncos.",
+            "status": "ACTIVE",
+            "player_name": "Patrick Mahomes",
+            "stop": false
           },
           {
             "source_id": "nws-forecast",
@@ -5116,7 +5699,12 @@
             "field_name": "forecast_gameday",
             "raw_value": "Chance Showers And Thunderstorms; 80F; wind 5 to 8 mph WNW; PoP 43%",
             "normalized_value": "Chance Showers And Thunderstorms",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "weather",
+            "notes": "NWS Arrowhead Stadium Sunday",
+            "status": "FORECAST",
+            "player_name": null,
+            "stop": false
           },
           {
             "source_id": "espn-nfl-scoreboard",
@@ -5128,7 +5716,12 @@
             "field_name": "start_time",
             "raw_value": "2026-09-21T00:20Z",
             "normalized_value": "2026-09-21T00:20Z",
-            "freshness_status": "fresh"
+            "freshness_status": "fresh",
+            "kind": "schedule",
+            "notes": "Slate CT 2026-09-20",
+            "status": "SCHEDULED",
+            "player_name": null,
+            "stop": false
           }
         ],
         "si_action": "WATCH"
@@ -5157,7 +5750,7 @@
         "quote_source_label": "live_DK_browser",
         "display_note": "Board prices from live DK sportsbook browser scrape \u2014 PRICE DIAGNOSTICS only; BUY/LEAN still locked pending SI/Fundamentals gates"
       },
-      "si_narrative": "SI action: WATCH. Overall evidence: B.\ninjury: Daniel Jones [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Jones completed 19 of 31 passes for 166 yards with one touchdown and one interception while adding one rush for four yards in the Colts' 41-23 loss to the Raven\ninjury: Alec Pierce [QUESTIONABLE] grade B, stale. Colts head coach Shane Steichen said that Pierce is \"good right now\" after banging up his wrist in Sunday's 41-23 loss to the Ravens, James Boyd of The Athletic reports.\ninjury: Patrick Mahomes [ACTIVE] grade B, stale. Depth-chart QB Active on ESPN injury feed. Mahomes (knee) does not have an injury designation for Monday's game against the Broncos.\nweather: [FORECAST] grade B, fresh. NWS Arrowhead Stadium Sunday\nWATCH: monitor weather/injuries/inactives; not STOP unless load-bearing QB/starter unresolved."
+      "si_narrative": "On watch for IND@KC (weather / climate).\nKey availability: Daniel Jones is Active (Depth-chart QB Active on ESPN injury feed.); Alec Pierce is Questionable (Colts head coach Shane Steichen said that Pierce is \"good right now\" after banging up his wrist in Sunday's 41-23 loss to the Ravens, James Boyd of The Athletic reports.); Patrick Mahomes is Active (Depth-chart QB Active on ESPN injury feed.).\nWeather: Chance Showers And Thunderstorms; 80F; wind 5 to 8 mph WNW; PoP 43% (Arrowhead Stadium Sunday).\nScheduled start: 2026-09-21T00:20Z.\nWatch only \u2014 inputs can still move the line. Not a ticket \u2014 price diagnostics only."
     }
   ],
   "price_display": {
@@ -5200,14 +5793,9 @@
   },
   "ux_pass": "chatgpt_nfl_pass1_columns",
   "diagnostic_leans": {
-    "generated_at": "2026-09-15T00:18:20Z",
+    "generated_at": "2026-09-15T00:29:21Z",
     "rule": "SI CLEAR + |div|>=5 + Daniel challenge; DK-direct display; never BUY",
     "rows": [
-      {
-        "matchup": "LAD@CIN",
-        "side": "CIN",
-        "div_pp": 39.5
-      },
       {
         "matchup": "DET@TOR",
         "side": "DET",
@@ -5224,5 +5812,6 @@
         "div_pp": 6.6
       }
     ]
-  }
+  },
+  "_narrative_remarge_at": "2026-09-15T00:29:21Z"
 }

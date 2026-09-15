@@ -80,3 +80,10 @@ No MLB STOP: all games had ESPN SP listed (CONFIRMED/A in-progress; PROBABLE/B p
 - Probable SP = **B** (may move line). Confirmed SP (game in/post) = **A**. TBD SP → STOP `starter`.
 - C/D load-bearing → STOP. Missing ≠ zero.
 - Unresolved load-bearing QB (Q/D) → STOP `injury`.
+
+
+## Patch 2026-09-15T00:28:58Z — narrative prose + LAD@CIN STOP
+- Rewrote all `narrative_text` to plain English (3–6 sentences); no CLEAR_FOR_PRICE/grade dumps as main text.
+- **STOP** `mlb-20260914-lad-cin`: Tarik Skubal listed as LAD SP — desk identity expects DET; starter join blocked (evidence D). Do not CLEAR.
+- Live inning/score stripped from Situation narrative (schedule facts may still carry live status in machine fields).
+- Remarged `si_narrative` onto Glass live JSON for Situation drawer.
