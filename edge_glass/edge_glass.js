@@ -1205,6 +1205,26 @@
     return s.replace(/_/g, " ");
   }
 
+  function filterLeanSentence(f, away, home) {
+    const name = humanFilterName(f);
+    const pos = filterAxisPos(f);
+    if (!f || !f.active || !pos) {
+      return `${name} is not in this number yet.`;
+    }
+    if (Math.abs(pos.unit) < 0.02) {
+      return `${name} is roughly even between ${away} and ${home}.`;
+    }
+    const side = pos.unit > 0 ? home : away;
+    const strength = Math.abs(pos.raw);
+    const how =
+      strength < 0.35 ? "leans" : strength < 0.85 ? "favors" : "strongly favors";
+    // Keep labels specific where the example matters
+    if ((f.id === "F06" || f.label === "rd_climate") && how === "leans") {
+      return `Season run differential leans ${side}.`;
+    }
+    return `${name} ${how} ${side}.`;
+  }
+
   function humanEvidenceGrade(g) {
     const c = String(g || "").trim().toUpperCase();
     const map = { A: "Strong", B: "Solid", C: "Thin", D: "Weak" };
@@ -1305,28 +1325,18 @@
         const active = !!f.active && pos != null;
         let pct = 50;
         let cls = "eg-dot-inactive";
-        let title = active ? label : `${label} — not active`;
-        let side = "Not active";
-        let meta = humanReason(f.unverified_reason || "inactive / unverified");
+        let title = active ? label : `${label} — not in this number yet`;
+        let side = "Not in this number yet";
+        let meta = "Missing data";
         if (active) {
-          pct = 50 + pos.unit * 50;
+          pct = 50 + pos.unit * 50; // +z / +logit = home (right)
           cls = pos.unit > 0.02 ? "eg-dot-home" : pos.unit < -0.02 ? "eg-dot-away" : "eg-dot-neutral";
           side = filterFavoredText(pos.unit, away, home);
-          title = `${label}: ${side}`;
-          const strength = Math.abs(pos.raw);
-          meta =
-            strength < 0.15
-              ? "Near even"
-              : strength < 0.5
-                ? "Mild lean"
-                : strength < 1
-                  ? "Clear lean"
-                  : "Strong lean";
+          title = filterLeanSentence(f, away, home);
+          meta = filterLeanSentence(f, away, home);
         }
         return `<div class="eg-dot-row" title="${esc(title)}">
-          <div class="eg-dot-label">${esc(label)}${
-            f.id ? ` <span class="eg-muted eg-code-soft">${esc(f.id)}</span>` : ""
-          }</div>
+          <div class="eg-dot-label">${esc(label)}</div>
           <div class="eg-dot-track" aria-hidden="true">
             <span class="eg-dot-axis-end left">${esc(away)}</span>
             <span class="eg-dot-center-line"></span>
@@ -1345,7 +1355,7 @@
           <span>even</span>
           <span>→ home <b>${esc(home)}</b></span>
         </div>
-        <p class="eg-dots-convention eg-hint">Each row is one model filter. Active dots lean toward the favored side; hollow dots mean that filter is off for this game.</p>
+        <p class="eg-dots-convention eg-hint">Right favors home (+z). Hollow dots are filters not in this number yet.</p>
         ${rows}
       </div>`;
   }
@@ -1416,6 +1426,9 @@
   }
 
   function danielFiltersBlock(row) {
+    const ev = row.event || {};
+    const away = ev.away || "Away";
+    const home = ev.home || "Home";
     const filters = (row.fundamental && row.fundamental.filters) || [];
     if (!filters.length) {
       return `<p class="eg-muted">No model filters listed.</p>`;
@@ -1423,37 +1436,44 @@
     const active = filters.filter((f) => f && f.active);
     const inactive = filters.filter((f) => f && !f.active);
     const renderOn = (f) => {
-      const name = humanFilterName(f);
-      const grade = f.evidence_grade
-        ? ` · ${humanEvidenceGrade(f.evidence_grade)} evidence`
-        : "";
-      return `<li class="on"><span class="eg-filter-name">${esc(
-        name
-      )}</span> <span class="eg-pill-mini on">On</span>${
-        f.id ? ` <span class="eg-muted eg-code-soft">${esc(f.id)}</span>` : ""
-      }<div class="eg-filter-detail">In the model${grade}.</div></li>`;
+      const sentence = filterLeanSentence(f, away, home);
+      return `<li class="on"><span class="eg-filter-sentence">${esc(
+        sentence
+      )}</span></li>`;
     };
     const renderOff = (f) => {
       const name = humanFilterName(f);
-      return `<li class="off"><span class="eg-filter-name">${esc(
-        name
-      )}</span> <span class="eg-pill-mini off">Off</span>${
-        f.id ? ` <span class="eg-muted eg-code-soft">${esc(f.id)}</span>` : ""
-      }<div class="eg-filter-detail">${esc(
-        humanReason(f.unverified_reason || "inactive / unverified")
-      )}</div></li>`;
+      const detail = humanReason(f.unverified_reason || "");
+      const showDetail =
+        detail &&
+        detail !== "Not available for this slate" &&
+        detail !== "Not active on this row";
+      return `<li class="off">
+        <div class="eg-filter-sentence">${esc(name)} — not in this number yet (missing data).</div>
+        ${
+          showDetail
+            ? `<details class="eg-filter-tech"><summary>Details</summary><p>${esc(
+                detail
+              )}${
+                f.id
+                  ? ` <span class="eg-muted eg-code-soft">(${esc(f.id)})</span>`
+                  : ""
+              }</p></details>`
+            : ""
+        }
+      </li>`;
     };
     return `<div class="eg-filter-narrative-wrap">
       ${
         active.length
-          ? `<p class="eg-filter-subhead">In play (${active.length})</p><ul class="eg-filter-list eg-filter-narrative">${active
+          ? `<ul class="eg-filter-list eg-filter-narrative eg-filter-sentences">${active
               .map(renderOn)
               .join("")}</ul>`
           : `<p class="eg-muted">No filters active on this game.</p>`
       }
       ${
         inactive.length
-          ? `<details class="eg-filter-details"><summary>Not used (${inactive.length})</summary><ul class="eg-filter-list eg-filter-narrative">${inactive
+          ? `<details class="eg-filter-details"><summary>Not in this number yet (${inactive.length})</summary><ul class="eg-filter-list eg-filter-narrative">${inactive
               .map(renderOff)
               .join("")}</ul></details>`
           : ""

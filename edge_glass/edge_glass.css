@@ -1546,3 +1546,25 @@ body.eg-standalone {
   color: #64748b;
   margin: 0 0 0.65rem;
 }
+
+.eg-filter-sentences li {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+.eg-filter-sentence {
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+.eg-filter-tech {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+}
+.eg-filter-tech > summary {
+  cursor: pointer;
+  color: #64748b;
+  font-weight: 600;
+}
+.eg-filter-tech p {
+  margin: 0.3rem 0 0;
+  color: #64748b;
+}
